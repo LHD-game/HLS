@@ -12,6 +12,7 @@ public class CircularBarGraph : MonoBehaviour
 
     private Slider[] bars;
     public int[] data;
+    public GameObject[] signs;
 
     private RectTransform rectTransform;
     private Vector2 barSize = new Vector2(500f, 40.0f);
@@ -50,12 +51,21 @@ public class CircularBarGraph : MonoBehaviour
 
     void UpdateGraph()
     {
+        int sign = 0;
         for (int i = 0; i < segments; i++)
         {
             //float height = data[i];
             Slider bar = bars[i];
-            bar.value = data[i];
+            sign += data[i];
+            bar.value = data[i]/4;
 
         }
+        if (sign < 92)
+            signs[0].SetActive(false);
+        else if (92<sign && sign < 114)
+            signs[1].SetActive(false);
+        else if (114<sign)
+            signs[2].SetActive(false);
+        Debug.Log(sign);
     }
 }
