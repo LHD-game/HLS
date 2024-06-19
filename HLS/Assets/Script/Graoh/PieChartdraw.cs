@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PieChart : VisualElement
+public class PieChartdraw : VisualElement
 {
     float m_Radius = 100.0f;
     float m_Value = 70.0f;
@@ -25,7 +25,7 @@ public class PieChart : VisualElement
         set { m_Value = value; MarkDirtyRepaint(); }
     }
 
-    public PieChart()
+    public PieChartdraw()
     {
         generateVisualContent += DrawCanvas;
     }
