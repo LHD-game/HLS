@@ -17,6 +17,6 @@ public class PieChartWindow : EditorWindow
     {
         VisualElement root = rootVisualElement;
 
-        root.Add(new PieChart());
+        root.Add(new PieChartdraw());
     }
 }
