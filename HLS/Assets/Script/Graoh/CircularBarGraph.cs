@@ -6,19 +6,20 @@ using UnityEngine.UI;
 public class CircularBarGraph : MonoBehaviour
 {
     public int segments = 10; // 그래프의 세그먼트 수
-    public float radius = 2f; // 원의 반지름
+    public float radius; // 원의 반지름
     public float animationSpeed = 1f; // 애니메이션 속도
     public Slider slider; // 슬라이더 UI
+    public RectTransform WheelPrent;
 
     private Slider[] bars;
     public int[] data;
-    public GameObject[] signs;
+    public GameObject Mysign;
 
     private RectTransform rectTransform;
-    private Vector2 barSize = new Vector2(500f, 40.0f);
 
     void Start()
     {
+        segments = data.Length;
         CreateBars();
         UpdateGraph();
     }
@@ -36,10 +37,14 @@ public class CircularBarGraph : MonoBehaviour
 
             Slider bar = Instantiate(slider, transform.position + barPosition, Quaternion.identity, transform);
             bars[i] = bar;
-
+            //막대 사이즈 조절
+            RectTransform thisRect = bar.GetComponent<RectTransform>();
+            if (WheelPrent.rect.width > WheelPrent.rect.height)
+                thisRect.sizeDelta = new Vector2(WheelPrent.rect.height / 2, thisRect.rect.height);
+            else
+                thisRect.sizeDelta = new Vector2(WheelPrent.rect.width / 2, thisRect.rect.height);
             // 막대의 회전 조절
             bar.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-            bar.GetComponent<RectTransform>().sizeDelta = barSize;
 
         }
     }
@@ -61,11 +66,11 @@ public class CircularBarGraph : MonoBehaviour
 
         }
         if (sign < 92)
-            signs[0].SetActive(false);
+            Mysign.GetComponent<Image>().color = Color.red;
         else if (92<sign && sign < 114)
-            signs[1].SetActive(false);
+            Mysign.GetComponent<Image>().color = Color.yellow;
         else if (114<sign)
-            signs[2].SetActive(false);
+            Mysign.GetComponent<Image>().color = Color.green;
         Debug.Log(sign);
     }
 }
