@@ -5,34 +5,76 @@ using UnityEngine.UI;
 
 public class CircularBarGraph : MonoBehaviour
 {
+    [SerializeField]
+    [Header("Script")]
+    LineRen Ln;
+    [Space(20f)]
+
     public int segments = 10; // 그래프의 세그먼트 수
     public float radius; // 원의 반지름
     public float animationSpeed = 1f; // 애니메이션 속도
     public Slider slider; // 슬라이더 UI
+    public Text Title; // 항목title UI
     public RectTransform WheelPrent;
 
-    private Slider[] bars;
+    public Slider[] bars;
+    public Vector3[] handles;
     public int[] data;
+    [Space (10f)]
     public GameObject Mysign;
+    public Text scoreTxt;
 
     private RectTransform rectTransform;
 
+    [Header("Data")]
+    public string[] Titles;
+    public int Score;
+    public string Date;
+
+
+
     void Start()
     {
+    }
+
+    public void buttonClick()
+    {
         segments = data.Length;
+        Score = plusScore();
+        scoreTxt.text = Score.ToString();
         CreateBars();
-        UpdateGraph();
+        Ln.Points();
+    }
+
+    public void BackSpa()
+    {
+        Transform targetTransform = WheelPrent.transform;
+        foreach (Transform child in targetTransform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    int plusScore()
+    {
+        int P =0;
+        for(int i = 0; i<data.Length;i++)
+        {
+            P += data[i];
+        }
+        return P;
     }
 
     void CreateBars()
     {
         bars = new Slider[segments];
+        handles = new Vector3[segments];
 
         float angleStep = 360f / segments;
 
         for (int i = 0; i < segments; i++)
         {
-            float angle = i * angleStep;
+            float angle = (i * angleStep)-90;
             Vector3 barPosition = Quaternion.Euler(0, 0, angle+90) * Vector3.up * radius;
 
             Slider bar = Instantiate(slider, transform.position + barPosition, Quaternion.identity, transform);
@@ -40,12 +82,36 @@ public class CircularBarGraph : MonoBehaviour
             //막대 사이즈 조절
             RectTransform thisRect = bar.GetComponent<RectTransform>();
             if (WheelPrent.rect.width > WheelPrent.rect.height)
-                thisRect.sizeDelta = new Vector2(WheelPrent.rect.height / 2, thisRect.rect.height);
+                thisRect.sizeDelta = new Vector2((WheelPrent.rect.height / 3)-10, thisRect.rect.height);
             else
-                thisRect.sizeDelta = new Vector2(WheelPrent.rect.width / 2, thisRect.rect.height);
+                thisRect.sizeDelta = new Vector2((WheelPrent.rect.width / 3)-10, thisRect.rect.height);
             // 막대의 회전 조절
             bar.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            UpdateGraph(i);
 
+            handles[i] = bar.transform.Find("Handle Slide Area/Handle").position;
+
+            //각 점수 별 title 생성
+            Transform RT = bar.transform.Find("TitlePos").GetComponent<Transform>();
+            Transform OutPos = RT;
+            Debug.Log(i);
+            Debug.Log("앵글값"+angle);
+            Debug.Log("떨어지는 값"+ thisRect.rect.width / 10);
+            bar.gameObject.name = i.ToString();
+            
+            //좌우 타이틀 위치 설정
+            if(angle < 35 && angle > -61)
+            {
+                Debug.Log("실횅");
+                OutPos.position = new Vector2(OutPos.position.x - 1.5f, OutPos.position.y);
+            }
+            else if(angle < 240 && angle > 140)
+            {
+                Debug.Log("실횅");
+                OutPos.position = new Vector2(OutPos.position.x + 2.5f, OutPos.position.y);
+            }
+
+            Instantiate(Title, OutPos.position, Quaternion.identity, transform);
         }
     }
 
@@ -54,23 +120,17 @@ public class CircularBarGraph : MonoBehaviour
         //UpdateGraph();
     }
 
-    void UpdateGraph()
+    void UpdateGraph(int i)
     {
         int sign = 0;
-        for (int i = 0; i < segments; i++)
-        {
-            //float height = data[i];
-            Slider bar = bars[i];
-            sign += data[i];
-            bar.value = data[i]/4;
-
-        }
+        sign += data[i];
+        bars[i].value = data[i];
         if (sign < 92)
             Mysign.GetComponent<Image>().color = Color.red;
-        else if (92<sign && sign < 114)
+        else if (92 < sign && sign < 114)
             Mysign.GetComponent<Image>().color = Color.yellow;
-        else if (114<sign)
+        else if (114 < sign)
             Mysign.GetComponent<Image>().color = Color.green;
-        Debug.Log(sign);
+        //Debug.Log(sign);
     }
 }
