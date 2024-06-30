@@ -7,14 +7,22 @@ public class ButtonHandler : MonoBehaviour
     public int score; // 이 버튼이 추가할 점수
     private ScoreManager scoreManager;
 
-    void Start()
+    // ScoreManager를 설정하는 메소드
+    public void Initialize(ScoreManager manager)
     {
-        scoreManager = FindObjectOfType<ScoreManager>();
+        scoreManager = manager;
     }
 
     // 버튼이 클릭될 때 호출되는 메소드
     public void OnButtonClick()
     {
-        scoreManager.AddScore(questionIndex, score);
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(questionIndex, score);
+        }
+        else
+        {
+            Debug.LogError("ScoreManager가 설정되지 않았습니다.");
+        }
     }
 }
