@@ -31,6 +31,11 @@ public class LineRen : MonoBehaviour
         drawLine();
     }
 
+    public void LineEnable()
+    {
+        lr.enabled = false;
+    }
+
     void drawLine()
     {
         lr.enabled = true;
