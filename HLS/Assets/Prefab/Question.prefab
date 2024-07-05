@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 2819829288002275094}
   - component: {fileID: 1311691254825396744}
   - component: {fileID: 1554227808234629799}
-  - component: {fileID: 501827124894091220}
   m_Layer: 5
   m_Name: Btn3
   m_TagString: Untagged
@@ -229,18 +228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionIndex: 0
   score: 3
---- !u!114 &501827124894091220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2614995558049428517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27643c92b2135d446a938a08ab267055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2622972032313730720
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,14 +305,14 @@ RectTransform:
   m_GameObject: {fileID: 5200396936128101006}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 2.4, y: 2.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2659254270797273410}
+  m_Father: {fileID: 3987854250847679064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -12.7}
+  m_AnchoredPosition: {x: 373, y: 11.599927}
   m_SizeDelta: {x: 261.85333, y: 56.64221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &240112976665489940
@@ -383,7 +370,6 @@ GameObject:
   - component: {fileID: 437109211146068171}
   - component: {fileID: 3422272346267971838}
   - component: {fileID: 2451221527926734733}
-  - component: {fileID: 4438556339938495400}
   m_Layer: 5
   m_Name: Btn4
   m_TagString: Untagged
@@ -402,8 +388,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 12, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7319344875944620746}
+  m_Children: []
   m_Father: {fileID: 3987854250847679064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -519,18 +504,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionIndex: 0
   score: 4
---- !u!114 &4438556339938495400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5430400291786838466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27643c92b2135d446a938a08ab267055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6549549055024938865
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +532,8 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1577619124164411179}
+  - {fileID: 7319344875944620746}
   - {fileID: 7125544876901345062}
   - {fileID: 8854367360343804979}
   - {fileID: 3372598666977760755}
@@ -597,14 +572,14 @@ RectTransform:
   m_GameObject: {fileID: 8319509707866678008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 2.4, y: 2.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7125544876901345062}
+  m_Father: {fileID: 3987854250847679064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030517578, y: -12.700012}
+  m_AnchoredPosition: {x: -347.0004, y: 11.5997925}
   m_SizeDelta: {x: 261.85333, y: 56.64221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5458272762705022149
@@ -662,7 +637,6 @@ GameObject:
   - component: {fileID: 2101200861058435598}
   - component: {fileID: 4784895205368538768}
   - component: {fileID: 2394840114736083510}
-  - component: {fileID: 7676721872796836778}
   m_Layer: 5
   m_Name: Btn2
   m_TagString: Untagged
@@ -797,18 +771,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionIndex: 0
   score: 2
---- !u!114 &7676721872796836778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8794388947326764679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27643c92b2135d446a938a08ab267055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8805886610246519095
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +784,6 @@ GameObject:
   - component: {fileID: 4185605966744232960}
   - component: {fileID: 7931941655293976847}
   - component: {fileID: 1037585464351072275}
-  - component: {fileID: 2501666365618783420}
   m_Layer: 5
   m_Name: Btn1
   m_TagString: Untagged
@@ -841,8 +802,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 12, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1577619124164411179}
+  m_Children: []
   m_Father: {fileID: 3987854250847679064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -958,15 +918,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionIndex: 0
   score: 1
---- !u!114 &2501666365618783420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8805886610246519095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27643c92b2135d446a938a08ab267055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
