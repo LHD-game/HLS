@@ -34,7 +34,15 @@ public class ScoreManager : MonoBehaviour
             totalScore += score;
         }
 
-        ScoreText.text = "Score: " + totalScore;
+        ScoreText.text = "전체 점수 : " + totalScore;
         Debug.Log($"Updated total score: {totalScore}");
+    }
+
+    // 점수를 초기화하고 첫 번째 질문과 키워드를 다시 렌더링하는 메소드
+    public void Restart(QuestionRenderer questionRenderer)
+    {
+        questionScores.Clear(); // 점수 초기화
+        UpdateScoreText(); // 텍스트 업데이트
+        questionRenderer.ResetQuestions(); // 첫 번째 질문과 키워드로 돌아가기
     }
 }
