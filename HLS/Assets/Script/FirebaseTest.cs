@@ -32,6 +32,7 @@ public class FirebaseTest : MonoBehaviour
                 Dictionary<string, object> user = snapshot.ToDictionary();
                 foreach (KeyValuePair<string, object> pair in user);
 
+                //비밀번호 일치 여부 체크
                 if (Pw.text == user["Password"].ToString())
                 {
                     Debug.Log("로그인 성공");
@@ -53,10 +54,10 @@ public class FirebaseTest : MonoBehaviour
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         //user 컬랙션 지정
         CollectionReference userRef = db.Collection("user");
-        //Phone.text문서를 찾아서 해당 문서를 아래 내용으로 덮어씀
+        //Phone.text문서를 찾아서 해당 문서를 아래 내용으로 덮어씀 (없을 경우 생성)
         userRef.Document(Phone.text).SetAsync(new Dictionary<string, object>(){
-        { "Name", "NONE" },         //아직 이름 적어넣을 공간을 안만들어서 익명으로 대체
-        { "Password", Pw.text }     //비밀번호 지정
+        { "Name", "NONE" },         //이름 또는 계정명 (예시)
+        { "Password", Pw.text }     //비밀번호 지정 (예시)
         });
     }
 }
