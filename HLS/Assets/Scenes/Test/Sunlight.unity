@@ -285,6 +285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreText: {fileID: 790307236}
+  scores: 000000000000000000000000000000000000000000000000000000000000000000000000
+  totalScore: 0
 --- !u!224 &161998225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -543,7 +545,7 @@ GameObject:
   - component: {fileID: 790307237}
   - component: {fileID: 790307236}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: TotalScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -565,8 +567,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -346, y: 894.09326}
-  m_SizeDelta: {x: 270.3913, y: 61.219}
+  m_AnchoredPosition: {x: -356, y: 769}
+  m_SizeDelta: {x: 378.8565, y: 428.4211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &790307236
 MonoBehaviour:
@@ -581,7 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8349056, b: 0.8349056, a: 1}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -590,18 +592,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'total : '
+  m_Text: Score section **
 --- !u!222 &790307237
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -754,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7991926, g: 0.7812834, b: 0.9150943, a: 1}
+  m_Color: {r: 0.39607847, g: 0.5176471, b: 0.7725491, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -858,7 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
@@ -1429,9 +1431,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1807062329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3fc74c0adf593f4783fdb5798ce2cec, type: 3}
+  m_Script: {fileID: 11500000, guid: 08671c7e85635ee489497ab303a072fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restartButton: {fileID: 2135395881}
   scoreManager: {fileID: 161998224}
   questionRenderer: {fileID: 681964396}
 --- !u!1 &1948521105
@@ -1472,7 +1475,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.41901034, g: 0.5815693, b: 0.8301887, a: 0}
+  m_BackGroundColor: {r: 0.09531861, g: 0.11805848, b: 0.16981131, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1606,7 +1609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7991926, g: 0.7812834, b: 0.9150943, a: 1}
+  m_Color: {r: 0.39607847, g: 0.5176471, b: 0.7725491, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1691,8 +1694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fc74c0adf593f4783fdb5798ce2cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 161998224}
-  questionRenderer: {fileID: 681964396}
 --- !u!1001 &891556112010519393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1763,11 +1764,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3296513980918600450, guid: 7ce2986391c936847a0db98972793d96, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.523
+      value: -0.0000095367
       objectReference: {fileID: 0}
     - target: {fileID: 3296513980918600450, guid: 7ce2986391c936847a0db98972793d96, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 857
+      value: 780
       objectReference: {fileID: 0}
     - target: {fileID: 3296513980918600450, guid: 7ce2986391c936847a0db98972793d96, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1791,15 +1792,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5292449010736226170, guid: 7ce2986391c936847a0db98972793d96, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.7735849
       objectReference: {fileID: 0}
     - target: {fileID: 5292449010736226170, guid: 7ce2986391c936847a0db98972793d96, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.5183934
       objectReference: {fileID: 0}
     - target: {fileID: 5292449010736226170, guid: 7ce2986391c936847a0db98972793d96, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.3977394
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1820,15 +1821,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1967784370580391219, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1967784370580391219, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1967784370580391219, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2120833537122986375, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Text
@@ -1838,15 +1839,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2120833537122986375, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2120833537122986375, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2120833537122986375, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3195488144579296585, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Text
@@ -1854,15 +1855,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3195488144579296585, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3195488144579296585, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3195488144579296585, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3234915591255493081, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Name
@@ -1874,15 +1875,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3859534848598778512, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3859534848598778512, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3859534848598778512, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4167367292728291398, guid: 1d91d9fc707860242ae9e73e19b0730a, type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
