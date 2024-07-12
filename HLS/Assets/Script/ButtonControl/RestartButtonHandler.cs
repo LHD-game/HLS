@@ -1,19 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RestartButtonHandler : MonoBehaviour
+public class RestartButton : MonoBehaviour
 {
-    public ScoreManager scoreManager; // ScoreManager 인스턴스
-    public QuestionRenderer questionRenderer; // QuestionRenderer 인스턴스
+    public Button restartButton; // Restart 버튼
+    public ScoreManager scoreManager; // ScoreManager 스크립트
+    public QuestionRenderer questionRenderer; // QuestionRenderer 스크립트
 
     void Start()
     {
-        // Restart 버튼에 클릭 이벤트를 추가
-        GetComponent<Button>().onClick.AddListener(OnRestartButtonClick);
+        // Restart 버튼에 클릭 이벤트 추가
+        restartButton.onClick.AddListener(OnRestartButtonClick);
     }
 
     void OnRestartButtonClick()
     {
-        scoreManager.Restart(questionRenderer); // Restart 메서드 호출
+        // 점수 초기화 및 질문 렌더링 초기화
+        scoreManager.Restart(questionRenderer);
     }
 }
