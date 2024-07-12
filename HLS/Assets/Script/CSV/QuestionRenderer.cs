@@ -12,6 +12,7 @@ public class QuestionRenderer : MonoBehaviour
     public GameObject Q4; // 질문 프리팹 4
     public ScoreManager scoreManager; // ScoreManager 인스턴스
 
+
     private CSVReader csvReader;
     private int currentQuestionIndex = 1;
     private int currentKeywordIndex = 1;
@@ -94,6 +95,7 @@ public class QuestionRenderer : MonoBehaviour
         {
             currentQuestionIndex += 4;
             currentKeywordIndex += 4;
+
             RenderQuestions();
         }
     }
@@ -104,6 +106,7 @@ public class QuestionRenderer : MonoBehaviour
         {
             currentQuestionIndex -= 4;
             currentKeywordIndex -= 4;
+
             RenderQuestions();
         }
     }
