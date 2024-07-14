@@ -23,7 +23,6 @@ public class FirebaseTest : MonoBehaviour
     {
         string Id = IdText.text;    //자료형변환
         string Pw = PwText.text;
-        string Name = NameText.text;
 
         //await는 비동기 값을 동기화할때까지 기다려 달라는 뜻.
         //Data값 = FireBase.DataLoad([유저 ID], [Key값]) | Dictionary형 자료임으로 Key(string)를 통해 Data(string)를 찾음
@@ -54,7 +53,6 @@ public class FirebaseTest : MonoBehaviour
         }
         else
         {
-
             //----------------------------------------------------------------|
 
             //FireBase.DataSave([유저 ID], [Key값], [Data값]) | Dictionary형 자료임으로 Key(string)와 Data(string)를 동시에 저장
