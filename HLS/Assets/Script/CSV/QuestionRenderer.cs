@@ -12,10 +12,10 @@ public class QuestionRenderer : MonoBehaviour
     public GameObject Q4; // 질문 프리팹 4
     public ScoreManager scoreManager; // ScoreManager 인스턴스
 
+
     private CSVReader csvReader;
     private int currentQuestionIndex = 1;
     private int currentKeywordIndex = 1;
-
 
     void Start()
     {
@@ -37,7 +37,7 @@ public class QuestionRenderer : MonoBehaviour
     public void RenderQuestions()
     {
         if (csvReader.csvData.Count >= currentQuestionIndex + 4)
-        {   
+        {
             // 키워드 프리팹 설정
             SetupKeywordPrefab(Keyword, currentKeywordIndex);
 
@@ -52,9 +52,6 @@ public class QuestionRenderer : MonoBehaviour
 
             // 네 번째 질문 프리팹 설정
             SetupQuestionPrefab(Q4, currentQuestionIndex + 3);
-
-           
-
         }
     }
 
@@ -63,13 +60,11 @@ public class QuestionRenderer : MonoBehaviour
         Text questionText = prefab.GetComponentInChildren<Text>();
         questionText.text = csvReader.csvData[index][1]; // Question 열의 데이터
 
-
         ButtonHandler[] buttonHandlers = prefab.GetComponentsInChildren<ButtonHandler>();
         foreach (var handler in buttonHandlers)
         {
             handler.Initialize(scoreManager);
             handler.questionIndex = index;
-            // handler.score = ... // 점수를 설정하는 로직 추가
         }
     }
 
@@ -84,17 +79,23 @@ public class QuestionRenderer : MonoBehaviour
         {
             handler.Initialize(scoreManager);
             handler.questionIndex = index;
-            // handler.score = ... // 점수를 설정하는 로직 추가
         }
     }
 
+    public void ResetQuestions()
+    {
+        currentQuestionIndex = 1; // 질문 인덱스 초기화
+        currentKeywordIndex = 1; // 키워드 인덱스 초기화
+        RenderQuestions(); // 첫 번째 질문과 키워드 렌더링
+    }
 
     public void NextQuestions()
     {
         if (csvReader.csvData.Count >= currentQuestionIndex + 4)
         {
             currentQuestionIndex += 4;
-            currentKeywordIndex += 4; 
+            currentKeywordIndex += 4;
+
             RenderQuestions();
         }
     }
@@ -105,6 +106,7 @@ public class QuestionRenderer : MonoBehaviour
         {
             currentQuestionIndex -= 4;
             currentKeywordIndex -= 4;
+
             RenderQuestions();
         }
     }
