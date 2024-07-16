@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonToggle : MonoBehaviour
+public class ToggleButton : MonoBehaviour
 {
-    private Button button;
+    public Button button;
     private ColorBlock defaultColorBlock;
     private ColorBlock selectedColorBlock;
     private bool isSelected = false;
+    public ButtonManager B;
 
     void Start()
     {
-        button = GetComponent<Button>();
-        defaultColorBlock = button.colors;
+        //button = GetComponent<Button>();
+        defaultColorBlock = button.colors ;
         selectedColorBlock = button.colors;
         selectedColorBlock.normalColor = Color.green;
 
@@ -21,7 +22,8 @@ public class ButtonToggle : MonoBehaviour
     void OnButtonClick()
     {
         ToggleButtonState();
-        ButtonManager.Instance.UpdateButtonStates(this);
+        Debug.Log(this);
+        //B.UpdateButtonStates(this);
     }
 
     public void ToggleButtonState()
@@ -29,10 +31,10 @@ public class ButtonToggle : MonoBehaviour
         isSelected = !isSelected;
         button.colors = isSelected ? selectedColorBlock : defaultColorBlock;
     }
-
+/*
     public void ResetButtonState()
     {
         isSelected = false;
         button.colors = defaultColorBlock;
-    }
+    }*/
 }

@@ -24,7 +24,7 @@ public class LineRen : MonoBehaviour
         for (int i = 0; i < CB.segments; i++)
         {
 
-            linePoints[i] = CB.handles[i];
+            //linePoints[i] = CB.handles[i];
         }
         lr.positionCount = linePoints.Length;
 
