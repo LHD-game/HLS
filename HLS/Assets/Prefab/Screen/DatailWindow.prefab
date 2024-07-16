@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4cab57fd653584cad240bb0d7b7924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RD: {fileID: 0}
+  RD: {fileID: 937731390320911013}
   segments: 10
   radius: 0
   animationSpeed: 1
@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2157575786742102449
 RectTransform:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 937731390320911013}
         m_TargetAssemblyTypeName: RaderDraw, Assembly-CSharp
         m_MethodName: buttonClick
         m_Mode: 1
@@ -329,6 +329,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5790450317191252347}
         m_TargetAssemblyTypeName: CircularBarGraph, Assembly-CSharp
         m_MethodName: BackSpa
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: WinCtl, Assembly-CSharp
+        m_MethodName: GotoHistWin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -999,6 +1011,7 @@ RectTransform:
   - {fileID: 5556484822677986389}
   - {fileID: 4251032356167943061}
   - {fileID: 3804754531390404366}
+  - {fileID: 2224610635797038354}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1951,6 +1964,107 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 72-114
+--- !u!1 &7353180977495933241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2224610635797038354}
+  - component: {fileID: 1005523525280684319}
+  - component: {fileID: 8944569329251967337}
+  - component: {fileID: 937731390320911013}
+  m_Layer: 0
+  m_Name: DetailSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2224610635797038354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353180977495933241}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -139.89638, y: -300, z: 0}
+  m_LocalScale: {x: 0.19430052, y: 0.19430052, z: 0.19430052}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4932752390938450424}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1005523525280684319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353180977495933241}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &8944569329251967337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353180977495933241}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &937731390320911013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353180977495933241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d67c876cac3a3542925a64ee9fea054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chart: {fileID: 5775262508148812897}
+  scoreManager: {fileID: 0}
+  segments: 10
+  WheelPrent: {fileID: 3804754531390404366}
+  Mysign: {fileID: 7903008617865293778}
+  scoreTxt: {fileID: 314795044386869151}
+  TitleTxts:
+  - "\uD587\uBE5B"
+  - "\uBB3C"
+  - "\uACF5\uAE30"
+  - "\uC26C\uB2E4"
+  - "\uC6B4\uB3D9"
+  - "\uC601\uC591\uBB3C"
+  - "\uC808\uC81C"
+  - "\uBBFF\uC74C"
+  - "\uC2E0\uCCB4 \uC0C1\uD0DC"
+  data: 020000000400000006000000080000000a0000000c0000000e0000000f00000010000000
+  Date: {fileID: 8250960339008520335}
+  DateTxt: May 15, 2024
+  Score: 0
 --- !u!1 &7479746648087740661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2624,3 +2738,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 788461324528415563, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
   m_PrefabInstance: {fileID: 2961401601241886097}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5775262508148812897 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8736096761046417904, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
+  m_PrefabInstance: {fileID: 2961401601241886097}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c464cf59e9a4ba541a0d4e7075fca70a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
