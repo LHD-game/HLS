@@ -4,7 +4,7 @@ using UnityEngine;
 public class ButtonManager : MonoBehaviour
 {
     public static ButtonManager Instance;
-    private List<ButtonToggle> buttonToggles;
+    private List<ToggleButton> buttonToggles;
 
     void Awake()
     {
@@ -18,10 +18,10 @@ public class ButtonManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        buttonToggles = new List<ButtonToggle>(FindObjectsOfType<ButtonToggle>());
+        buttonToggles = new List<ToggleButton>(FindObjectsOfType<ToggleButton>());
     }
-
-    public void UpdateButtonStates(ButtonToggle selectedButtonToggle)
+/*
+    public void UpdateButtonStates(ToggleButton selectedButtonToggle)
     {
         foreach (var buttonToggle in buttonToggles)
         {
@@ -30,13 +30,13 @@ public class ButtonManager : MonoBehaviour
                 buttonToggle.ResetButtonState();
             }
         }
-    }
-
+    }*/
+/*
     public void ResetAllButtons()
     {
         foreach (var buttonToggle in buttonToggles)
         {
             buttonToggle.ResetButtonState();
         }
-    }
+    }*/
 }
