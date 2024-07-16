@@ -8,11 +8,18 @@ using System.Threading.Tasks;
 
 public class FirebaseTest : MonoBehaviour
 {
+    // TODO: 아래 필드명들은 데이터 스키마로 명확히 정리되어야 함 (JSON 트리 예제 작성되면 가장 좋음)
+    //     PascalCase 보다 camelCase 로 변수명 선언하면 좋을 것
     public Text IdText;     //ID값 
     public Text PwText;     //PW값
     public Text IdTextSignIn;     //ID값 
     public Text PwTextSignIn;     //PW값
     public Text NameText;   //유저명
+    // TODO: 아래 필드명은 namespace 라는 예약어를 연상시켜 개선 필요
+    //     namespace MyNamespace
+    //     {
+    //       예약어로서 네임스페이스 선언에 사용되므로, 표기법만 다르다고 해서 적절한 네이밍이 아님
+    //     }
     public Text UserNameSpace;  //유저명 결과창
 
     //FireBase.DataSave([유저 ID], [Key값], [Data값])  | 데이터 저장(덮어쓰기)
