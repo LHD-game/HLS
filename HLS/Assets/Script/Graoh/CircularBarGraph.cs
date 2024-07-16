@@ -7,19 +7,20 @@ public class CircularBarGraph : MonoBehaviour
 {
     [SerializeField]
     [Header("Script")]
-    LineRen Ln;
+    RaderDraw RD;
+    //LineRen Ln;
     [Space(20f)]
 
     public int segments = 10; // 그래프의 세그먼트 수
     public float radius; // 원의 반지름
     public float animationSpeed = 1f; // 애니메이션 속도
     public Slider slider; // 슬라이더 UI
-    public Text Title; // 항목title UI
+    //public Text Title; // 항목title UI
     public RectTransform WheelPrent;
 
     public Slider[] bars;
-    public Vector3[] handles;
-    public int[] data;
+    //public Vector3[] handles;
+    //public int[] data;
     [Space (10f)]
     public GameObject Mysign;
     public Text scoreTxt;
@@ -28,10 +29,10 @@ public class CircularBarGraph : MonoBehaviour
 
     [Header("Data")]
     public Text[] Titles;
-    public string[] TitleTxts;
+    public string[] TitleTxts;/*
     [Space(5f)]
     public Text Date;
-    public string DateTxt;
+    public string DateTxt;*/
     [Space(5f)]
     public int Score;
 
@@ -43,24 +44,24 @@ public class CircularBarGraph : MonoBehaviour
 
     public void buttonClick()
     {
-        segments = data.Length;
-        Score = plusScore();
-        scoreTxt.text = Score.ToString();
+        segments = RD.data.Length;
+        //Score = plusScore();
+        //scoreTxt.text = Score.ToString();
         CreateBars();
-        Ln.Points();
+        //Ln.Points();
     }
 
     public void BackSpa()
     {
         Transform targetTransform = WheelPrent.transform;
-        Ln.LineEnable();
+        //Ln.LineEnable();
         foreach (Transform child in targetTransform)
         {
             Destroy(child.gameObject);
         }
     }
 
-    int plusScore()
+    /*int plusScore()
     {
         int P =0;
         for(int i = 0; i<data.Length;i++)
@@ -68,17 +69,17 @@ public class CircularBarGraph : MonoBehaviour
             P += data[i];
         }
         return P;
-    }
+    }*/
 
     void CreateBars()
     {
         bars = new Slider[segments];
-        handles = new Vector3[segments];
+        //handles = new Vector3[segments];
 
         float angleStep = 360f / segments;
 
         //날짜설정
-        SetDate();
+        //SetDate();
 
         for (int i = 0; i < segments; i++)
         {
@@ -87,27 +88,27 @@ public class CircularBarGraph : MonoBehaviour
 
             Slider bar = Instantiate(slider, transform.position + barPosition, Quaternion.identity, transform);
             bars[i] = bar;
-            bar.value = data[i];
+            //bar.value = data[i];
             //막대 사이즈 조절
             RectTransform thisRect = bar.GetComponent<RectTransform>();
             if (WheelPrent.rect.width > WheelPrent.rect.height)
-                thisRect.sizeDelta = new Vector2((WheelPrent.rect.height / 3)-10, thisRect.rect.height);
+                thisRect.sizeDelta = new Vector2((WheelPrent.rect.height / 3), thisRect.rect.height);
             else
-                thisRect.sizeDelta = new Vector2((WheelPrent.rect.width / 3)-10, thisRect.rect.height);
+                thisRect.sizeDelta = new Vector2((WheelPrent.rect.width / 3), thisRect.rect.height);
             // 막대의 회전 조절
             bar.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-            handles[i] = bar.transform.Find("Handle Slide Area/Handle").position;
+            //handles[i] = bar.transform.Find("Handle Slide Area/Handle").position;
 
             //각 점수 별 title 생성
-            Transform RT = bar.transform.Find("TitlePos").GetComponent<Transform>();
-            SetTitles();
+            /*Transform RT = bar.transform.Find("TitlePos").GetComponent<Transform>();
+            SetTitles();*/
 
-            void SetTitles()
+            /*void SetTitles()
             {
-                /*Debug.Log(i);
+                *//*Debug.Log(i);
                 Debug.Log("앵글값" + angle);
-                Debug.Log("떨어지는 값" + thisRect.rect.width / 10);*/
+                Debug.Log("떨어지는 값" + thisRect.rect.width / 10);*//*
                 bar.gameObject.name = i.ToString();
                 Text Tt = Instantiate(Title, RT);
                 Tt.text = TitleTxts[i];
@@ -124,7 +125,7 @@ public class CircularBarGraph : MonoBehaviour
                     }
                 }
                 Tt.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            }
+            }*/
 
         }
 
@@ -132,10 +133,10 @@ public class CircularBarGraph : MonoBehaviour
         UpdateGraph();
     }
 
-    void SetDate()
+    /*void SetDate()
     {
         Date.text = DateTxt;
-    }
+    }*/
 
     
 
@@ -149,7 +150,7 @@ public class CircularBarGraph : MonoBehaviour
     {
         int sign = 0;
         for (int i = 0; i < segments; i++)
-            sign += data[i];
+            sign += RD.data[i];
         if (sign < 92)
             Mysign.GetComponent<Image>().color = Color.red;
         else if (92 < sign && sign < 114)
