@@ -127,144 +127,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4932752390938450424, guid: ebcae75c5805244478e1acc0badeca8e, type: 3}
   m_PrefabInstance: {fileID: 7536304496328639335}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &217843921
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 217843924}
-  - component: {fileID: 217843923}
-  - component: {fileID: 217843922}
-  - component: {fileID: 217843925}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &217843922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217843921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &217843923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217843921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &217843924
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217843921}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &217843925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217843921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d67c876cac3a3542925a64ee9fea054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chart: {fileID: 431223641}
-  segments: 10
-  WheelPrent: {fileID: 1863145026}
-  Mysign: {fileID: 876524401}
-  scoreTxt: {fileID: 289785937}
-  TitleTxts:
-  - "\uD587\uBE5B"
-  - "\uBB3C"
-  - "\uACF5\uAE30"
-  - "\uC26C\uB2E4"
-  - "\uC6B4\uB3D9"
-  - "\uC601\uC591\uBB3C"
-  - "\uC808\uC81C"
-  - "\uBBFF\uC74C"
-  - "\uC2E0\uCCB4 \uC0C1\uD0DC"
-  data: 020000000400000006000000080000000a0000000c0000000e0000000f00000010000000
-  Date: {fileID: 909029271}
-  DateTxt: May 15, 2024
-  Score: 0
---- !u!114 &289785937 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 314795044386869151, guid: ebcae75c5805244478e1acc0badeca8e, type: 3}
-  m_PrefabInstance: {fileID: 7536304496328639335}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &431223641 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5775262508148812897, guid: ebcae75c5805244478e1acc0badeca8e, type: 3}
-  m_PrefabInstance: {fileID: 7536304496328639335}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c464cf59e9a4ba541a0d4e7075fca70a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &876524401 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7903008617865293778, guid: ebcae75c5805244478e1acc0badeca8e, type: 3}
-  m_PrefabInstance: {fileID: 7536304496328639335}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &909029271 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8250960339008520335, guid: ebcae75c5805244478e1acc0badeca8e, type: 3}
-  m_PrefabInstance: {fileID: 7536304496328639335}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1517347880
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,11 +229,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!224 &1863145026 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3804754531390404366, guid: ebcae75c5805244478e1acc0badeca8e, type: 3}
-  m_PrefabInstance: {fileID: 7536304496328639335}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1900657829
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,10 +329,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1517347884}
     m_Modifications:
-    - target: {fileID: 3881802131196506004, guid: ebcae75c5805244478e1acc0badeca8e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 217843925}
     - target: {fileID: 4023415401505407167, guid: ebcae75c5805244478e1acc0badeca8e, type: 3}
       propertyPath: m_Name
       value: DatailWindow
@@ -560,10 +413,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5790450317191252347, guid: ebcae75c5805244478e1acc0badeca8e, type: 3}
-      propertyPath: RD
-      value: 
-      objectReference: {fileID: 217843925}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -575,4 +424,3 @@ SceneRoots:
   m_Roots:
   - {fileID: 1900657832}
   - {fileID: 1517347884}
-  - {fileID: 217843924}

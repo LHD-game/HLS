@@ -6,6 +6,10 @@ dependencies {
 // Android Resolver Dependencies Start
     implementation 'com.google.android.gms:play-services-base:18.3.0' // Assets/Firebase/Editor/AppDependencies.xml:17
     implementation 'com.google.firebase:firebase-analytics:21.5.1' // Assets/Firebase/Editor/FirestoreDependencies.xml:15
+    implementation 'com.google.firebase:firebase-appcheck:17.1.2' // Assets/Firebase/Editor/AppCheckDependencies.xml:13
+    implementation 'com.google.firebase:firebase-appcheck-debug:17.1.2' // Assets/Firebase/Editor/AppCheckDependencies.xml:15
+    implementation 'com.google.firebase:firebase-appcheck-playintegrity:17.1.2' // Assets/Firebase/Editor/AppCheckDependencies.xml:17
+    implementation 'com.google.firebase:firebase-appcheck-unity:11.8.0' // Assets/Firebase/Editor/AppCheckDependencies.xml:24
     implementation 'com.google.firebase:firebase-app-unity:11.8.0' // Assets/Firebase/Editor/AppDependencies.xml:22
     implementation 'com.google.firebase:firebase-auth:22.3.1' // Assets/Firebase/Editor/AuthDependencies.xml:13
     implementation 'com.google.firebase:firebase-auth-unity:11.8.0' // Assets/Firebase/Editor/AuthDependencies.xml:20
