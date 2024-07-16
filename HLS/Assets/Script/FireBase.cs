@@ -27,7 +27,7 @@ public class FireBase : MonoBehaviour
         //찾은 정보를 불러와서 진행
 
         DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-        if (snapshot.Exists)
+        if (snapshot.Exists) //로그인
         {
             Debug.Log("유저 불러오기 성공");
             Dictionary<string, object> ddata = snapshot.ToDictionary();
@@ -35,6 +35,7 @@ public class FireBase : MonoBehaviour
             Debug.Log(En_Key);
             data = ddata[En_Key].ToString();
             data = AESDecrypt128(data);
+            WinCtl.Instance.GotoMain(); //main화면으로
         }
         else
         {
