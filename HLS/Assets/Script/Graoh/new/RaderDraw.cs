@@ -8,7 +8,7 @@ public class RaderDraw : MonoBehaviour
 {
     public RadarChart chart;
 
-    public int segments = 10; // 그래프의 세그먼트 수
+    public int segments; // 그래프의 세그먼트 수
     public RectTransform WheelPrent;
 
     [Space(10f)]
@@ -26,25 +26,34 @@ public class RaderDraw : MonoBehaviour
     public int Score;
 
 
-    public void buttonClick()
+    private void Start()
     {
         segments = data.Length;
+        if (WheelPrent.rect.width > WheelPrent.rect.height)
+            chart.Radius = WheelPrent.rect.height / 3f;
+        else
+            chart.Radius = WheelPrent.rect.width / 3f;
+
+        chart.Angle = 10;
+        for (int i = 0; i < segments; i++)
+        {
+            chart.DataSource.AddGroup(TitleTxts[i]);
+        }
+    }
+
+    public void buttonClick()
+    {
         Score = plusScore();
         scoreTxt.text = Score.ToString();
         GetData();
+        SetDate();
     }
 
     void GetData()
     {
-        chart.DataSource.HasCategory("My");
-        if (WheelPrent.rect.width > WheelPrent.rect.height)
-            chart.Radius = WheelPrent.rect.height / 3;
-        else
-            chart.Radius = WheelPrent.rect.width / 3;
-         
         for (int i = 0; i < segments; i++)
         {
-            chart.DataSource.SetValue("1", TitleTxts[i], data[i]);
+            chart.DataSource.SetValue("MyScore", TitleTxts[i], data[i]);
         }
     }
 
@@ -56,5 +65,10 @@ public class RaderDraw : MonoBehaviour
             P += data[i];
         }
         return P;
+    }
+
+    void SetDate()
+    {
+        Date.text = DateTxt;
     }
 }
