@@ -20,19 +20,7 @@ public class graph : MonoBehaviour
     void Start()
     {
         chart.DataSource.VerticalViewSize = 144;    // Vertical Axis의 값 설정
-
-        //chart.DataSource.StartBatch();
-        
-        //chart.DataSource.ClearCategory("History");
-        inputData(); //먼저안넣으면 그래프 출력 안됨.. 수정이 필요하지만 현재 머리가 돌아가지 않음으로 이후는 맡깁니다>_0
-                    //이거 이제 될 것도 같?지만 현재 자러가야하는 상태이므로 맡깁니다.. >_0
-        // 오늘 기준 3일 전, 0~100까지 랜덤 값 넣기
-        /*chart.DataSource.AddPointToCategory("History", System.DateTime.Now + System.TimeSpan.FromDays(-3f), Random.Range(0, 101));
-        chart.DataSource.AddPointToCategory("History", System.DateTime.Now + System.TimeSpan.FromDays(-2f), Random.Range(0, 101));
-        chart.DataSource.AddPointToCategory("History", System.DateTime.Now + System.TimeSpan.FromDays(-1f), Random.Range(0, 101));
-        chart.DataSource.AddPointToCategory("History", System.DateTime.Now + System.TimeSpan.FromDays(0f), Random.Range(0, 101));*/
         chart.DataSource.GetPointCount("History");
-        //chart.DataSource.EndBatch();
     }
 
     public void inputData()  //데이터 가져와 넣기

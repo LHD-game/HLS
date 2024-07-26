@@ -15,26 +15,21 @@ public class CircularBarGraph : MonoBehaviour
     public float radius; // 원의 반지름
     public float animationSpeed = 1f; // 애니메이션 속도
     public Slider slider; // 슬라이더 UI
-    //public Text Title; // 항목title UI
+
     public RectTransform WheelPrent;
 
     public Slider[] bars;
-    //public Vector3[] handles;
-    //public int[] data;
     [Space (10f)]
     public GameObject Mysign;
-    public Text scoreTxt;
+    //public Text scoreTxt;
 
-    private RectTransform rectTransform;
+    //private RectTransform rectTransform;
 
-    [Header("Data")]
-    public Text[] Titles;
-    public string[] TitleTxts;/*
-    [Space(5f)]
-    public Text Date;
-    public string DateTxt;*/
-    [Space(5f)]
-    public int Score;
+    //[Header("Data")]
+    //public Text[] Titles;
+   // public string[] TitleTxts;
+    //[Space(5f)]
+    //public int Score;
 
 
 
@@ -89,19 +84,6 @@ public class CircularBarGraph : MonoBehaviour
 
 
         UpdateGraph();
-    }
-
-    /*void SetDate()
-    {
-        Date.text = DateTxt;
-    }*/
-
-    
-
-
-    void Update()
-    {
-        //UpdateGraph();
     }
 
     void UpdateGraph()
