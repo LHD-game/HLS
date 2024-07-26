@@ -27,15 +27,15 @@ public class ScoreData : MonoBehaviour
 
     void testData()
     {
-        for(int i=0;i<3;i++)
+        for(int i=0;i<9;i++)
         {
-            string[] data = new string[] { System.DateTime.Now.AddDays(-3 + i).ToString("yyMMdd"), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), };
+            string[] data = new string[] { System.DateTime.Now.AddDays(-10 + i).ToString("yyMMdd"), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), };
 
             SetData(data);
         }
     }
 
-    public void GetData(int index,int[] data_) //헤더설정
+    public void GetData(int index,int[] data_) //헤더삽입
     {
         for (var i = 0; i < header.Length - 1; i++)
         {
@@ -45,8 +45,8 @@ public class ScoreData : MonoBehaviour
     public void SetList() //헤더설정
     {
         header = Regex.Split(Headers, ",");
-        foreach (string i in header)
-            Debug.Log(i);
+        /*foreach (string i in header)
+            Debug.Log(i);*/
     }
     public void SetData(string[] Data) //데이터 삽입
     {
@@ -54,23 +54,30 @@ public class ScoreData : MonoBehaviour
 
         var entry = new Dictionary<string, object>();
 
+        Debug.Log("헤더길이=" + header.Length);
+        Debug.Log("데이터길이=" + Data.Length);
         for (var j = 0; j < header.Length-1; j++)
         {
-            //Debug.Log("j="+j+ "data=" + Data[j]);
+            Debug.Log("j="+j+ "data=" + Data[j]);
             string value = Data[j];
             if(j==0)
             {
                 string year = value.ToString().Substring(0, 2); // 24
                 string month = value.ToString().Substring(2, 2); // MM
                 string day = value.ToString().Substring(4, 2); // dd
-                value = year + " " + month + " " + day;  //중간에 공백 없으면 날짜 변환 불가..
+                value = //year + " " +
+                        month + " " + day;  //중간에 공백 없으면 날짜 변환 불가..
             }
             else if (j > 0)
-            { totalScore += Int32.Parse(value);
-            }
+            { 
+                totalScore += Int32.Parse(value);
+                Debug.Log("total = " + totalScore);
+            }/*
             if (j == header.Length-1)
-                value = totalScore.ToString();
+                value = totalScore.ToString();*/
+            Debug.Log(header[j] + "= " + value);
             entry[header[j]] = value;
+
         }
         entry[header[10]] = totalScore;
         Debug.Log("전체합=" + totalScore);

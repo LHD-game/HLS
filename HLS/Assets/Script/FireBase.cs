@@ -35,7 +35,6 @@ public class FireBase : MonoBehaviour
             Debug.Log(En_Key);
             data = ddata[En_Key].ToString();
             data = AESDecrypt128(data);
-            WinCtl.Instance.GotoMain(); //main화면으로
         }
         else
         {
