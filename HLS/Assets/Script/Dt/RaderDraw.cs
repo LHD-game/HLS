@@ -22,7 +22,7 @@ public class RaderDraw : MonoBehaviour
     public int[] data;
     [Space(5f)]
     public Text Date;
-    public string DateTxt;
+    //public string DateTxt;
     [Space(5f)]
     public int Score;
 
@@ -43,7 +43,7 @@ public class RaderDraw : MonoBehaviour
             chart.DataSource.AddGroup(TitleTxts[i]);
         }
         buttonC(0);
-
+        
     }
 
     public void buttonC(int index)
@@ -62,10 +62,10 @@ public class RaderDraw : MonoBehaviour
     void GetData(int index)
     {
         Debug.Log("ind " + index);
-        for (int i = 1; i < segments; i++) //segment -> header.Length-1
+        for (int i = 0; i < segments; i++) //segment -> header.Length-1
         {
-            Debug.Log(sd.ScoreData_[index][sd.header[i]]); //왜.. 오류가 뜨는걸까... 왜일까...
-            chart.DataSource.SetValue("MyScore", TitleTxts[i], Int32.Parse(sd.ScoreData_[index][sd.header[i]].ToString()));
+            Debug.Log(sd.header[i] + sd.ScoreData_[index][sd.header[i]]);
+            chart.DataSource.SetValue("MyScore", TitleTxts[i], Int32.Parse(sd.ScoreData_[index][sd.header[i+1]].ToString()));
         }
     }
 

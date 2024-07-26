@@ -39,6 +39,8 @@ public class FirebaseTest : MonoBehaviour
         {
             Debug.Log("로그인 성공");
             UserNameSpace.text = await FireBase.DataLoad(Id, "Name");
+
+            WinCtl.Instance.GotoMain(); //main화면으로
         }
         else
         {
