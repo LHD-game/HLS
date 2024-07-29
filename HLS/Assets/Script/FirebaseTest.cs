@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 //https://console.firebase.google.com/u/1/project/hlsapp-2d873/firestore/data/~2Fuser~2F01062341524?hl=ko 에 로그인 해서 DB확인하며 진행하기.
 
@@ -15,6 +16,7 @@ public class FirebaseTest : MonoBehaviour
     public Text IdTextSignIn;     //ID값 
     public Text PwTextSignIn;     //PW값
     public Text NameText;   //유저명
+    Regex regex = new Regex(@"[a-zA-Z0-9]{1,25}@[a-zA-Z0-9]{1,20}\.[a-zA-Z]{1,5}$");  //e-mail형식
     // TODO: 아래 필드명은 namespace 라는 예약어를 연상시켜 개선 필요
     //     namespace MyNamespace
     //     {
@@ -55,24 +57,32 @@ public class FirebaseTest : MonoBehaviour
         string Pw = PwTextSignIn.text;
         string Name = NameText.text;
 
-        //|-------------------서버에서 데이터 유무 확인 과정----------------|
-        //FireBase.DataLoad([유저 ID]) | Bool값(true, false)으로 나옴
-        if (await FireBase.DataCheck(Id))
+        if ((regex.IsMatch(Id)))    //이메일 형식 확인
         {
-            Debug.Log("가입 실패 - 이미 있는 ID");
-            return;
+            Debug.Log("email이 양식과 일치합니다.");
+            //|-------------------서버에서 데이터 유무 확인 과정----------------|
+            //FireBase.DataLoad([유저 ID]) | Bool값(true, false)으로 나옴
+            if (await FireBase.DataCheck(Id))
+            {
+                Debug.Log("가입 실패 - 이미 있는 ID");
+            }
+            else
+            {
+                //----------------------------------------------------------------|
+
+                //FireBase.DataSave([유저 ID], [Key값], [Data값]) | Dictionary형 자료임으로 Key(string)와 Data(string)를 동시에 저장
+                //ID와 Key가 겹칠시 자동으로 덮어쓰기되므로 주의
+                await FireBase.DataSave(Id, "Password", Pw);
+                await FireBase.DataSave(Id, "Name", Name);
+
+                Debug.Log("가입 성공");
+            }
         }
-        else
+        else   //이메일 형식이 다를 경우
         {
-            //----------------------------------------------------------------|
-
-            //FireBase.DataSave([유저 ID], [Key값], [Data값]) | Dictionary형 자료임으로 Key(string)와 Data(string)를 동시에 저장
-            //ID와 Key가 겹칠시 자동으로 덮어쓰기되므로 주의
-            await FireBase.DataSave(Id, "Password", Pw);
-            await FireBase.DataSave(Id, "Name", Name);
-
-            Debug.Log("가입 성공");
+            Debug.Log("email이 양식과 일치하지 않습니다.");
         }
+
     }
     //|-------------------------------------------------------------------------|
 }
