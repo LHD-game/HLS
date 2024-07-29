@@ -404,9 +404,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1132503817391445191, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
+      propertyPath: m_Name
+      value: E-mail
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847953223251468896, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
+      propertyPath: m_InputType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847953223251468896, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
+      propertyPath: m_ContentType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633051525383390660, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
+      propertyPath: m_Name
+      value: E-mail
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752820192668799485, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
+      propertyPath: m_Text
+      value: E-mail
+      objectReference: {fileID: 0}
+    - target: {fileID: 4138194789657692791, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
+      propertyPath: m_Text
+      value: E-mail
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978077481749070088, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6704756210632318021, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
       propertyPath: m_Name
       value: LoginWin
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028002717643896729, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
+      propertyPath: m_InputType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028002717643896729, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
+      propertyPath: m_ContentType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238164459593424262, guid: c4224e7b65a3a7440ba8b753f58da20e, type: 3}
+      propertyPath: m_Name
+      value: SignInButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
