@@ -7,23 +7,12 @@ public class ToggleButton : MonoBehaviour
     private ColorBlock defaultColorBlock;
     private ColorBlock selectedColorBlock;
     private bool isSelected = false;
-    public ButtonManager B;
 
     void Start()
     {
-        //button = GetComponent<Button>();
-        defaultColorBlock = button.colors ;
+        defaultColorBlock = button.colors;
         selectedColorBlock = button.colors;
         selectedColorBlock.normalColor = Color.green;
-
-        button.onClick.AddListener(OnButtonClick);
-    }
-
-    void OnButtonClick()
-    {
-        ToggleButtonState();
-        Debug.Log(this);
-        //B.UpdateButtonStates(this);
     }
 
     public void ToggleButtonState()
@@ -31,10 +20,21 @@ public class ToggleButton : MonoBehaviour
         isSelected = !isSelected;
         button.colors = isSelected ? selectedColorBlock : defaultColorBlock;
     }
-/*
+
+    public void SetButtonSelected(bool selected)
+    {
+        isSelected = selected;
+        button.colors = selected ? selectedColorBlock : defaultColorBlock;
+    }
+
     public void ResetButtonState()
     {
         isSelected = false;
         button.colors = defaultColorBlock;
-    }*/
+    }
+
+    public bool IsSelected()
+    {
+        return isSelected;
+    }
 }
