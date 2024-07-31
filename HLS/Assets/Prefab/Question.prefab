@@ -112,7 +112,7 @@ RectTransform:
   m_GameObject: {fileID: 2614995558049428517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 15, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3987854250847679064}
@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1311691254825396744}
+  B: {fileID: 0}
 --- !u!1 &2622972032313730720
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +456,7 @@ RectTransform:
   m_GameObject: {fileID: 5430400291786838466}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalScale: {x: 16, y: 16, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3987854250847679064}
@@ -586,6 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 3422272346267971838}
+  B: {fileID: 0}
 --- !u!1 &6549549055024938865
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,9 +624,9 @@ RectTransform:
   - {fileID: 2659254270797273410}
   m_Father: {fileID: 807856171256203997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.19220161, y: -248.0047}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8319509707866678008
@@ -736,7 +738,7 @@ RectTransform:
   m_GameObject: {fileID: 8794388947326764679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 15, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3987854250847679064}
@@ -867,6 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 4784895205368538768}
+  B: {fileID: 0}
 --- !u!1 &8805886610246519095
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +900,7 @@ RectTransform:
   m_GameObject: {fileID: 8805886610246519095}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalScale: {x: 16, y: 16, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3987854250847679064}
@@ -1028,3 +1031,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 7931941655293976847}
+  B: {fileID: 0}
