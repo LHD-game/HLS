@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.0141509175, g: 0.6359681, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -70,8 +70,8 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
-    m_FontStyle: 1
+    m_FontSize: 30
+    m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -119,8 +119,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 133, y: 164}
-  m_SizeDelta: {x: 8.6828, y: 7.9366}
+  m_AnchoredPosition: {x: 141.69928, y: 298.00058}
+  m_SizeDelta: {x: 10.197, y: 7.663}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2139828336512913031
 CanvasRenderer:
@@ -243,7 +243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1311691254825396744}
-  B: {fileID: 0}
 --- !u!1 &2622972032313730720
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 373, y: 11.599927}
+  m_AnchoredPosition: {x: 363, y: 99.99713}
   m_SizeDelta: {x: 261.85333, y: 56.64221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &240112976665489940
@@ -361,7 +360,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -421,11 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea8dabaf13603c4395adb3387421dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 7931941655293976847}
-  - {fileID: 4784895205368538768}
-  - {fileID: 1311691254825396744}
-  - {fileID: 3422272346267971838}
+  toggleButtons: []
 --- !u!1 &5430400291786838466
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,8 +458,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 373, y: 164}
-  m_SizeDelta: {x: 8.6828, y: 7.9366}
+  m_AnchoredPosition: {x: 423.54843, y: 298.00058}
+  m_SizeDelta: {x: 10.197, y: 7.663}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3206325099244444732
 CanvasRenderer:
@@ -587,7 +582,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 3422272346267971838}
-  B: {fileID: 0}
 --- !u!1 &6549549055024938865
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +657,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -347.0004, y: 11.5997925}
+  m_AnchoredPosition: {x: -357, y: 100}
   m_SizeDelta: {x: 261.85333, y: 56.64221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5458272762705022149
@@ -696,7 +690,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -745,8 +739,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -107, y: 164}
-  m_SizeDelta: {x: 8.6828, y: 7.9366}
+  m_AnchoredPosition: {x: -140.1507, y: 298.00058}
+  m_SizeDelta: {x: 10.197, y: 7.663}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &982991836236405328
 CanvasRenderer:
@@ -869,7 +863,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 4784895205368538768}
-  B: {fileID: 0}
 --- !u!1 &8805886610246519095
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,8 +900,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -347, y: 164}
-  m_SizeDelta: {x: 8.6828, y: 7.9366}
+  m_AnchoredPosition: {x: -422, y: 298}
+  m_SizeDelta: {x: 10.197, y: 7.663}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5656023307697587890
 CanvasRenderer:
@@ -1031,4 +1024,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 7931941655293976847}
-  B: {fileID: 0}
