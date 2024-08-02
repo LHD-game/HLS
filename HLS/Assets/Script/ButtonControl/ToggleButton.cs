@@ -12,7 +12,7 @@ public class ToggleButton : MonoBehaviour
     {
         defaultColorBlock = button.colors;
         selectedColorBlock = button.colors;
-        selectedColorBlock.normalColor = Color.green;
+        selectedColorBlock.normalColor = Color.yellow ;
     }
 
     public void ToggleButtonState()
