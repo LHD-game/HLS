@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수를 저장할 딕셔너리
     public int[] scores = new int[9]; // 각 카테고리별 점수를 저장할 배열
     public int totalScore = 0;
-
+    public bool goableToNext = false;
     void Start()
     {
         UpdateScoreText();
