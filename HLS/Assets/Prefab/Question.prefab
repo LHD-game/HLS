@@ -420,7 +420,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea8dabaf13603c4395adb3387421dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleButtons: []
+  toggleButtons:
+  - {fileID: 2962075346789500574}
+  - {fileID: 2386534468868774728}
+  - {fileID: 4326004952045651693}
+  - {fileID: 898210245078053335}
 --- !u!1 &5430400291786838466
 GameObject:
   m_ObjectHideFlags: 0
