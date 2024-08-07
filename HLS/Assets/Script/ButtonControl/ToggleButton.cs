@@ -4,37 +4,42 @@ using UnityEngine.UI;
 public class ToggleButton : MonoBehaviour
 {
     public Button button;
-    private ColorBlock defaultColorBlock;
-    private ColorBlock selectedColorBlock;
-    private bool isSelected = false;
+    private bool isSelected;
 
     void Start()
     {
-        defaultColorBlock = button.colors;
-        selectedColorBlock = button.colors;
-        selectedColorBlock.normalColor = Color.yellow ;
+        isSelected = false;
+        ResetButtonState(); // 초기화 시 버튼 상태 설정
     }
 
     public void ToggleButtonState()
     {
         isSelected = !isSelected;
-        button.colors = isSelected ? selectedColorBlock : defaultColorBlock;
-    }
-
-    public void SetButtonSelected(bool selected)
-    {
-        isSelected = selected;
-        button.colors = selected ? selectedColorBlock : defaultColorBlock;
-    }
-
-    public void ResetButtonState()
-    {
-        isSelected = false;
-        button.colors = defaultColorBlock;
+        UpdateButtonColor();
     }
 
     public bool IsSelected()
     {
         return isSelected;
+    }
+
+    public void ResetButtonState()
+    {
+        isSelected = false;
+        UpdateButtonColor();
+    }
+
+    public void UpdateButtonColor()
+    {
+        ColorBlock colors = button.colors;
+        if (isSelected)
+        {
+            colors.normalColor = Color.green; // 선택된 상태로 변경
+        }
+        else
+        {
+            colors.normalColor = Color.white; // 초기화 상태로 변경
+        }
+        button.colors = colors;
     }
 }
