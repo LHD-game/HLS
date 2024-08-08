@@ -5,6 +5,7 @@ using ChartAndGraph;
 using UnityEngine;
 using UnityEngine.UI;
 using static ChartAndGraph.GraphChartBase;
+using ChartAndGraph.Axis;
 using Random = UnityEngine.Random;
 
 public class graph : MonoBehaviour
@@ -15,19 +16,24 @@ public class graph : MonoBehaviour
     public Text testDate;
     public Text testResult;
 
+    public HorizontalAxis horiAxis;
+    private List<Dictionary<string, object>> SD_;
+
     int index;
 
     void Start()
     {
         chart.DataSource.VerticalViewSize = 144;    // Vertical Axis의 값 설정
         chart.DataSource.GetPointCount("History");
+        horiAxis = chart.GetComponent<HorizontalAxis>();
+        horiAxis.MainDivisions.Total = chart.DataSource.GetPointCount("History");
     }
 
     public void inputData()  //데이터 가져와 넣기
     {
+        List<Dictionary<string, object>> SD_ = ScoreData.Instance.ScoreData_; //데이터 list
         chart.DataSource.StartBatch();
         chart.DataSource.ClearCategory("History");
-        List<Dictionary<string, object>> SD_ = ScoreData.Instance.ScoreData_; //데이터 list
         string[] Header = ScoreData.Instance.header;
         //Debug.Log("데이터갯수=" + SD_.Count);
         for (int i = 0; i < SD_.Count; i++)
