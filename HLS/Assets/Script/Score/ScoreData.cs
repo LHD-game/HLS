@@ -5,15 +5,10 @@ using System.Text.RegularExpressions;
 
 public class ScoreData : MonoBehaviour
 {
-    public static ScoreData Instance;
+    public string id;
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-
         SetList();
         testData();
     }
