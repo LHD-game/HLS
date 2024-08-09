@@ -4,44 +4,57 @@ using UnityEngine.UI;
 
 public class ToggleButtonManager : MonoBehaviour
 {
-    public List<Button> buttons; // 모든 버튼 리스트
-    private Button lastClickedButton; // 마지막으로 클릭된 버튼
+    public List<ToggleButton> toggleButtons; // 모든 버튼 리스트
+    private List<bool> buttonStates; // 버튼 상태 리스트
+    private bool isQuestionAnswered = false;
 
     void Start()
     {
-        foreach (var button in buttons)
+        buttonStates = new List<bool>(new bool[toggleButtons.Count]);
+
+        foreach (var toggleButton in toggleButtons)
         {
-            button.onClick.AddListener(() => OnButtonClicked(button));
+            toggleButton.button.onClick.AddListener(() => OnButtonClick(toggleButton));
         }
     }
 
-    void OnButtonClicked(Button clickedButton)
+    void OnButtonClick(ToggleButton clickedButton)
     {
-        // 마지막으로 클릭된 버튼이 있으면 색상 초기화
-        if (lastClickedButton != null)
+        // 클릭된 버튼의 상태를 토글
+        clickedButton.ToggleButtonState();
+
+        // 클릭된 버튼의 상태를 업데이트
+        int index = toggleButtons.IndexOf(clickedButton);
+        if (index >= 0)
         {
-            var colors = lastClickedButton.colors;
-            colors.normalColor = Color.white;
-            lastClickedButton.colors = colors;
+            buttonStates[index] = clickedButton.IsSelected();
         }
 
-        // 클릭된 버튼 색상 변경
-        var clickedColors = clickedButton.colors;
-        clickedColors.normalColor = Color.green;
-        clickedButton.colors = clickedColors;
+        // 하나의 버튼만 선택되도록 설정
+        foreach (var toggleButton in toggleButtons)
+        {
+            if (toggleButton != clickedButton)
+            {
+                toggleButton.ResetButtonState();
+            }
+        }
 
-        // 마지막으로 클릭된 버튼 업데이트
-        lastClickedButton = clickedButton;
+        // 질문이 답변되었는지 확인
+        isQuestionAnswered = true;
     }
 
     public void ResetButtonStates()
     {
-        foreach (var button in buttons)
+        for (int i = 0; i < toggleButtons.Count; i++)
         {
-            var colors = button.colors;
-            colors.normalColor = Color.white;
-            button.colors = colors;
+            toggleButtons[i].ResetButtonState();
+            buttonStates[i] = false;
         }
-        lastClickedButton = null; // 마지막으로 클릭된 버튼 초기화
+        isQuestionAnswered = false;
+    }
+
+    public bool IsQuestionAnswered()
+    {
+        return isQuestionAnswered;
     }
 }
