@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class QuestionRenderer : MonoBehaviour
 {
@@ -91,6 +92,7 @@ public class QuestionRenderer : MonoBehaviour
 
     public void NextQuestions()
     {
+ 
         if (csvReader.csvData.Count >= currentQuestionIndex + 4)
         {
             currentQuestionIndex += 4;
@@ -98,16 +100,14 @@ public class QuestionRenderer : MonoBehaviour
 
             RenderQuestions();
         }
+
     }
 
     public void PreviousQuestions()
     {
-        if (currentQuestionIndex >= 4)
-        {
-            currentQuestionIndex -= 4;
-            currentKeywordIndex -= 4;
+        currentQuestionIndex -= 4;
+        currentKeywordIndex -= 4;
 
-            RenderQuestions();
-        }
+        RenderQuestions();
     }
 }
