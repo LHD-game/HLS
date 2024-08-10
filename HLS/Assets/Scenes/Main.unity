@@ -902,6 +902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+  surveyType: healthydata
   header: []
 --- !u!114 &816320355
 MonoBehaviour:
@@ -1221,6 +1222,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 816320354}
     - target: {fileID: 4498626870613076593, guid: eeca152a1c2084a4eada8721e0227fa6, type: 3}
+      propertyPath: ScoreData
+      value: 
+      objectReference: {fileID: 816320354}
+    - target: {fileID: 4498626870613076593, guid: eeca152a1c2084a4eada8721e0227fa6, type: 3}
       propertyPath: raderDraw
       value: 
       objectReference: {fileID: 555501758}
@@ -1375,14 +1380,14 @@ PrefabInstance:
     - target: {fileID: 2018549592712323419, guid: 1b78f4b407fb7c244bf97c7ec3f960ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 816320355}
+      objectReference: {fileID: 816320354}
     - target: {fileID: 2018549592712323419, guid: 1b78f4b407fb7c244bf97c7ec3f960ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DataUpload
       objectReference: {fileID: 0}
     - target: {fileID: 2018549592712323419, guid: 1b78f4b407fb7c244bf97c7ec3f960ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SaveScoreData, Assembly-CSharp
+      value: ScoreData, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2018549592712323419, guid: 1b78f4b407fb7c244bf97c7ec3f960ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
