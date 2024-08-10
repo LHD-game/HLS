@@ -41,7 +41,7 @@ public class RaderDraw : MonoBehaviour
         {
             chart.DataSource.AddGroup(TitleTxts[i]);
         }
-        buttonC(0);
+        //buttonC(0);
         
     }
 
@@ -70,11 +70,11 @@ public class RaderDraw : MonoBehaviour
 
     public void addData()
     {
-        string[] data = new string[] { System.DateTime.Now.ToString("yyMMdd"), scoreManager.scores[0].ToString(), scoreManager.scores[1].ToString(), 
+        string[] data = new string[] { System.DateTime.Now.ToString("yy MM dd"), scoreManager.scores[0].ToString(), scoreManager.scores[1].ToString(), 
             scoreManager.scores[2].ToString(), scoreManager.scores[3].ToString(), scoreManager.scores[4].ToString(), scoreManager.scores[5].ToString(), 
             scoreManager.scores[6].ToString(), scoreManager.scores[7].ToString(), scoreManager.scores[8].ToString(),scoreManager.totalScore.ToString()};
 
-        scuns.SetData(data);
+        scuns.SetData(data,data[0]);
 
         //Debug.Log("µ•¿Ã≈Õ ∞πºˆ=" + scuns.ScoreData_.Count);
 
