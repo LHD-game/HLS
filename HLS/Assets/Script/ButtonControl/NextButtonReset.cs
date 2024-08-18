@@ -9,27 +9,38 @@ public class NextButtonReset : MonoBehaviour
     private Button nextButton; // Next 버튼
     public GameObject resultPanel; // 결과 패널
 
-    private Text nextButtonText; // Next 버튼의 텍스트
+    private Text nextButtonText; // Next 버튼의 텍스트 컴포넌트
     public Text restartButtonText;
 
     private int totalQuestions = 36; // 총 질문 개수
     private int questionsPerSet = 4; // 각 세트당 질문 수
     private int currentQuestionIndex = 0; // 현재 질문 인덱스
-    
 
     void Start()
     {
-        nextButton = GetComponent<Button>();
-        nextButtonText = nextButton.GetComponentInChildren<Text>(); // Next 버튼의 텍스트 컴포넌트 가져오기
+        // 자식 오브젝트에서 Button 컴포넌트 찾기
+        nextButton = GetComponentInChildren<Button>();
+        if (nextButton == null)
+        {
+            Debug.LogError("Next button component is not found on the GameObject or its children.");
+            return;
+        }
 
-        if (nextButton != null)
+        // 자식 오브젝트에서 Text 컴포넌트 찾기
+        nextButtonText = nextButton.GetComponentInChildren<Text>();
+        if (nextButtonText == null)
         {
-            nextButton.onClick.AddListener(OnNextButtonClicked);
+            Debug.LogError("Text component is not found on the Button or its children.");
+            return;
         }
-        else
+
+        if (restartButtonText == null)
         {
-            Debug.LogError("Next button component is not found on the GameObject.");
+            Debug.LogError("Restart button text is not assigned.");
+            return;
         }
+
+        nextButton.onClick.AddListener(OnNextButtonClicked);
         UpdateNextButtonState();
         resultPanel.SetActive(false); // 결과 패널 비활성화
     }
@@ -39,7 +50,7 @@ public class NextButtonReset : MonoBehaviour
         UpdateNextButtonState();
     }
 
-    void UpdateNextButtonState()
+    public void UpdateNextButtonState()
     {
         if (nextButton == null)
         {
@@ -59,18 +70,34 @@ public class NextButtonReset : MonoBehaviour
 
         nextButton.interactable = allQuestionsAnswered;
 
-        restartButtonText.text = "처음부터다시ㅣㅣㅣ";
-
-        // 마지막 질문 세트라면 버튼 텍스트를 "결과보기"로 변경
-        if (currentQuestionIndex >= totalQuestions - questionsPerSet)
+        if (nextButton.interactable)
         {
-            nextButtonText.text = "결과보기";
+            Debug.Log("Next button is now interactable.");
         }
         else
         {
-            nextButtonText.text = "다음으로";
+            Debug.Log("Next button is now NOT interactable.");
+        }
+
+        restartButtonText.text = "처음부터";
+
+        if (currentQuestionIndex >= totalQuestions - questionsPerSet)
+        {
+            if (nextButtonText != null)
+            {
+                nextButtonText.text = "결과보기";
+            }
+        }
+        else
+        {
+            if (nextButtonText != null)
+            {
+                nextButtonText.text = "다음으로";
+            }
         }
     }
+
+
 
     public void OnNextButtonClicked()
     {
@@ -91,7 +118,7 @@ public class NextButtonReset : MonoBehaviour
             if (currentQuestionIndex >= totalQuestions)
             {
                 resultPanel.SetActive(true); // 결과 패널 활성화
-                Time.timeScale = 0f; // 게임 일시정지
+                Time.timeScale = 1f; // 게임 일시정지
             }
             else
             {
