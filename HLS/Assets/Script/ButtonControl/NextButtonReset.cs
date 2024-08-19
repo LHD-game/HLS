@@ -50,7 +50,7 @@ public class NextButtonReset : MonoBehaviour
         UpdateNextButtonState();
     }
 
-    public void UpdateNextButtonState()
+    public void UpdateNextButtonState()  //업데이트문이 아닌 다른방법 으로 할 수 있음 좋겠음.
     {
         if (nextButton == null)
         {
@@ -72,11 +72,11 @@ public class NextButtonReset : MonoBehaviour
 
         if (nextButton.interactable)
         {
-            Debug.Log("Next button is now interactable.");
+            //Debug.Log("Next button is now interactable.");
         }
         else
         {
-            Debug.Log("Next button is now NOT interactable.");
+            //Debug.Log("Next button is now NOT interactable.");
         }
 
         restartButtonText.text = "처음부터";
