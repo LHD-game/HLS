@@ -55,6 +55,7 @@ public class CircularBarGraph : MonoBehaviour
 
     void CreateBars()
     {
+        //radius = RD.chart.Radius;
         bars = new Slider[segments];
         //handles = new Vector3[segments];
 
@@ -73,6 +74,7 @@ public class CircularBarGraph : MonoBehaviour
             //bar.value = data[i];
             //막대 사이즈 조절
             RectTransform thisRect = bar.GetComponent<RectTransform>();
+            Debug.Log("H: " + WheelPrent.rect.height + " W: " + WheelPrent.rect.width);
             if (WheelPrent.rect.width > WheelPrent.rect.height)
                 thisRect.sizeDelta = new Vector2((WheelPrent.rect.height / 3), thisRect.rect.height);
             else
