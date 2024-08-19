@@ -50,6 +50,7 @@ public class RaderDraw : MonoBehaviour
         GetData(index);
         DetailPrint(index);
         SetDate(scuns.ScoreData_[index]["date"].ToString());
+        WinCtl.Instance.GotoDatailWin();
     }
 
     void DetailPrint(int index)
