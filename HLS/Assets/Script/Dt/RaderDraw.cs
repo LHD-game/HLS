@@ -61,10 +61,8 @@ public class RaderDraw : MonoBehaviour
 
     void GetData(int index)
     {
-        //Debug.Log("ind " + index);
         for (int i = 0; i < segments; i++) //segment -> header.Length-1
         {
-            //Debug.Log(scuns.header[i] + scuns.ScoreData_[index][scuns.header[i]]);
             chart.DataSource.SetValue("MyScore", TitleTxts[i], Int32.Parse(scuns.ScoreData_[index][scuns.header[i+1]].ToString()));
         }
     }

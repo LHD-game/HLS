@@ -31,7 +31,7 @@ public class ScoreData : MonoBehaviour
 
     public void GetData(int index,int[] data_) //헤더삽입
     {
-        for (var i = 0; i < header.Length - 1; i++)
+        for (var i = 0; i < header.Length; i++)
         {
             data_[i]= (int)ScoreData_[index][header[i + 1]];
 }
@@ -47,7 +47,7 @@ public class ScoreData : MonoBehaviour
         var entry = new Dictionary<string, object>();
 
         Debug.Log("헤더길이=" + header.Length);
-        for (var j = 0; j < header.Length-1; j++)
+        for (var j = 0; j < header.Length; j++)
         {
             string value = Data[j]; //await FireBase.ScoreDataLoad(surveyType, id, header[j]); //
             if (header[j] == "date")
@@ -73,10 +73,10 @@ public class ScoreData : MonoBehaviour
     //|-----------------------서버에서 데이터를 저장하는 과정----------------------|
     async public void DataUpload()
     {
-        int dataLenth = header.Length - 1;
+        int dataLenth = header.Length;
         //파이어베이스 연동
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-        CollectionReference userRef = db.Collection("surveyData");
+        //CollectionReference userRef = db.Collection("surveyData");
         //파이어베이스에서 데이터 로드
         for (int i = 0; i < dataLenth; i++)
         {
@@ -89,7 +89,7 @@ public class ScoreData : MonoBehaviour
     //|-----------------------서버에서 데이터를 로드하는 과정----------------------|
     async public void Dataload(string surType, string UserID)
     {
-        int dataLenth = header.Length - 1;
+        int dataLenth = header.Length;
         //파이어베이스 연동
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         Query allData = db.Collection("user").Document(UserID)
