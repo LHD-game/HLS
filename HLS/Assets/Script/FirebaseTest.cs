@@ -24,6 +24,7 @@ public class FirebaseTest : MonoBehaviour
     //     }
     public Text UserNameSpace;  //유저명 결과창
 
+    public ScoreData scuns;
     //FireBase.DataSave([유저 ID], [Key값], [Data값])  | 데이터 저장(덮어쓰기)
     //FireBase.DataLoad([유저 ID], [Key값])            | 데이터 불러오기
     //FireBase.DataCheck([유저 ID]])                   | 데이터 확인
@@ -41,7 +42,8 @@ public class FirebaseTest : MonoBehaviour
         {
             Debug.Log("로그인 성공");
             UserNameSpace.text = await FireBase.DataLoad(Id, "Name");
-
+            scuns.id = Id;
+            scuns.LoginSet();
             WinCtl.Instance.GotoMain(); //main화면으로
         }
         else
