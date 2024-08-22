@@ -12,6 +12,7 @@ public class graph : MonoBehaviour
 {
     public GraphChart chart;
     public RaderDraw raderDraw;
+    public ScoreData ScoreData;
 
     public Text testDate;
     public Text testResult;
@@ -34,7 +35,12 @@ public class graph : MonoBehaviour
         List<Dictionary<string, object>> SD_ = ScoreData.Instance.ScoreData_; //데이터 list
         chart.DataSource.StartBatch();
         chart.DataSource.ClearCategory("History");
-        string[] Header = ScoreData.Instance.header;
+
+        //string[] Header = ScoreData.Instance.header;
+        
+        List<Dictionary<string, object>> SD_ = ScoreData.ScoreData_; //데이터 list
+        string[] Header = ScoreData.header;
+
         //Debug.Log("데이터갯수=" + SD_.Count);
         for (int i = 0; i < SD_.Count; i++)
         {
