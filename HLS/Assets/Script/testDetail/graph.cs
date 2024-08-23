@@ -32,22 +32,27 @@ public class graph : MonoBehaviour
 
     public void inputData()  //데이터 가져와 넣기
     {
-        List<Dictionary<string, object>> SD_ = ScoreData.Instance.ScoreData_; //데이터 list
+        SD_ = ScoreData.ScoreData_; //데이터 list
+
+        chart.Scrollable = false;
         chart.DataSource.StartBatch();
         chart.DataSource.ClearCategory("History");
-
-        //string[] Header = ScoreData.Instance.header;
-        
-        List<Dictionary<string, object>> SD_ = ScoreData.ScoreData_; //데이터 list
         string[] Header = ScoreData.header;
 
-        //Debug.Log("데이터갯수=" + SD_.Count);
+
+        //chart.DataSource.AddPointToCategory("History", System.DateTime.Now, 100); //날짜, total값 가져오기
         for (int i = 0; i < SD_.Count; i++)
         {
-            chart.DataSource.AddPointToCategory("History", Convert.ToDateTime(SD_[i]["date"]), (int)SD_[i]["total"]); //날짜, total값 가져오기
+            DateTime Date = Convert.ToDateTime(SD_[i]["date"]);
+            int TotalData = Convert.ToInt32(SD_[i]["total"]);
+
+
+            chart.DataSource.AddPointToCategory("History", Date, TotalData); //날짜, total값 가져오기
         }
-        chart.DataSource.GetPointCount("History");
+        Debug.Log("데이터갯수=" + chart.DataSource.GetPointCount("History"));
         chart.DataSource.EndBatch();
+
+        WinCtl.Instance.GotoHistWin();
     }
 
     public void OnPointClick(GraphEventArgs args)

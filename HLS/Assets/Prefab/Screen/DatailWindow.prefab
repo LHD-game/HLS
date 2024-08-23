@@ -53,7 +53,7 @@ MonoBehaviour:
   radius: 0
   animationSpeed: 1
   slider: {fileID: 7386440836054464242, guid: d3619c4956bce814ab54424e24f11896, type: 3}
-  WheelPrent: {fileID: 2803833209850223078}
+  WheelPrent: {fileID: 3804754531390404366}
   bars: []
   Mysign: {fileID: 7903008617865293778}
 --- !u!1 &56442406261041981
@@ -322,18 +322,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5790450317191252347}
-        m_TargetAssemblyTypeName: CircularBarGraph, Assembly-CSharp
-        m_MethodName: BackSpa
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WinCtl, Assembly-CSharp
         m_MethodName: GotoHistWin
@@ -697,8 +685,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 108.35214, y: -15}
-  m_SizeDelta: {x: 196.70428, y: 66.1086}
+  m_AnchoredPosition: {x: 139.89635, y: -15}
+  m_SizeDelta: {x: 259.7927, y: 66.1086}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &9168927594488719119
 CanvasRenderer:
@@ -1945,7 +1933,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00079345703, y: -64.70398}
+  m_AnchoredPosition: {x: 0.0007324219, y: -64.70398}
   m_SizeDelta: {x: -0.20999146, y: -213.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7244003724145417574
@@ -2640,27 +2628,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 788461324528415563, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 788461324528415563, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 788461324528415563, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 788461324528415563, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 788461324528415563, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 788461324528415563, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 788461324528415563, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2696,7 +2684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 788461324528415563, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000076293945
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 788461324528415563, guid: 93f00bc4595f8b64cb032e6a1878fa29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
