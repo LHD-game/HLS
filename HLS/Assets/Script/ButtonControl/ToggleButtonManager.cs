@@ -8,6 +8,10 @@ public class ToggleButtonManager : MonoBehaviour
     private List<bool> buttonStates; // 버튼 상태 리스트
     private bool isQuestionAnswered = false;
 
+    // 이벤트 선언
+    public delegate void ToggleStateChangedHandler();
+    public event ToggleStateChangedHandler OnToggleStateChanged;  // 상태 변경 이벤트
+
     void Start()
     {
         buttonStates = new List<bool>(new bool[toggleButtons.Count]);
@@ -20,12 +24,6 @@ public class ToggleButtonManager : MonoBehaviour
 
     void OnButtonClick(ToggleButton clickedButton)
     {
-        if (clickedButton == null)
-        {
-            Debug.LogError("Clicked button is null.");
-            return;
-        }
-
         // 클릭된 버튼의 상태를 토글
         clickedButton.ToggleButtonState();
 
@@ -34,35 +32,13 @@ public class ToggleButtonManager : MonoBehaviour
         {
             buttonStates[index] = clickedButton.IsSelected();
         }
-        else
-        {
-            Debug.LogError("Clicked button is not found in the toggleButtons list.");
-        }
-
-        // 하나의 버튼만 선택되도록 설정
-        foreach (var toggleButton in toggleButtons)
-        {
-            if (toggleButton != clickedButton)
-            {
-                toggleButton.ResetButtonState();
-            }
-        }
 
         // 질문이 답변되었는지 확인
         isQuestionAnswered = clickedButton.IsSelected();
 
-        // `NextButtonReset`의 상태를 업데이트하여 NextButton 활성화 여부 확인
-        var nextButtonReset = FindObjectOfType<NextButtonReset>();
-        if (nextButtonReset != null)
-        {
-            nextButtonReset.UpdateNextButtonState();
-        }
-        else
-        {
-            Debug.LogError("NextButtonReset component is not found in the scene.");
-        }
+        // 상태가 변경되었음을 알림
+        OnToggleStateChanged?.Invoke();  // 상태 변경 시 이벤트 호출
     }
-
 
     public void ResetButtonStates()
     {
