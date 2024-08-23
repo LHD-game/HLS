@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class ScoreManager : MonoBehaviour
 {
     public Text ScoreText; // 점수를 표시할 UI 텍스트
-    public GameObject resultPanel; // 결과 패널
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수를 저장할 딕셔너리
     public int[] scores = new int[9]; // 각 카테고리별 점수를 저장할 배열
     public int totalScore = 0;
@@ -15,7 +14,6 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         UpdateScoreText();
-        resultPanel.SetActive(false); // 처음에 결과 패널 비활성화
     }
 
     // 특정 질문에 대한 점수를 추가하는 메소드
@@ -84,7 +82,6 @@ public class ScoreManager : MonoBehaviour
         }
 
         UpdateScoreText(); // 텍스트 업데이트
-        resultPanel.SetActive(false); // 결과 패널 비활성화
         Time.timeScale = 1f;
 
     

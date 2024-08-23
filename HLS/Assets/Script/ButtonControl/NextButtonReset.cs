@@ -6,8 +6,9 @@ public class NextButtonReset : MonoBehaviour
 {
     public List<ToggleButtonManager> toggleButtonManagers;
     public ScoreManager scoreManager;
+    public RaderDraw RD;
+
     private Button nextButton;
-    public GameObject resultPanel;
     private Text nextButtonText;
     public Text restartButtonText;
     private int totalQuestions = 36;
@@ -47,7 +48,6 @@ public class NextButtonReset : MonoBehaviour
         }
 
         UpdateNextButtonState();
-        resultPanel.SetActive(false);
     }
 
     public void UpdateNextButtonState()
@@ -104,7 +104,7 @@ public class NextButtonReset : MonoBehaviour
 
             if (currentQuestionIndex >= totalQuestions)
             {
-                resultPanel.SetActive(true);
+                RD.addData();
                 Time.timeScale = 1f;
             }
             else

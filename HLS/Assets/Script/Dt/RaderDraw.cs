@@ -31,10 +31,10 @@ public class RaderDraw : MonoBehaviour
     private void Start()
     {
            segments = data.Length;
-        if (WheelPrent.rect.width > WheelPrent.rect.height)
+        if (WheelPrent.parent.GetComponent<RectTransform>().rect.width > WheelPrent.rect.height)
             chart.Radius = WheelPrent.rect.height / 3f;
         else
-            chart.Radius = WheelPrent.rect.width / 3f;
+            chart.Radius = WheelPrent.parent.GetComponent<RectTransform>().rect.width / 3f;
 
         chart.Angle = 10;
         for (int i = 0; i < segments; i++)
@@ -55,7 +55,7 @@ public class RaderDraw : MonoBehaviour
 
     void DetailPrint(int index)
     {
-        Score = (int)scuns.ScoreData_[index]["total"];
+        Score = Convert.ToInt32(scuns.ScoreData_[index]["total"]);
         scoreTxt.text = Score.ToString();
     }
 

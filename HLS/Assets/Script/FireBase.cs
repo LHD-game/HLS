@@ -61,20 +61,20 @@ public class FireBase : MonoBehaviour
     async public static Task<Dictionary<string, object>> ScoreDataLoad(DocumentSnapshot documentSnapshot, string surType, string UserID)
     {
         var entry = new Dictionary<string, object>();
-        int totalScore = 0;
+        //int totalScore = 0;
         Dictionary<string, object> ddata = documentSnapshot.ToDictionary();
         foreach (KeyValuePair<string, object> pair in ddata)
         {
-            if (pair.Key.ToString() == "date")
-                Debug.Log("날짜");
-            else
-                totalScore += Int32.Parse(pair.Value.ToString());
+            if (pair.Key.ToString() == "date") ;
+                //Debug.Log("날짜");
+            //else
+                //totalScore += Int32.Parse(pair.Value.ToString());
 
             Debug.Log("key = " + pair.Key + "\ndata = " + pair.Value);
 
             entry[pair.Key] = pair.Value.ToString();
         }
-        entry["total"] = totalScore;
+        //entry["total"] = totalScore;
 
         return entry;
     }
