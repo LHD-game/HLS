@@ -33,7 +33,7 @@ public class ScoreData : MonoBehaviour
     {
         for (var i = 0; i < header.Length; i++)
         {
-            data_[i]= (int)ScoreData_[index][header[i + 1]];
+            data_[i]= Convert.ToInt32(ScoreData_[index][header[i + 1]]);
 }
     }
     public void SetList() //헤더설정
@@ -42,8 +42,6 @@ public class ScoreData : MonoBehaviour
     }
     public void SetData(string[] Data, string Date) //데이터 삽입
     {
-        int totalScore=0;
-
         var entry = new Dictionary<string, object>();
 
         Debug.Log("헤더길이=" + header.Length);
@@ -54,17 +52,10 @@ public class ScoreData : MonoBehaviour
             {
                 Debug.Log(value);
             }
-            else 
-            { 
-                totalScore += Int32.Parse(value);
-                Debug.Log("total = " + totalScore);
-            }
             Debug.Log(header[j] + "= " + value);
             entry[header[j]] = value;
 
         }
-        entry[header[10]] = totalScore;
-        Debug.Log("전체합=" + totalScore);
         ScoreData_.Add(entry);
 
         DataUpload();
@@ -89,7 +80,6 @@ public class ScoreData : MonoBehaviour
     //|-----------------------서버에서 데이터를 로드하는 과정----------------------|
     async public void Dataload(string surType, string UserID)
     {
-        int dataLenth = header.Length;
         //파이어베이스 연동
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         Query allData = db.Collection("user").Document(UserID)
@@ -101,6 +91,7 @@ public class ScoreData : MonoBehaviour
             //파이어베이스에서 데이터 로드
             ScoreData_.Add(await FireBase.ScoreDataLoad(documentSnapshot, surveyType, id));
         }
+
     }
     //|-------------------------------------------------------------------------|
 }
