@@ -4,57 +4,57 @@ using UnityEngine.UI;
 
 public class NextButtonReset : MonoBehaviour
 {
-    public List<ToggleButtonManager> toggleButtonManagers; // ToggleButtonManager 리스트
+    public List<ToggleButtonManager> toggleButtonManagers;
     public ScoreManager scoreManager;
-    private Button nextButton; // Next 버튼
-    public GameObject resultPanel; // 결과 패널
-
-    private Text nextButtonText; // Next 버튼의 텍스트 컴포넌트
+    private Button nextButton;
+    public GameObject resultPanel;
+    private Text nextButtonText;
     public Text restartButtonText;
-
-    private int totalQuestions = 36; // 총 질문 개수
-    private int questionsPerSet = 4; // 각 세트당 질문 수
-    private int currentQuestionIndex = 0; // 현재 질문 인덱스
+    private int totalQuestions = 36;
+    private int questionsPerSet = 4;
+    private int currentQuestionIndex = 0;
 
     void Start()
     {
-        // 자식 오브젝트에서 Button 컴포넌트 찾기
         nextButton = GetComponentInChildren<Button>();
         if (nextButton == null)
         {
-            Debug.LogError("Next button component is not found on the GameObject or its children.");
+            Debug.LogError("Next 버튼 컴포넌트가 GameObject 또는 자식 오브젝트에서 찾을 수 없습니다.");
             return;
         }
 
-        // 자식 오브젝트에서 Text 컴포넌트 찾기
         nextButtonText = nextButton.GetComponentInChildren<Text>();
         if (nextButtonText == null)
         {
-            Debug.LogError("Text component is not found on the Button or its children.");
+            Debug.LogError("Text 컴포넌트가 Button 또는 자식 오브젝트에서 찾을 수 없습니다.");
             return;
         }
 
         if (restartButtonText == null)
         {
-            Debug.LogError("Restart button text is not assigned.");
+            Debug.LogError("Restart 버튼 텍스트가 할당되지 않았습니다.");
             return;
         }
 
         nextButton.onClick.AddListener(OnNextButtonClicked);
+
+        foreach (var toggleButtonManager in toggleButtonManagers)
+        {
+            if (toggleButtonManager != null)
+            {
+                toggleButtonManager.OnToggleStateChanged += UpdateNextButtonState;  // Update문 대체 부분 (ToggleButtonManager : 토글의 상태가 변경될 때마다를 감지하여 UpdateNextButtonState()를 호출)
+            }
+        }
+
         UpdateNextButtonState();
-        resultPanel.SetActive(false); // 결과 패널 비활성화
+        resultPanel.SetActive(false);
     }
 
-    void Update()
-    {
-        UpdateNextButtonState();
-    }
-
-    public void UpdateNextButtonState()  //업데이트문이 아닌 다른방법 으로 할 수 있음 좋겠음.
+    public void UpdateNextButtonState()
     {
         if (nextButton == null)
         {
-            Debug.LogError("Next button is not assigned.");
+            Debug.LogError("Next 버튼이 할당되지 않았습니다.");
             return;
         }
 
@@ -69,15 +69,6 @@ public class NextButtonReset : MonoBehaviour
         }
 
         nextButton.interactable = allQuestionsAnswered;
-
-        if (nextButton.interactable)
-        {
-            //Debug.Log("Next button is now interactable.");
-        }
-        else
-        {
-            //Debug.Log("Next button is now NOT interactable.");
-        }
 
         restartButtonText.text = "처음부터";
 
@@ -97,8 +88,6 @@ public class NextButtonReset : MonoBehaviour
         }
     }
 
-
-
     public void OnNextButtonClicked()
     {
         if (nextButton != null && nextButton.interactable)
@@ -107,22 +96,20 @@ public class NextButtonReset : MonoBehaviour
             {
                 if (toggleButtonManager != null)
                 {
-                    toggleButtonManager.ResetButtonStates(); // 버튼 상태 초기화
+                    toggleButtonManager.ResetButtonStates();
                 }
             }
 
-            // 다음 질문 세트로 이동하는 로직을 여기에 추가
             currentQuestionIndex += questionsPerSet;
 
-            // 마지막 질문 세트이면 결과창을 띄움
             if (currentQuestionIndex >= totalQuestions)
             {
-                resultPanel.SetActive(true); // 결과 패널 활성화
-                Time.timeScale = 1f; // 게임 일시정지
+                resultPanel.SetActive(true);
+                Time.timeScale = 1f;
             }
             else
             {
-                UpdateNextButtonState(); // 다음 질문 세트로 이동 후 상태 업데이트
+                UpdateNextButtonState();
             }
         }
     }
