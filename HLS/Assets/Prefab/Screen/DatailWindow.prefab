@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2803833209850223078}
-  - component: {fileID: 5790450317191252347}
   m_Layer: 5
   m_Name: Bars
   m_TagString: Untagged
@@ -36,26 +35,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5790450317191252347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10231743753343387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c4cab57fd653584cad240bb0d7b7924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RD: {fileID: 937731390320911013}
-  segments: 10
-  radius: 0
-  animationSpeed: 1
-  slider: {fileID: 7386440836054464242, guid: d3619c4956bce814ab54424e24f11896, type: 3}
-  WheelPrent: {fileID: 3804754531390404366}
-  bars: []
-  Mysign: {fileID: 7903008617865293778}
 --- !u!1 &56442406261041981
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +168,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5790450317191252347}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CircularBarGraph, Assembly-CSharp
         m_MethodName: buttonClick
         m_Mode: 1
@@ -323,8 +302,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: WinCtl, Assembly-CSharp
-        m_MethodName: GotoHistWin
+        m_TargetAssemblyTypeName: graph, Assembly-CSharp
+        m_MethodName: inputData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -524,7 +503,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 2.4999545, y: 0}
+  m_AnchoredPosition: {x: 2.499939, y: 0}
   m_SizeDelta: {x: -5.0000906, y: 20.6284}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4940834198824344322
@@ -893,7 +872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.4999545, y: 0}
+  m_AnchoredPosition: {x: 2.499939, y: 0}
   m_SizeDelta: {x: -5.0000906, y: 20.6284}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1170029696393293405
@@ -1969,7 +1948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -3.3005524, y: -4.10003}
+  m_AnchoredPosition: {x: -3.300537, y: -4.10003}
   m_SizeDelta: {x: 23.169006, y: 9.352999}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &7297792693705762966
@@ -2135,8 +2114,11 @@ MonoBehaviour:
   scuns: {fileID: 0}
   chart: {fileID: 5775262508148812897}
   scoreManager: {fileID: 0}
-  segments: 10
   WheelPrent: {fileID: 3804754531390404366}
+  radius: 0
+  slider: {fileID: 7386440836054464242, guid: d3619c4956bce814ab54424e24f11896, type: 3}
+  bars: []
+  BarPos: {fileID: 2803833209850223078}
   Mysign: {fileID: 7903008617865293778}
   scoreTxt: {fileID: 314795044386869151}
   TitleTxts:

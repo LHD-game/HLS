@@ -70,7 +70,7 @@ public class FireBase : MonoBehaviour
             //else
                 //totalScore += Int32.Parse(pair.Value.ToString());
 
-            Debug.Log("key = " + pair.Key + "\ndata = " + pair.Value);
+            //Debug.Log("key = " + pair.Key + "\ndata = " + pair.Value);
 
             entry[pair.Key] = pair.Value.ToString();
         }
