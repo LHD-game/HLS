@@ -25,33 +25,33 @@ public class graph : MonoBehaviour
     void Start()
     {
         chart.DataSource.VerticalViewSize = 144;    // Vertical Axis의 값 설정
-        chart.DataSource.GetPointCount("History");
-        horiAxis = chart.GetComponent<HorizontalAxis>();
-        horiAxis.MainDivisions.Total = chart.DataSource.GetPointCount("History");
+
+        //horiAxis = chart.GetComponent<HorizontalAxis>();
+        //horiAxis.MainDivisions.Total = chart.DataSource.GetPointCount("History");
+        chart.CustomDateTimeFormat = (date) => { return date.ToString("MM/dd"); }; //그래프 Date Format 수정
     }
 
     public void inputData()  //데이터 가져와 넣기
     {
         SD_ = ScoreData.ScoreData_; //데이터 list
-
         chart.Scrollable = false;
         chart.DataSource.StartBatch();
         chart.DataSource.ClearCategory("History");
-        string[] Header = ScoreData.header;
-
-
-        //chart.DataSource.AddPointToCategory("History", System.DateTime.Now, 100); //날짜, total값 가져오기
-        for (int i = 0; i < SD_.Count; i++)
+        for (int i = 1; i < SD_.Count+1; i++)
         {
-            DateTime Date = Convert.ToDateTime(SD_[i]["date"]);
-            int TotalData = Convert.ToInt32(SD_[i]["total"]);
-
-
+            DateTime Date = Convert.ToDateTime(SD_[SD_.Count - i]["date"]);
+            int TotalData = Convert.ToInt32(SD_[SD_.Count - i]["total"]);
             chart.DataSource.AddPointToCategory("History", Date, TotalData); //날짜, total값 가져오기
+            if (i == 6) break;
+        }
+        chart.ClearHorizontalCustomDivisions();
+        for (int i = 1; i < SD_.Count+1; i++)
+        {
+            DateTime Date = Convert.ToDateTime(SD_[SD_.Count - i]["date"]);
+            chart.AddHorizontalAxisDivision(ChartDateUtility.DateToValue(Date), true);
         }
         Debug.Log("데이터갯수=" + chart.DataSource.GetPointCount("History"));
         chart.DataSource.EndBatch();
-
         WinCtl.Instance.GotoHistWin();
     }
 
@@ -62,14 +62,8 @@ public class graph : MonoBehaviour
         index = args.Index; //리스트에서 특정 날짜 값 뺴는 용도
         Debug.Log("ind = "+index);
     }
-
     public void DetailP()
     {
         raderDraw.buttonC(index); //디테일창 출력
-    }
-
-    void Update()
-    {
-        
     }
 }

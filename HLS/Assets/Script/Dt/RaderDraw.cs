@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using ChartAndGraph;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +8,15 @@ public class RaderDraw : MonoBehaviour
     public ScoreData scuns;
     public RadarChart chart;
     public ScoreManager scoreManager;
-    public int segments; // 그래프의 세그먼트 수
+    //public int segments; // 그래프의 세그먼트 수 data.Length
     public RectTransform WheelPrent;
+
+    [Header("Bar")]
+    public float radius; // 원의 반지름
+    //public float animationSpeed = 1f; // 애니메이션 속도
+    public Slider slider; // 슬라이더 UI
+    public Slider[] bars;
+    public RectTransform BarPos;
 
     [Space(10f)]
     public GameObject Mysign;
@@ -23,26 +28,22 @@ public class RaderDraw : MonoBehaviour
     public int[] data;
     [Space(5f)]
     public Text Date;
-    //public string DateTxt;
     [Space(5f)]
     public int Score;
 
 
     private void Start()
     {
-           segments = data.Length;
         if (WheelPrent.parent.GetComponent<RectTransform>().rect.width > WheelPrent.rect.height)
             chart.Radius = WheelPrent.rect.height / 3f;
         else
             chart.Radius = WheelPrent.parent.GetComponent<RectTransform>().rect.width / 3f;
 
         chart.Angle = 10;
-        for (int i = 0; i < segments; i++)
+        for (int i = 0; i < data.Length; i++)
         {
             chart.DataSource.AddGroup(TitleTxts[i]);
         }
-        //buttonC(0);
-        
     }
 
     public void buttonC(int index)
@@ -50,6 +51,7 @@ public class RaderDraw : MonoBehaviour
         GetData(index);
         DetailPrint(index);
         SetDate(scuns.ScoreData_[index]["date"].ToString());
+        CreateBars();
         WinCtl.Instance.GotoDatailWin();
     }
 
@@ -61,7 +63,7 @@ public class RaderDraw : MonoBehaviour
 
     void GetData(int index)
     {
-        for (int i = 0; i < segments; i++) //segment -> header.Length-1
+        for (int i = 0; i < data.Length; i++) //segment -> header.Length-1
         {
             chart.DataSource.SetValue("MyScore", TitleTxts[i], Int32.Parse(scuns.ScoreData_[index][scuns.header[i+1]].ToString()));
         }
@@ -80,16 +82,45 @@ public class RaderDraw : MonoBehaviour
         buttonC(scuns.ScoreData_.Count-1);
     }
 
-
-
-    int plusScore()
+    void CreateBars()
     {
-        int P = 0;
+        bars = new Slider[data.Length];
+
+        float angleStep = 360f / data.Length;
+
         for (int i = 0; i < data.Length; i++)
         {
-            P += data[i];
+            float angle = (i * angleStep) - 90;
+            Vector3 barPosition = Quaternion.Euler(0, 0, angle + 90) * Vector3.up * radius;
+
+            Slider bar = Instantiate(slider, BarPos.transform.position + barPosition, Quaternion.identity, BarPos.transform);
+            bars[i] = bar;
+
+            //막대 사이즈 조절
+            RectTransform thisRect = bar.GetComponent<RectTransform>();
+
+            if (WheelPrent.rect.width > WheelPrent.parent.GetComponent<RectTransform>().rect.width)
+                thisRect.sizeDelta = new Vector2((WheelPrent.rect.height / 3), thisRect.rect.height);
+            else
+                thisRect.sizeDelta = new Vector2((WheelPrent.parent.GetComponent<RectTransform>().rect.width / 3), thisRect.rect.height);
+
+            // 막대의 회전 조절
+            bar.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
         }
-        return P;
+
+        UpdateGraph();
+    }
+
+    void UpdateGraph()
+    {
+        for (int i = 0; i < data.Length; i++)
+            if (Score < 92)
+                Mysign.GetComponent<Image>().color = Color.red;
+            else if (92 < Score && Score < 114)
+                Mysign.GetComponent<Image>().color = Color.yellow;
+            else if (114 < Score)
+                Mysign.GetComponent<Image>().color = Color.green;
     }
 
     void SetDate(string date)

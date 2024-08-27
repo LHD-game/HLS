@@ -296,7 +296,7 @@ MonoBehaviour:
   vRSpaceText: 0
   vRSpaceScale: 0.1
   maintainLabelSize: 0
-  autoScrollHorizontally: 0
+  autoScrollHorizontally: 1
   horizontalScrolling: 0
   autoScrollVertically: 0
   verticalScrolling: 0
@@ -341,7 +341,9 @@ MonoBehaviour:
     verticalViewOrigin: 0
     mSerializedData:
     - Name: History
-      InitialData: []
+      InitialData:
+      - {x: 5, y: 100}
+      - {x: 1, y: 50}
       IsBezierCurve: 0
       SegmentsPerCurve: 10
       Depth: 0
@@ -458,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SimpleView: 1
-  format: 2
+  format: 3
   withEdges2: 1
   depth:
     Automatic: 0
@@ -466,7 +468,7 @@ MonoBehaviour:
   mainDivisions:
     messure: 0
     unitsPerDivision: 0
-    total: 3
+    total: 0
     material: {fileID: 2100000, guid: 8f4ec85425306614c9a6d154f2e9407b, type: 2}
     materialTiling:
       EnableTiling: 0
