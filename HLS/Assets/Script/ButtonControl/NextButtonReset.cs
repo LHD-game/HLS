@@ -84,6 +84,7 @@ public class NextButtonReset : MonoBehaviour
             if (nextButtonText != null)
             {
                 nextButtonText.text = "다음으로";
+                restartButtonText.text = "처음부터";
             }
         }
     }
@@ -97,6 +98,7 @@ public class NextButtonReset : MonoBehaviour
                 if (toggleButtonManager != null)
                 {
                     toggleButtonManager.ResetButtonStates();
+                    ResetToggleButtonVisuals(toggleButtonManager); // 버튼 시각적 상태 초기화
                 }
             }
 
@@ -111,6 +113,15 @@ public class NextButtonReset : MonoBehaviour
             {
                 UpdateNextButtonState();
             }
+        }
+    }
+
+    private void ResetToggleButtonVisuals(ToggleButtonManager toggleButtonManager)
+    {
+        foreach (var toggle in toggleButtonManager.GetComponentsInChildren<Toggle>())
+        {
+            toggle.isOn = false; // 토글 상태 초기화
+            toggle.graphic.CrossFadeColor(Color.white, 0f, true, true); // 그래픽 색상 초기화
         }
     }
 }
