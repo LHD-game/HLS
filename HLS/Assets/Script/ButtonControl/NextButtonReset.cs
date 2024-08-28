@@ -9,7 +9,7 @@ public class NextButtonReset : MonoBehaviour
     public RaderDraw RD;
 
     private Button nextButton;
-    private Text nextButtonText;
+    public Text nextButtonText;  // Text 컴포넌트를 Inspector에서 직접 연결
     public Text restartButtonText;
     private int totalQuestions = 36;
     private int questionsPerSet = 4;
@@ -17,17 +17,17 @@ public class NextButtonReset : MonoBehaviour
 
     void Start()
     {
-        nextButton = GetComponentInChildren<Button>();
+        nextButton = GetComponentInChildren<Button>();  // 이 부분은 기존대로 둡니다.
         if (nextButton == null)
         {
-            Debug.LogError("Next 버튼 컴포넌트가 GameObject 또는 자식 오브젝트에서 찾을 수 없습니다.");
+            Debug.LogError("Next 버튼 컴포넌트를 찾을 수 없습니다.");
             return;
         }
 
-        nextButtonText = nextButton.GetComponentInChildren<Text>();
+        // Text 컴포넌트 할당 확인
         if (nextButtonText == null)
         {
-            Debug.LogError("Text 컴포넌트가 Button 또는 자식 오브젝트에서 찾을 수 없습니다.");
+            Debug.LogError("Next 버튼의 Text 컴포넌트가 할당되지 않았습니다.");
             return;
         }
 
@@ -43,7 +43,7 @@ public class NextButtonReset : MonoBehaviour
         {
             if (toggleButtonManager != null)
             {
-                toggleButtonManager.OnToggleStateChanged += UpdateNextButtonState;  // Update문 대체 부분 (ToggleButtonManager : 토글의 상태가 변경될 때마다를 감지하여 UpdateNextButtonState()를 호출)
+                toggleButtonManager.OnToggleStateChanged += UpdateNextButtonState;
             }
         }
 
@@ -98,7 +98,7 @@ public class NextButtonReset : MonoBehaviour
                 if (toggleButtonManager != null)
                 {
                     toggleButtonManager.ResetButtonStates();
-                    ResetToggleButtonVisuals(toggleButtonManager); // 버튼 시각적 상태 초기화
+                    ResetToggleButtonVisuals(toggleButtonManager);  // 버튼 시각적 상태 초기화
                 }
             }
 
@@ -120,8 +120,8 @@ public class NextButtonReset : MonoBehaviour
     {
         foreach (var toggle in toggleButtonManager.GetComponentsInChildren<Toggle>())
         {
-            toggle.isOn = false; // 토글 상태 초기화
-            toggle.graphic.CrossFadeColor(Color.white, 0f, true, true); // 그래픽 색상 초기화
+            toggle.isOn = false;  // 토글 상태 초기화
+            toggle.graphic.CrossFadeColor(Color.white, 0f, true, true);  // 그래픽 색상 초기화
         }
     }
 }
