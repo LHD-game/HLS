@@ -56,19 +56,6 @@ public class ScoreManager : MonoBehaviour
         {
             totalScore += score;
         }
-
-        ScoreText.text =
-            "전체 " + totalScore + "\n" +
-            "햇빛 " + scores[0] + "\n" +
-            "물 " + scores[1] + "\n" +
-            "공기 " + scores[2] + "\n" +
-            "쉬다 " + scores[3] + "\n" +
-            "운동 " + scores[4] + "\n" +
-            "영양물 섭취 " + scores[5] + "\n" +
-            "절제 " + scores[6] + "\n" +
-            "믿음 " + scores[7] + "\n" +
-            "일반적인 신체 상태 " + scores[8];
-        Debug.Log($"Updated total score: {totalScore}");
     }
 
     // 점수를 초기화하고 첫 번째 질문과 키워드를 다시 렌더링하는 메소드
