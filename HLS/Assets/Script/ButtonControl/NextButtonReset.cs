@@ -10,7 +10,7 @@ public class NextButtonReset : MonoBehaviour
 
     private Button nextButton;
     public Text nextButtonText;  // Text 컴포넌트를 Inspector에서 직접 연결
-    public Text restartButtonText;
+    //public Text restartButtonText;
     private int totalQuestions = 36;
     private int questionsPerSet = 4;
     private int currentQuestionIndex = 0;
@@ -20,7 +20,7 @@ public class NextButtonReset : MonoBehaviour
         nextButton = GetComponentInChildren<Button>();  // 이 부분은 기존대로 둡니다.
         if (nextButton == null)
         {
-            Debug.LogError("Next 버튼 컴포넌트를 찾을 수 없습니다.");
+            Debug.LogError("Next 버튼 컴포넌트를 찾을 수 없습니다."); //컴포넌트는 find로 찾는게 아닌 직접 할당 식으로 넣습니다.
             return;
         }
 
@@ -31,11 +31,11 @@ public class NextButtonReset : MonoBehaviour
             return;
         }
 
-        if (restartButtonText == null)
+        /*if (restartButtonText == null)
         {
             Debug.LogError("Restart 버튼 텍스트가 할당되지 않았습니다.");
             return;
-        }
+        }*/
 
         nextButton.onClick.AddListener(OnNextButtonClicked);
 
@@ -70,7 +70,7 @@ public class NextButtonReset : MonoBehaviour
 
         nextButton.interactable = allQuestionsAnswered;
 
-        restartButtonText.text = "처음부터";
+        //restartButtonText.text = "처음부터";
 
         if (currentQuestionIndex >= totalQuestions - questionsPerSet)
         {
@@ -84,7 +84,7 @@ public class NextButtonReset : MonoBehaviour
             if (nextButtonText != null)
             {
                 nextButtonText.text = "다음으로";
-                restartButtonText.text = "처음부터";
+                //restartButtonText.text = "처음부터";
             }
         }
     }
