@@ -280,6 +280,7 @@ MonoBehaviour:
   - {fileID: 1237012458506747678}
   scoreManager: {fileID: 6777804796653346337}
   RD: {fileID: 0}
+  nextButtonText: {fileID: 5749721563465958897}
   restartButtonText: {fileID: 630124540662257545}
 --- !u!1 &511593208021998532
 GameObject:
@@ -313,6 +314,8 @@ RectTransform:
   m_Children:
   - {fileID: 8284701805860367625}
   - {fileID: 1849846548388272772}
+  - {fileID: 7179054930484745508}
+  - {fileID: 1577946481635021133}
   - {fileID: 8882007737707934028}
   - {fileID: 3225528844303906253}
   m_Father: {fileID: 0}
@@ -360,6 +363,57 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &843104334387410464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7179054930484745508}
+  - component: {fileID: 4097400669642484178}
+  m_Layer: 5
+  m_Name: BackButtonHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7179054930484745508
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843104334387410464}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6738903956061410335}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4097400669642484178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843104334387410464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a36b65b2e0c5741853fce1e5730052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backButton: {fileID: 4923067628646481020}
+  restartButtonObj: {fileID: 1922854658445032975}
+  restartButtonText: {fileID: 630124540662257545}
 --- !u!1 &1040434601793410025
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +578,7 @@ GameObject:
   - component: {fileID: 8729447142383334975}
   - component: {fileID: 7723407851299154350}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -621,15 +675,15 @@ RectTransform:
   m_GameObject: {fileID: 1922854658445032975}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.20000002, y: 0.20000002, z: 1}
+  m_LocalScale: {x: 0.20000003, y: 0.20000003, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7384835022889309452}
-  m_Father: {fileID: 8284701805860367625}
+  m_Father: {fileID: 6738903956061410335}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -78.88397, y: 69.906006}
+  m_AnchoredPosition: {x: -66.8161, y: 10.860489}
   m_SizeDelta: {x: 481.267, y: -112.713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1797239704954205354
@@ -683,7 +737,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3037387240002871707}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8917454116292989126}
+        m_TargetAssemblyTypeName: RestartButton, Assembly-CSharp
+        m_MethodName: OnRestartButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5970148282575180722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,6 +784,7 @@ MonoBehaviour:
   - {fileID: 1237012458506747678}
   scoreManager: {fileID: 6777804796653346337}
   RD: {fileID: 0}
+  nextButtonText: {fileID: 5749721563465958897}
   restartButtonText: {fileID: 630124540662257545}
 --- !u!114 &3037387240002871707
 MonoBehaviour:
@@ -1000,10 +1067,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1922854658445032975}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: WinCtl, Assembly-CSharp
-        m_MethodName: GotoMain
-        m_Mode: 1
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1844,7 +1923,6 @@ RectTransform:
   - {fileID: 2195587073763501705}
   - {fileID: 5758075643021760423}
   - {fileID: 3540187961334301662}
-  - {fileID: 1577946481635021133}
   - {fileID: 4860777144503056434}
   - {fileID: 5829357662817033503}
   - {fileID: 4952996452449732473}
