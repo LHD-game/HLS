@@ -131,12 +131,12 @@ public class FireBase : MonoBehaviour
         Debug.Log(UserID);
         if (snapshot.Exists)
         {
-            Debug.Log("유저 검색 성공");
+            Debug.Log("설문존재");
             data = true;
         }
         else
         {
-            Debug.Log("유저 검색 실패");
+            Debug.Log("설문비존재");
         }
         return data;
     }
