@@ -20,6 +20,7 @@ public class WinCtl : MonoBehaviour
     public GameObject HistWin;
     public GameObject surveyWin;
     public GameObject DatailWin;
+    public GameObject SolutionWin;
 
     GameObject WinCtl_; 
     // Start is called before the first frame update
@@ -51,6 +52,10 @@ public class WinCtl : MonoBehaviour
     {
         WinSetting(DatailWin);
     }
+    public void GotoSolutionWin()
+    {
+        WinSetting(SolutionWin);
+    }
 
     private void ReSetWin()
     {
@@ -59,6 +64,7 @@ public class WinCtl : MonoBehaviour
         HistWin.SetActive(false);
         surveyWin.SetActive(false);
         DatailWin.SetActive(false);
+        SolutionWin.SetActive(false);
         WinCtl_ = WellcomeWin;
         WinSetting(WellcomeWin);
     }

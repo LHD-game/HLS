@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Firebase.Firestore;
+using System.Collections;
 
 public class ScoreData : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class ScoreData : MonoBehaviour
     public List<Dictionary<string, object>> ScoreData_ = new List<Dictionary<string, object>>();
     string Headers = "date,sunlight,water,air,rest,exercise,nutrition,temperance,trust,gpc,total"; //11
     public string[] header;
+
+
+    public GameObject WarningWin;
 
     public void LoginSet()
     {
@@ -59,6 +63,32 @@ public class ScoreData : MonoBehaviour
         ScoreData_.Add(entry);
 
         DataUpload();
+    }
+
+    async public void testCheck()
+    {
+
+        string today = System.DateTime.Now.ToString("yy MM dd");
+        //await는 비동기 값을 동기화할때까지 기다려 달라는 뜻.
+        //Data값 = FireBase.DataLoad([유저 ID], [Key값]) | Dictionary형 자료임으로 Key(string)를 통해 Data(string)를 찾음
+        if (await FireBase.SDataCheck(id, surveyType, today))
+        {
+            StartCoroutine(warningWinCtl());
+            Debug.Log("이미 설문 진행 함");
+        }
+        else
+        {
+            WinCtl.Instance.GotosurveyWin(); //설문창이동
+        }
+    }
+
+    IEnumerator warningWinCtl()
+    {
+        WarningWin.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+
+        WarningWin.SetActive(false);
+
     }
 
     //|-----------------------서버에서 데이터를 저장하는 과정----------------------|
