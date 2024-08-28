@@ -24,6 +24,15 @@ public class ToggleButtonManager : MonoBehaviour
 
     void OnButtonClick(ToggleButton clickedButton)
     {
+        // 클릭된 버튼을 제외한 모든 버튼을 비활성화
+        foreach (var toggleButton in toggleButtons)
+        {
+            if (toggleButton != clickedButton)
+            {
+                toggleButton.ResetButtonState();
+            }
+        }
+
         // 클릭된 버튼의 상태를 토글
         clickedButton.ToggleButtonState();
 
