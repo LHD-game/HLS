@@ -16,6 +16,9 @@ public class FirebaseTest : MonoBehaviour
     public Text IdTextSignIn;     //ID값 
     public Text PwTextSignIn;     //PW값
     public Text NameText;   //유저명
+    public Text MsgText;   //안내문구
+    public GameObject MsgWin;   //안내문구창
+    public GameObject GotoLgiBtn;   //안내문구
     Regex regex = new Regex(@"[a-zA-Z0-9]{1,25}@[a-zA-Z0-9]{1,20}\.[a-zA-Z]{1,5}$");  //e-mail형식
     // TODO: 아래 필드명은 namespace 라는 예약어를 연상시켜 개선 필요
     //     namespace MyNamespace
@@ -66,6 +69,8 @@ public class FirebaseTest : MonoBehaviour
             //FireBase.DataLoad([유저 ID]) | Bool값(true, false)으로 나옴
             if (await FireBase.DataCheck(Id))
             {
+                MsgText.text = "이미 가입된 ID입니다.";
+                MsgWin.SetActive(true);
                 Debug.Log("가입 실패 - 이미 있는 ID");
             }
             else
@@ -77,11 +82,17 @@ public class FirebaseTest : MonoBehaviour
                 await FireBase.DataSave(Id, "Password", Pw);
                 await FireBase.DataSave(Id, "Name", Name);
 
+                MsgText.text = "가입성공";
+                MsgWin.SetActive(true);
+                GotoLgiBtn.SetActive(true);
                 Debug.Log("가입 성공");
             }
         }
         else   //이메일 형식이 다를 경우
         {
+
+            MsgText.text = "email이 양식과 일치하지 않습니다.";
+            MsgWin.SetActive(true);
             Debug.Log("email이 양식과 일치하지 않습니다.");
         }
 
