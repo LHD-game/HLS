@@ -17,6 +17,7 @@ public class WellcomeW : MonoBehaviour
         originHeight = parent.rect.height;
         SetDynamicGrid(Maingrid, 4, 2, 2);
         SetDynamicGrid(solugrid, 9, 3, 3);
+        ClickWc();
     }
     public void ClickWc()
     {
