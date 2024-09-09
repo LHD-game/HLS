@@ -23,15 +23,6 @@ public class ScoreData : MonoBehaviour
         SetList();
         Dataload(surveyType, id);
     }
-    /*void testData()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            string[] data = new string[] { System.DateTime.Now.AddDays(-10 + i).ToString("yy MM dd"), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), UnityEngine.Random.Range(4, 17).ToString(), };
-
-            SetData(data,data[0]);
-        }
-    }*/
 
     public void GetData(int index,int[] data_) //Çì´õ»ðÀÔ
     {
