@@ -6,7 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="데이터 스키마 공유 및 변수명 컨벤션 개선 제안">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Demo/DemoCodeToSchedule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Demo/DemoCodeToSchedule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Prefabs/CalendarSchedulerUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Prefabs/CalendarSchedulerUI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Prefabs/CalendarUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Prefabs/CalendarUI.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scenes/05features.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scenes/05features.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerDays.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerDays.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/testDetail/graph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/testDetail/graph.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
     </list>
@@ -24,9 +33,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/hyoji/OneDrive/바탕 화면/Unity/HLS/HLS/Assets/Script/FirebaseTest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/testDetail/Calendar/CalendarSchedulerItemCustom.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/testDetail/graphV2.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -49,13 +57,6 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\hyoji\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\hyoji\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\hyoji\\AppData\\Local\\Symbols\\src&quot;
-    ]
   }
 }</component>
   <component name="RunManager" selected="Unity 에디터에 연결.Unity 에디터에 연결">
@@ -113,6 +114,15 @@
       <workItem from="1721100715897" duration="240000" />
       <workItem from="1721100967973" duration="12584000" />
       <workItem from="1723082647917" duration="1569000" />
+      <workItem from="1725601778556" duration="6638000" />
+      <workItem from="1726186576227" duration="155000" />
+      <workItem from="1726190817321" duration="2626000" />
+      <workItem from="1727149051419" duration="11478000" />
+      <workItem from="1727176059226" duration="160000" />
+      <workItem from="1727176377882" duration="8000" />
+      <workItem from="1727177242243" duration="902000" />
+      <workItem from="1727178623616" duration="4257000" />
+      <workItem from="1727417728417" duration="4206000" />
     </task>
     <task id="LOCAL-00001" summary="데이터 스키마 공유 및 변수명 컨벤션 개선 제안">
       <option name="closed" value="true" />
@@ -147,7 +157,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="origin/hyojin" />
                       </list>
                     </value>
                   </entry>
@@ -160,6 +170,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="데이터 스키마 공유 및 변수명 컨벤션 개선 제안" />
     <option name="LAST_COMMIT_MESSAGE" value="데이터 스키마 공유 및 변수명 컨벤션 개선 제안" />
