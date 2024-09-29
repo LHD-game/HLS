@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class CSVReader : MonoBehaviour
+public class ACSVReader : MonoBehaviour
 {
-    public string fileName = "questions.csv"; // CSV 파일 이름
+    public string fileName = "Other_Questions.csv"; // CSV 파일 이름
     public List<string[]> csvData = new List<string[]>(); // CSV 데이터 저장 변수
 
     void Start()
@@ -24,7 +24,7 @@ public class CSVReader : MonoBehaviour
             while (stringReader.Peek() != -1)
             {
                 string line = stringReader.ReadLine();
-                csvData.Add(line.Split(','));
+                csvData.Add(line.Split(',')); // 콤마로 구분된 CSV 데이터를 읽음
             }
         }
         else
@@ -34,16 +34,9 @@ public class CSVReader : MonoBehaviour
                 while (!sr.EndOfStream)
                 {
                     string line = sr.ReadLine();
-                    csvData.Add(line.Split(','));
+                    csvData.Add(line.Split(',')); // 콤마로 구분된 CSV 데이터를 읽음
                 }
             }
-        }
-
-        // CSV 데이터가 제대로 로드되었는지 로그 출력
-        Debug.Log("CSV Data Loaded:");
-        for (int i = 0; i < csvData.Count; i++)
-        {
-            Debug.Log("Row " + i + ": " + string.Join(",", csvData[i]));
         }
     }
 }
