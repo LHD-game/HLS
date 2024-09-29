@@ -56,6 +56,8 @@ public class ScoreManager : MonoBehaviour
         {
             totalScore += score;
         }
+
+        Debug.Log($"총 점수: {totalScore}");
     }
 
     // 점수를 초기화하고 첫 번째 질문과 키워드를 다시 렌더링하는 메소드
