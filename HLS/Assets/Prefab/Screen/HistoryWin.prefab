@@ -1705,10 +1705,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2114932323339356943}
-        m_TargetAssemblyTypeName: Maything.UI.CalendarSchedulerUI.DemoCodeToSchedule,
-          Assembly-CSharp
-        m_MethodName: RandomSchedules
+      - m_Target: {fileID: 4498626870613076593}
+        m_TargetAssemblyTypeName: graph, Assembly-CSharp
+        m_MethodName: inputSchedule
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

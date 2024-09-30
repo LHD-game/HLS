@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="데이터 스키마 공유 및 변수명 컨벤션 개선 제안">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/projectSettingsUpdater.xml" afterDir="false" />
+    <list default="true" id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Demo/DemoCodeToSchedule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Demo/DemoCodeToSchedule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Prefabs/CalendarSchedulerUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Prefabs/CalendarSchedulerUI.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Prefabs/CalendarUI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Prefabs/CalendarUI.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scenes/05features.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scenes/05features.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerDays.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerDays.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/testDetail/graph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/testDetail/graph.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +26,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Script/testDetail/Calendar/CalendarSchedulerItemCustom.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0652bf0e14024522b5c92574ad0ef550175c00/a3/786c0b31/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/testDetail/graphV2.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -122,7 +115,8 @@
       <workItem from="1727176377882" duration="8000" />
       <workItem from="1727177242243" duration="902000" />
       <workItem from="1727178623616" duration="4257000" />
-      <workItem from="1727417728417" duration="4206000" />
+      <workItem from="1727417728417" duration="4353000" />
+      <workItem from="1727683209826" duration="4455000" />
     </task>
     <task id="LOCAL-00001" summary="데이터 스키마 공유 및 변수명 컨벤션 개선 제안">
       <option name="closed" value="true" />
@@ -132,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721111089677</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="캘린더에 점수 표시 기능 추가">
+      <option name="closed" value="true" />
+      <created>1727422099888</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727422099888</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +175,7 @@
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="데이터 스키마 공유 및 변수명 컨벤션 개선 제안" />
-    <option name="LAST_COMMIT_MESSAGE" value="데이터 스키마 공유 및 변수명 컨벤션 개선 제안" />
+    <MESSAGE value="캘린더에 점수 표시 기능 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="캘린더에 점수 표시 기능 추가" />
   </component>
 </project>

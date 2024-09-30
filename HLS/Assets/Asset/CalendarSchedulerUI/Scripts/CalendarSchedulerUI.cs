@@ -76,8 +76,8 @@ namespace Maything.UI.CalendarSchedulerUI
             year = DateTime.Today.Year;
             month = DateTime.Today.Month;
             day = DateTime.Today.Day;
-            Initialization(true);
-            //Initialization(false);
+            //Initialization(true);
+            Initialization(false);
         }
 
         public void Initialization(bool isFirst)

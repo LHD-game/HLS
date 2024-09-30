@@ -41,6 +41,18 @@ namespace Maything.UI.CalendarSchedulerUI
             calendarSchedulerUI.AddItems(dataList);
         }
         
+        public void addSingleTestScore(DateTime date, int score)
+        {
+            CalendarSchedulerData d = new CalendarSchedulerData(
+                score.ToString(),
+                Color.white,
+                date.Year,
+                date.Month,
+                date.Day,
+                true, 0, 0, "");
+            calendarSchedulerUI.AddItem(d);
+        }
+        
         public void addTestScore(List<Dictionary<string, object>> SD_)
         {
             List<CalendarSchedulerData> dataList = new List<CalendarSchedulerData>();
@@ -49,14 +61,13 @@ namespace Maything.UI.CalendarSchedulerUI
                 DateTime Date = Convert.ToDateTime(SD_[SD_.Count - i]["date"]);
                 int TotalData = Convert.ToInt32(SD_[SD_.Count - i]["total"]);
                 CalendarSchedulerData d = new CalendarSchedulerData(
-                    TotalData.ToString(),
+                    Random.Range(11, 144).ToString(),
                     Color.white,
-                    Date.Year,
-                    Date.Month,
-                    Date.Day,
+                    2024,
+                    9,
+                    i,
                     true, 0, 0, "");
                 dataList.Add(d);
-                Debug.Log(i+"번째 데이터");
             }
             calendarSchedulerUI.AddItems(dataList);
         }
