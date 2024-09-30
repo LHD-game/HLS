@@ -156,7 +156,7 @@ namespace Maything.UI.CalendarSchedulerUI
             {
                 for (int y = 0; y < 6; y++)
                 {
-                    cellDays[y, x].isEnabled = false;
+                    //cellDays[y, x].isEnabled = false;
                     cellDays[y, x].cellText.text = "";
                 }
             }
