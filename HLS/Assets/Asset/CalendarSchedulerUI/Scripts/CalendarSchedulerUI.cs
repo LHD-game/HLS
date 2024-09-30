@@ -72,7 +72,12 @@ namespace Maything.UI.CalendarSchedulerUI
         // Start is called before the first frame update
         void Start()
         {
-            Initialization(false);
+            // 오늘 날짜를 얻기 위해 추가
+            year = DateTime.Today.Year;
+            month = DateTime.Today.Month;
+            day = DateTime.Today.Day;
+            Initialization(true);
+            //Initialization(false);
         }
 
         public void Initialization(bool isFirst)
@@ -81,13 +86,20 @@ namespace Maything.UI.CalendarSchedulerUI
             UpdateTheme();
 
             if (isFirst)
+            {
+                // 월과 일을 맟구기 위한 작업
+                // 추가
+                monthControl.UpdateTheme();
+                monthControl.UpdateMonthText();
+                //기존
                 daysControl.Initialization();
+            }
         }
 
         // Update is called once per frame
         void Update()
         {
-
+           
         }
 
         void UpdateTheme()

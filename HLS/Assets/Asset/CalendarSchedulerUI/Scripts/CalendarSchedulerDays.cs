@@ -197,14 +197,15 @@ namespace Maything.UI.CalendarSchedulerUI
                 cellDays[row, column].cellDateTime = date;
                 cellDays[row, column].isEnabled = true;
 
-                if (cellDays[row, column].itemCount == 1)
-                {
-                    cellDays[row, column].cellText.text += " ( 1 " + UI.language.singleEvent + ")";
-                }
-                else if (cellDays[row, column].itemCount > 1)
-                {
-                    cellDays[row, column].cellText.text += " ( " + cellDays[row, column].itemCount.ToString() + " " + UI.language.multiEvent + ")";
-                }
+                // 몇개의 일정이 있는지 개수를 나타냄
+                // if (cellDays[row, column].itemCount == 1)
+                // {
+                //     cellDays[row, column].cellText.text += " ( 1 " + UI.language.singleEvent + ")";
+                // }
+                // else if (cellDays[row, column].itemCount > 1)
+                // {
+                //     cellDays[row, column].cellText.text += " ( " + cellDays[row, column].itemCount.ToString() + " " + UI.language.multiEvent + ")";
+                // }
             }
 
             if (UI.isIncludeAfterAndBefore)
