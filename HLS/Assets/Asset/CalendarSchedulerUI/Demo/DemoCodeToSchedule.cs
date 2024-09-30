@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Maything.UI.CalendarSchedulerUI
 {
@@ -19,10 +21,49 @@ namespace Maything.UI.CalendarSchedulerUI
         {
 
         }
+        
+        // 캘린더에 점수 표시 예시
+        public void addTestScore()
+        {
+            List<CalendarSchedulerData> dataList = new List<CalendarSchedulerData>();
+            for (int i = 1; i < 31; i++)
+            {
+                CalendarSchedulerData d = new CalendarSchedulerData(
+                    Random.Range(11, 144).ToString(),
+                    Color.white,
+                    2024,
+                    9,
+                    i,
+                    true, 0, 0, "");
+                dataList.Add(d);
+
+            }
+            calendarSchedulerUI.AddItems(dataList);
+        }
+        
+        public void addTestScore(List<Dictionary<string, object>> SD_)
+        {
+            List<CalendarSchedulerData> dataList = new List<CalendarSchedulerData>();
+            for (int i = 1; i < SD_.Count+1; i++)
+            {
+                DateTime Date = Convert.ToDateTime(SD_[SD_.Count - i]["date"]);
+                int TotalData = Convert.ToInt32(SD_[SD_.Count - i]["total"]);
+                CalendarSchedulerData d = new CalendarSchedulerData(
+                    TotalData.ToString(),
+                    Color.white,
+                    Date.Year,
+                    Date.Month,
+                    Date.Day,
+                    true, 0, 0, "");
+                dataList.Add(d);
+                Debug.Log(i+"번째 데이터");
+            }
+            calendarSchedulerUI.AddItems(dataList);
+        }
 
         public void AddSingleSchedule()
         {
-            CalendarSchedulerData d = new CalendarSchedulerData("Book Club", Color.red, 2023, 7, 2, false, 10, 15, "");
+            CalendarSchedulerData d = new CalendarSchedulerData("Book Club", Color.red, DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, false, 10, 15, "");
             calendarSchedulerUI.AddItem(d);
         }
 
@@ -39,8 +80,8 @@ namespace Maything.UI.CalendarSchedulerUI
                     CalendarSchedulerData d = new CalendarSchedulerData(
                                testName[Random.Range(0, testName.Length)],
                                testColors[Random.Range(0, testColors.Length)],
-                               2023,
-                               7,
+                               2024,
+                               9,
                                i,
                                false, Random.Range(9, 23), Random.Range(1, 59), "");
                     dataList.Add(d);
