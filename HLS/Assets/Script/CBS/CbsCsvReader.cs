@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class CSVReader : MonoBehaviour
+public class CbsCsvReader : MonoBehaviour
 {
-    public string fileName = "questions.csv"; // CSV 파일 이름
-    public List<string[]> csvData = new List<string[]>(); // CSV 데이터 저장 변수
+    public string fileName = "CBS.csv"; // CBS용 CSV 파일
+    public List<string[]> csvData = new List<string[]>(); // CSV 데이터를 저장할 리스트
+    private int maxCBSQuestions = 7; // CBS 검사에서 읽어들일 최대 질문 수 (총 7개의 질문)
 
     void Start()
     {
@@ -21,29 +22,28 @@ public class CSVReader : MonoBehaviour
             WWW www = new WWW(filePath);
             yield return www;
             StringReader stringReader = new StringReader(www.text);
-            while (stringReader.Peek() != -1)
+            int lineCount = 0;
+            while (stringReader.Peek() != -1 && lineCount <= maxCBSQuestions)
             {
                 string line = stringReader.ReadLine();
-                csvData.Add(line.Split(','));
+                csvData.Add(line.Split(',')); // 콤마로 구분된 데이터를 배열로 저장
+                lineCount++;
             }
         }
         else
         {
             using (StreamReader sr = new StreamReader(filePath))
             {
-                while (!sr.EndOfStream)
+                int lineCount = 0;
+                while (!sr.EndOfStream && lineCount <= maxCBSQuestions)
                 {
                     string line = sr.ReadLine();
-                    csvData.Add(line.Split(','));
+                    csvData.Add(line.Split(',')); // 콤마로 구분된 데이터를 배열로 저장
+                    lineCount++;
                 }
             }
         }
 
-        // CSV 데이터가 제대로 로드되었는지 로그 출력
-        Debug.Log("CSV Data Loaded:");
-        for (int i = 0; i < csvData.Count; i++)
-        {
-            Debug.Log("Row " + i + ": " + string.Join(",", csvData[i]));
-        }
+        Debug.Log($"CSV 파일에서 {csvData.Count}개의 질문이 로드되었습니다.");
     }
 }
