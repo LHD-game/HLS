@@ -29,8 +29,6 @@ public class graph : MonoBehaviour
         if (chart == null)
             return;
         
-        SD_ = ScoreData.ScoreData_; //데이터 list
-        schedule.addTestScore(SD_);
         chart.DataSource.VerticalViewSize = 144;    // Vertical Axis의 값 설정
         // chart.CustomDateTimeFormat = (date) => { return date.ToString("MM/dd"); }; //그래프 Date Format 수정
     }
@@ -51,6 +49,19 @@ public class graph : MonoBehaviour
         Debug.Log("데이터갯수=" + chart.DataSource.GetPointCount("History"));
         chart.DataSource.EndBatch();
         WinCtl.Instance.GotoHistWin();
+    }
+
+    public void inputSchedule()
+    {
+        SD_ = ScoreData.ScoreData_; //데이터 list
+        Debug.Log("개수:"+SD_.Count);
+        for (int i = 1; i < SD_.Count+1; i++)
+        {
+            DateTime Date = Convert.ToDateTime(SD_[SD_.Count - i]["date"]);
+            int TotalData = Convert.ToInt32(SD_[SD_.Count - i]["total"]);
+            schedule.addSingleTestScore(Date, TotalData);
+            Debug.Log("스케쥴"+i);
+        }
     }
 
     public void OnPointClick(GraphEventArgs args)
