@@ -8,7 +8,7 @@ public class MAinWinCtl : MonoBehaviour
 
     public void MainSetting()
     {
-        Fb.
+        //Fb.
     }
 
 }
