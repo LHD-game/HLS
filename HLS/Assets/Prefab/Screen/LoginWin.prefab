@@ -2260,15 +2260,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c33fd05d2318ee4c9ad91a95982d854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdText: {fileID: 1677464767510613509}
-  PwText: {fileID: 7301058230075802909}
-  IdTextSignIn: {fileID: 8772033480428064801}
-  PwTextSignIn: {fileID: 9065543238298280820}
-  NameText: {fileID: 4026468951893090460}
+  IdText: {fileID: 0}
+  PwText: {fileID: 0}
+  IdTextSignIn: {fileID: 0}
+  PwTextSignIn: {fileID: 0}
+  PwTextSignIn2: {fileID: 0}
+  NameText: {fileID: 0}
+  BirthText: {fileID: 0}
+  Male: {fileID: 0}
+  Female: {fileID: 0}
+  CheckAll: {fileID: 0}
+  Check1: {fileID: 0}
+  Check2: {fileID: 0}
+  Check3: {fileID: 0}
   MsgText: {fileID: 7035713863451285592}
+  LoginError: {fileID: 0}
   MsgWin: {fileID: 5757498052341169027}
   GotoLgiBtn: {fileID: 1811625351126496664}
-  UserNameSpace: {fileID: 0}
   scuns: {fileID: 0}
 --- !u!114 &5582994172676241565
 MonoBehaviour:
