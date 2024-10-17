@@ -20,7 +20,7 @@ public class FireBase : MonoBehaviour
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
 
         //파이어베이스에서 데이터 로드(user 컬렉션중 UserID를 찾음)
-        DocumentReference docRef = db.Collection("user").Document(UserID); 
+        DocumentReference docRef = db.Collection("user").Document(UserID);
         //찾은 정보를 불러와서 진행
 
         DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
@@ -31,6 +31,7 @@ public class FireBase : MonoBehaviour
             //복호화 해서 데이터에 넣기
             Debug.Log(Key);
             data = ddata[Key].ToString();
+
         }
         else
         {

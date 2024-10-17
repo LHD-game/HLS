@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinCtl : MonoBehaviour
 {
@@ -12,10 +13,20 @@ public class WinCtl : MonoBehaviour
         {
             Instance = this;
         }
+
+        /*if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }*/
     }
 
     [Header("Windows")]
-    public GameObject WellcomeWin;
+    //public GameObject WellcomeWin;
     public GameObject MainWin;
     public GameObject HistWin;
     public GameObject surveyWin;
@@ -33,11 +44,15 @@ public class WinCtl : MonoBehaviour
     private void WinSetting(GameObject nowWin)
     {
         WinCtl_.SetActive(false);
-        WinCtl_= nowWin;
+        WinCtl_ = nowWin;
         WinCtl_.SetActive(true);
     }
 
-    public void GotoMain()
+    public void GotoMainScence()
+    {
+        SceneManager.LoadScene("Main");
+    }
+    public void GotoMainWin()
     {
         WinSetting(MainWin);
     }
@@ -60,14 +75,14 @@ public class WinCtl : MonoBehaviour
 
     private void ReSetWin()
     {
-        WellcomeWin.SetActive(false);
+        //WellcomeWin.SetActive(false);
         MainWin.SetActive(false);
         HistWin.SetActive(false);
         surveyWin.SetActive(false);
         DatailWin.SetActive(false);
         SolutionWin.SetActive(false);
         Menu.SetActive(false);
-        WinCtl_ = WellcomeWin;
-        WinSetting(WellcomeWin);
+        WinCtl_ = MainWin;
+        WinSetting(MainWin);
     }
 }
