@@ -21,7 +21,7 @@ public class MAinWinCtl : MonoBehaviour
     {
         UserName.text = PlayerPrefs.GetString("UserName");
         HelloUser.text = $"<color=#32438B>{UserName.text}님 안녕하세요?</color>\n\nHLS에서 전문가와 함께 건강한 라이프를 만나보세요.";
-        Debug.Log("Main"+Sd.ScoreData_.Count);
+        //Debug.Log("Main"+Sd.ScoreData_.Count);
         StartCoroutine(UpdateRecentScore());
     }
 
@@ -29,7 +29,7 @@ public class MAinWinCtl : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("While");
+            //Debug.Log("While");
             if (Sd.ScoreData_.Count < 1)
             {
                 UserRecentScore.text = "0점";
