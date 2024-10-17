@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Demo/DemoCodeToSchedule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Demo/DemoCodeToSchedule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/testDetail/graph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/testDetail/graph.cs" afterDir="false" />
-    </list>
+    <list default="true" id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,7 +109,7 @@
       <workItem from="1727177242243" duration="902000" />
       <workItem from="1727178623616" duration="4257000" />
       <workItem from="1727417728417" duration="4353000" />
-      <workItem from="1727683209826" duration="4455000" />
+      <workItem from="1727683209826" duration="4568000" />
     </task>
     <task id="LOCAL-00001" summary="데이터 스키마 공유 및 변수명 컨벤션 개선 제안">
       <option name="closed" value="true" />
@@ -134,7 +127,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727422099888</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="스케쥴 오류 수정">
+      <option name="closed" value="true" />
+      <created>1727687797614</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727687797614</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +177,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="데이터 스키마 공유 및 변수명 컨벤션 개선 제안" />
     <MESSAGE value="캘린더에 점수 표시 기능 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="캘린더에 점수 표시 기능 추가" />
+    <MESSAGE value="스케쥴 오류 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="스케쥴 오류 수정" />
   </component>
 </project>
