@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WellcomeW : MonoBehaviour
 {
-    public Animator Animator;
+    //public Animator Animator;
 
     private float originWidth, originHeight;
     public RectTransform parent;
@@ -17,11 +17,11 @@ public class WellcomeW : MonoBehaviour
         originHeight = parent.rect.height;
         SetDynamicGrid(Maingrid, 4, 2, 2);
         SetDynamicGrid(solugrid, 9, 3, 3);
-        ClickWc();
+        //ClickWc();
     }
     public void ClickWc()
     {
-        Animator.SetTrigger("Login");
+        //Animator.SetTrigger("Login");
     }
 
 

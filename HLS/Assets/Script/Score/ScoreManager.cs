@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
     // 특정 질문에 대한 점수를 추가하는 메소드
     public void AddScore(int questionIndex, int points)
     {
-        Debug.Log($"Adding score for question {questionIndex}: {points}");
+        //Debug.Log($"Adding score for question {questionIndex}: {points}");
         // 해당 질문에 대한 점수를 업데이트
         questionScores[questionIndex] = points;
 
@@ -57,7 +57,7 @@ public class ScoreManager : MonoBehaviour
             totalScore += score;
         }
 
-        Debug.Log($"총 점수: {totalScore}");
+        //Debug.Log($"총 점수: {totalScore}");
     }
 
     // 점수를 초기화하고 첫 번째 질문과 키워드를 다시 렌더링하는 메소드
