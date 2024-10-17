@@ -17,8 +17,8 @@ MonoBehaviour:
   headerHeight: 25
   headerTextSize: 10
   headerTextWidth: 120
-  headerBackground: {r: 0.39607847, g: 0.45882356, b: 0.5176471, a: 1}
-  headerTextColor: {r: 1, g: 1, b: 1, a: 1}
+  headerBackground: {r: 1, g: 1, b: 1, a: 1}
+  headerTextColor: {r: 0.19607843, g: 0.2627451, b: 0.54509807, a: 1}
   headerArrowAlign: 1
   headerPrevMonthIcon: {fileID: 21300000, guid: 2ccc15476886bc84382f414e7d79c276, type: 3}
   headerNextMonthIcon: {fileID: 21300000, guid: 5ecb0dc45d728e14cac72a83dc8072a4, type: 3}
