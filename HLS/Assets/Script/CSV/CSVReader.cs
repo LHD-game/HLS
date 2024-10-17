@@ -43,7 +43,7 @@ public class CSVReader : MonoBehaviour
         Debug.Log("CSV Data Loaded:");
         for (int i = 0; i < csvData.Count; i++)
         {
-            Debug.Log("Row " + i + ": " + string.Join(",", csvData[i]));
+            //Debug.Log("Row " + i + ": " + string.Join(",", csvData[i]));
         }
     }
 }
