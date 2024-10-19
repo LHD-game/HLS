@@ -27,13 +27,18 @@ public class MAinWinCtl : MonoBehaviour
 
     IEnumerator UpdateRecentScore()
     {
+        int noRscore = 0;
         while (true)
         {
             //Debug.Log("While");
             if (Sd.ScoreData_.Count < 1)
             {
                 UserRecentScore.text = "0Á¡";
-                yield return new WaitForFixedUpdate();
+                noRscore++;
+                if (noRscore < 10)
+                    yield return new WaitForFixedUpdate();
+                else
+                    break;
             }
             else
             {
