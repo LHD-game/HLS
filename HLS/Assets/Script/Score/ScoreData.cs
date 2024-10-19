@@ -43,7 +43,7 @@ public class ScoreData : MonoBehaviour
         SetList();
         id = PlayerPrefs.GetString("UserID");
         Dataload(surveyType, id);
-        Debug.Log("ScoreData" + ScoreData_.Count);
+        //Debug.Log("ScoreData" + ScoreData_.Count);
     }
 
     public void GetData(int index,int[] data_) //Çì´õ»ðÀÔ

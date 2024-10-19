@@ -42,6 +42,6 @@ public class WellcomeW : MonoBehaviour
         if(width>300)
             grid.cellSize = new Vector2(150, 150);
         else
-            grid.cellSize = width<height? new Vector2(width / cols, width / rows): new Vector2(height / cols, height / rows);
+            grid.cellSize = width<height? new Vector2(width / cols, (width / rows)*0.86f): new Vector2(height / cols, (height / rows)*0.86f);
     }
 }
