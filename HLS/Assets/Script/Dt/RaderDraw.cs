@@ -34,6 +34,7 @@ public class RaderDraw : MonoBehaviour
 
     private void Start()
     {
+        scuns = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>();
         if (WheelPrent.parent.GetComponent<RectTransform>().rect.width > WheelPrent.rect.height)
             chart.Radius = WheelPrent.rect.height / 3f;
         else
@@ -77,7 +78,7 @@ public class RaderDraw : MonoBehaviour
 
         scuns.SetData(data,data[0]);
 
-        //Debug.Log("等檜攪 偎熱=" + scuns.ScoreData_.Count);
+        Debug.Log("等檜攪 偎熱=" + scuns.ScoreData_.Count);
 
         buttonC(scuns.ScoreData_.Count-1);
     }

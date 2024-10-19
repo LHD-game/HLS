@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
@@ -49,7 +50,6 @@ public class FirebaseTest : MonoBehaviour
     //       예약어로서 네임스페이스 선언에 사용되므로, 표기법만 다르다고 해서 적절한 네이밍이 아님
     //     }
 
-    public ScoreData scuns;
     //FireBase.DataSave([유저 ID], [Key값], [Data값])  | 데이터 저장(덮어쓰기)
     //FireBase.DataLoad([유저 ID], [Key값])            | 데이터 불러오기
     //FireBase.DataCheck([유저 ID]])                   | 데이터 확인
@@ -70,9 +70,7 @@ public class FirebaseTest : MonoBehaviour
         if (DecryptPw == Pw)
         {
             Debug.Log("로그인 성공");
-            scuns.id = Id;
-            scuns.LoginSet();
-            WinCtl.Instance.GotoMain(); //main화면으로
+            await setDefaultData(Id);
         }
         else if (DecryptPw == null) //로그인 실패시 아이디 비번 오류 발생
         {
@@ -82,6 +80,8 @@ public class FirebaseTest : MonoBehaviour
         {
             Debug.Log("로그인 실패");
         }
+
+        SceneManager.LoadSceneAsync("Main"); //main화면으로
     }
 
     //|-----------------------서버에서 데이터를 저장하는 과정----------------------|
@@ -397,5 +397,17 @@ public class FirebaseTest : MonoBehaviour
                 }
             }
         }
+    }
+
+    //|------------------------로그인 정보 저장----------------------------|
+    async Task setDefaultData(string Id)
+    {
+        PlayerPrefs.SetString("UserID", Id);
+
+        PlayerPrefs.SetString("UserName", await FireBase.DataLoad(Id, "Name"));
+
+        PlayerPrefs.SetString("MF", await FireBase.DataLoad(Id, "MF"));
+
+        PlayerPrefs.SetString("Birth: ", await FireBase.DataLoad(Id, "Birth"));
     }
 }

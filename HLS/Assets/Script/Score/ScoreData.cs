@@ -7,6 +7,26 @@ using System.Collections;
 
 public class ScoreData : MonoBehaviour
 {
+    public static ScoreData Instance;
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        var obj = GameObject.FindGameObjectsWithTag("ScoreData");
+        if (obj.Length == 1)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        Set();
+    }
+
     public string id;
     public string surveyType = "healthydata";
 
@@ -17,11 +37,13 @@ public class ScoreData : MonoBehaviour
 
 
     public GameObject WarningWin;
-
-    public void LoginSet()
+    
+    public void Set()
     {
         SetList();
+        id = PlayerPrefs.GetString("UserID");
         Dataload(surveyType, id);
+        //Debug.Log("ScoreData" + ScoreData_.Count);
     }
 
     public void GetData(int index,int[] data_) //헤더삽입
@@ -34,6 +56,7 @@ public class ScoreData : MonoBehaviour
     public void SetList() //헤더설정
     {
         header = Regex.Split(Headers, ",");
+        Debug.Log("헤더길이=" + header.Length);
     }
     public void SetData(string[] Data, string Date) //데이터 삽입
     {
@@ -42,7 +65,7 @@ public class ScoreData : MonoBehaviour
         Debug.Log("헤더길이=" + header.Length);
         for (var j = 0; j < header.Length; j++)
         {
-            string value = Data[j]; //await FireBase.ScoreDataLoad(surveyType, id, header[j]); //
+            string value = Data[j]; 
             if (header[j] == "date")
             {
                 Debug.Log(value);
@@ -60,8 +83,7 @@ public class ScoreData : MonoBehaviour
     {
 
         string today = System.DateTime.Now.ToString("yy MM dd");
-        //await는 비동기 값을 동기화할때까지 기다려 달라는 뜻.
-        //Data값 = FireBase.DataLoad([유저 ID], [Key값]) | Dictionary형 자료임으로 Key(string)를 통해 Data(string)를 찾음
+        
         if (await FireBase.SDataCheck(id, surveyType, today))
         {
             StartCoroutine(warningWinCtl());
@@ -106,13 +128,14 @@ public class ScoreData : MonoBehaviour
         Query allData = db.Collection("user").Document(UserID)
                                     .Collection(surType);
         QuerySnapshot allDataSnapshot = await allData.GetSnapshotAsync();
-
+        
         foreach (DocumentSnapshot documentSnapshot in allDataSnapshot.Documents)
         {
             //파이어베이스에서 데이터 로드
             ScoreData_.Add(await FireBase.ScoreDataLoad(documentSnapshot, surveyType, id));
         }
 
+        Debug.Log("FireBaseLoad" + ScoreData_.Count);
     }
     //|-------------------------------------------------------------------------|
 }

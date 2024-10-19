@@ -36,7 +36,7 @@ public class graph : MonoBehaviour
 
     public void inputData()  //데이터 가져와 넣기
     {
-        SD_ = ScoreData.ScoreData_; //데이터 list
+        SD_ = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>().ScoreData_; ; //데이터 list
         chart.DataSource.StartBatch();
         chart.DataSource.ClearCategory("History");
         for (int i = 1; i < SD_.Count+1; i++)

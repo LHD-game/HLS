@@ -106,6 +106,7 @@ public class NextButtonReset : MonoBehaviour
 
             if (currentQuestionIndex >= totalQuestions)
             {
+                //WinCtl.Instance.GotoDatailWin();
                 RD.addData();
                 Time.timeScale = 1f;
             }
