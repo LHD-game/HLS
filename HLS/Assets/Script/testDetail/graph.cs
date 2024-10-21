@@ -39,11 +39,15 @@ public class graph : MonoBehaviour
         SD_ = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>().ScoreData_; ; //데이터 list
         chart.DataSource.StartBatch();
         chart.DataSource.ClearCategory("History");
+        DateTime[] eachDate = new DateTime[SD_.Count+1];
+        int[] eachTotal = new int[SD_.Count+1];
         for (int i = 1; i < SD_.Count+1; i++)
         {
             DateTime Date = Convert.ToDateTime(SD_[SD_.Count - i]["date"]);
+            eachDate[i-1] = Date;
             int TotalData = Convert.ToInt32(SD_[SD_.Count - i]["total"]);
-            chart.DataSource.AddPointToCategory("History", Date, TotalData); //날짜, total값 가져오기
+            eachTotal[i-1] = TotalData;
+            chart.DataSource.AddPointToCategory("History", Date, i-1); //날짜, total값 가져오기
             if (i == 6) break;
         }
         Debug.Log("데이터갯수=" + chart.DataSource.GetPointCount("History"));

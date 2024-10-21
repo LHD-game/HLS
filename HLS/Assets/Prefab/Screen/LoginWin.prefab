@@ -2260,8 +2260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c33fd05d2318ee4c9ad91a95982d854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdText: {fileID: 0}
-  PwText: {fileID: 0}
+  IdText: {fileID: 5594430093202512480}
+  PwText: {fileID: 7028002717643896729}
   IdTextSignIn: {fileID: 0}
   PwTextSignIn: {fileID: 0}
   PwTextSignIn2: {fileID: 0}
