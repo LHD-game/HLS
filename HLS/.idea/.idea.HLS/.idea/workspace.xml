@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="" />
+    <list default="true" id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerHeaderMonth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerHeaderMonth.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Resources/Chart And Graph/DefaultText.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Resources/Chart And Graph/DefaultText.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Materials/graphChart/point 4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Materials/graphChart/point 4.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Meshes/cc0-license/Content/abstract shape/Materials/Icosphere.067_Icosphere.002Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Meshes/cc0-license/Content/abstract shape/Materials/Icosphere.067_Icosphere.002Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,6 +121,8 @@
       <workItem from="1729138050671" duration="150000" />
       <workItem from="1729142870942" duration="1769000" />
       <workItem from="1729350650016" duration="73000" />
+      <workItem from="1729491956712" duration="348000" />
+      <workItem from="1729510226362" duration="3226000" />
     </task>
     <task id="LOCAL-00001" summary="데이터 스키마 공유 및 변수명 컨벤션 개선 제안">
       <option name="closed" value="true" />
@@ -154,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729350699897</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="1021">
+      <option name="closed" value="true" />
+      <created>1729492032256</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729492032256</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +218,7 @@
     <MESSAGE value="디자인 적용 중" />
     <MESSAGE value="디자인 적용 중" />
     <MESSAGE value="1020" />
-    <option name="LAST_COMMIT_MESSAGE" value="1020" />
+    <MESSAGE value="1021" />
+    <option name="LAST_COMMIT_MESSAGE" value="1021" />
   </component>
 </project>

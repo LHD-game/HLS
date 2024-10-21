@@ -129,9 +129,9 @@ namespace Maything.UI.CalendarSchedulerUI
             monthText.color = UI.theme.headerTextColor;
 
             if (UI.language.isYearBeforeMonth)
-                monthText.text = UI.year.ToString() + UI.language.YearName + " " + monthText.text;
+                monthText.text = /*UI.year.ToString() + UI.language.YearName + " " +*/ monthText.text;
             else
-                monthText.text += " " + UI.year.ToString() + UI.language.YearName;
+                monthText.text = monthText.text; /*+ " " + UI.year.ToString() + UI.language.YearName*/;
         }
     }
 }
