@@ -32,6 +32,7 @@ public class WinCtl : MonoBehaviour
     public GameObject surveyWin;
     public GameObject DatailWin;
     public GameObject SolutionWin;
+    public GameObject SolutionDetailWin;
     public GameObject Menu;
 
     GameObject WinCtl_; 
@@ -71,6 +72,10 @@ public class WinCtl : MonoBehaviour
     public void GotoSolutionWin()
     {
         WinSetting(SolutionWin);
+    }
+    public void OpenSolutionWin()
+    {
+       SolutionDetailWin.SetActive(true);
     }
 
     private void ReSetWin()
