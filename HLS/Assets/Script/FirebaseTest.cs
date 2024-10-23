@@ -32,13 +32,19 @@ public class FirebaseTest : MonoBehaviour
     bool check1 = true;
     public Image Check2; //약관체크2
     bool check2 = true;
-    public Image Check3; //약관체크3
-    bool check3 = true;
-    public Text MsgText;  //안내문구
-    public Text LoginError;     //로그인오류문구
-    public GameObject MsgWin;   //안내문구창
-    public GameObject GotoLgiBtn;   //안내문구
+    //로그인오류문구
+    public Text LoginError;
+    //회원가입 오류 문구
+    public Text mailError;
+    public Text pass1Error;
+    public Text pass2Error;
+    public Text nameError;
+    public Text birthError;
+    public Text mfError;
+    public Text termError;
+
     string mf = "";             //회원가입시 사용할 성별값
+    bool nameBool = false;          //회원가입시 이름 확인
     bool termBool = false;          //회원가입시 약관 확인
 
     Regex regexPass = new Regex(@"^(?=.*?[a-z])(?=.*?[0-9]).{8,16}$", RegexOptions.IgnorePatternWhitespace); //비밀번호 형식
@@ -71,6 +77,8 @@ public class FirebaseTest : MonoBehaviour
         {
             Debug.Log("로그인 성공");
             await setDefaultData(Id);
+            SceneManager.LoadSceneAsync("Main"); //main화면으로
+
         }
         else if (DecryptPw == null) //로그인 실패시 아이디 비번 오류 발생
         {
@@ -80,14 +88,11 @@ public class FirebaseTest : MonoBehaviour
         {
             Debug.Log("로그인 실패");
         }
-
-        SceneManager.LoadSceneAsync("Main"); //main화면으로
     }
 
     //|-----------------------서버에서 데이터를 저장하는 과정----------------------|
     async public void Signin()
     {
-        MsgText.text = "";
         bool emailBool = false;
         bool pwBool = false;
         bool birthBool = false;
@@ -106,8 +111,6 @@ public class FirebaseTest : MonoBehaviour
             //FireBase.DataLoad([유저 ID]) | Bool값(true, false)으로 나옴
             if (await FireBase.DataCheck(Id))
             {
-                MsgText.text = "이미 가입된 ID입니다.";
-                MsgWin.SetActive(true);
                 Debug.Log("가입 실패 - 이미 있는 ID");
             }
             else
@@ -117,16 +120,16 @@ public class FirebaseTest : MonoBehaviour
         }
         else
         {
-            MsgText.text = MsgText.text + "email이 양식과 일치하지 않습니다.\n";
+            mailError.gameObject.SetActive(true);
         }
 
         if (!regexPass.IsMatch(Pw))   //비밀번호 확인
         {
-            MsgText.text = MsgText.text + "비밀번호가 양식과 일치하지 않습니다.\n";
+            pass1Error.gameObject.SetActive(true);
         }
         else if(Pw != Pw2)
         {
-            MsgText.text = MsgText.text + "비밀번호가 일치하지 않습니다.\n";
+            pass2Error.gameObject.SetActive(true);
         }
         else
         {
@@ -143,29 +146,39 @@ public class FirebaseTest : MonoBehaviour
             }
             else
             {
-                MsgText.text = MsgText.text + "생년월일이 양식과 일치하지 않습니다.\n";
+                birthError.gameObject.SetActive(true);
             }
         }
         else
         {
-            MsgText.text = MsgText.text + "생년월일이 양식과 일치하지 않습니다.\n";
+            birthError.gameObject.SetActive(true);
+        }
+
+        if (name != "")
+        {
+            nameBool = true;
+
+        }
+        else
+        {
+            mfError.gameObject.SetActive(true);
         }
 
         if (mf != "")
         {
-            mfBool = true;
+            nameBool = true;
         }
         else
         {
-            MsgText.text = MsgText.text + "성별이 선택되지 않았습니다.\n";
+            nameError.gameObject.SetActive(true);
         }
 
         if (!termBool)
         {
-            MsgText.text = MsgText.text + "약관이 동의되지 않았습니다.\n";
+            termError.gameObject.SetActive(true);
         }
 
-        if (emailBool == true && pwBool == true && birthBool == true && mfBool == true && termBool == true)
+        if (emailBool == true && pwBool == true && nameBool == true && birthBool == true && mfBool == true && termBool == true)
         {
 
             //FireBase.DataSave([유저 ID], [Key값], [Data값]) | Dictionary형 자료임으로 Key(string)와 Data(string)를 동시에 저장
@@ -175,14 +188,11 @@ public class FirebaseTest : MonoBehaviour
             await FireBase.DataSave(Id, "Birth", Birth);
             await FireBase.DataSave(Id, "MF", mf);
 
-            MsgText.text = "가입성공";
-            MsgWin.SetActive(true);
-            GotoLgiBtn.SetActive(true);
             Debug.Log("가입 성공");
         }
         else
         {
-            MsgWin.SetActive(true);
+
         }
         Debug.Log(Id +" "+ Pw + " " + Pw2 + " " + Name + " " + Birth + " " + mf);
         emailBool = false;
@@ -224,8 +234,6 @@ public class FirebaseTest : MonoBehaviour
             check1 = false;
             Check2.sprite = Resources.Load<Sprite>("UI/Toggle_Square_s_on");
             check2 = false;
-            Check3.sprite = Resources.Load<Sprite>("UI/Toggle_Square_s_on");
-            check3 = false;
             termBool = true;
         }
         else
@@ -236,11 +244,9 @@ public class FirebaseTest : MonoBehaviour
             check1 = true;
             Check2.sprite = Resources.Load<Sprite>("UI/Frame_ItemFrame02_d_1");
             check2 = true;
-            Check3.sprite = Resources.Load<Sprite>("UI/Frame_ItemFrame02_d_1");
-            check3 = true;
             termBool = false;
         }
-        Debug.Log("a"+checkAll+"1"+check1+"2"+check2+"3"+check3);
+        Debug.Log("a"+checkAll+"1"+check1+"2"+check2+"3");
     }
     public void TermCheck1()
     {
@@ -255,7 +261,7 @@ public class FirebaseTest : MonoBehaviour
             check1 = true;
         }
 
-        if (!check1 && !check2 && !check3)
+        if (!check1 && !check2)
         {
             CheckAll.sprite = Resources.Load<Sprite>("UI/Toggle_Square_s_on");
             checkAll = false;
@@ -267,7 +273,7 @@ public class FirebaseTest : MonoBehaviour
             checkAll = true;
             termBool = false;
         }
-        Debug.Log("a" + checkAll + "1" + check1 + "2" + check2 + "3" + check3);
+        Debug.Log("a" + checkAll + "1" + check1 + "2" + check2 + "3");
     }
     public void TermCheck2()
     {
@@ -282,7 +288,7 @@ public class FirebaseTest : MonoBehaviour
             check2 = true;
         }
 
-        if (!check1 && !check2 && !check3)
+        if (!check1 && !check2)
         {
             CheckAll.sprite = Resources.Load<Sprite>("UI/Toggle_Square_s_on");
             checkAll = false;
@@ -294,34 +300,7 @@ public class FirebaseTest : MonoBehaviour
             checkAll = true;
             termBool = false;
         }
-        Debug.Log("a" + checkAll + "1" + check1 + "2" + check2 + "3" + check3);
-    }
-    public void TermCheck3()
-    {
-        if (check3)
-        {
-            Check3.sprite = Resources.Load<Sprite>("UI/Toggle_Square_s_on");
-            check3 = false;
-        }
-        else
-        {
-            Check3.sprite = Resources.Load<Sprite>("UI/Frame_ItemFrame02_d_1");
-            check3 = true;
-        }
-
-        if (!check1 && !check2 && !check3)
-        {
-            CheckAll.sprite = Resources.Load<Sprite>("UI/Toggle_Square_s_on");
-            checkAll = false;
-            termBool = true;
-        }
-        else
-        {
-            CheckAll.sprite = Resources.Load<Sprite>("UI/Frame_ItemFrame02_d_1");
-            checkAll = true;
-            termBool = false;
-        }
-        Debug.Log("a" + checkAll + "1" + check1 + "2" + check2 + "3" + check3);
+        Debug.Log("a" + checkAll + "1" + check1 + "2" + check2 + "3");
     }
 
     //|-------------------------암호화 및 복호화----------------------------|
