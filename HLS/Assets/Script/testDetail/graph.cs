@@ -13,11 +13,15 @@ public class graph : MonoBehaviour
 {
     public GraphChart chart;
     public RaderDraw raderDraw;
-    public ScoreData ScoreData;
+    public ScoreData Sd;
     public DemoCodeToSchedule schedule;
 
     public Text testDate;
     public Text testResult;
+    
+    public Text testReportTxt;
+    public Text recommendName;
+    public Text recommendTxt;
 
     public HorizontalAxis horiAxis;
     private List<Dictionary<string, object>> SD_;
@@ -36,6 +40,7 @@ public class graph : MonoBehaviour
 
     public void inputData()  //데이터 가져와 넣기
     {
+        Sd = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>();
         SD_ = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>().ScoreData_; ; //데이터 list
         chart.DataSource.StartBatch();
         chart.DataSource.ClearCategory("History");
@@ -50,14 +55,22 @@ public class graph : MonoBehaviour
             chart.DataSource.AddPointToCategory("History", Date, TotalData); //날짜, total값 가져오기
             if (i == 6) break;
         }
+        recommendSetting(eachTotal);
         Debug.Log("데이터갯수=" + chart.DataSource.GetPointCount("History"));
         chart.DataSource.EndBatch();
         WinCtl.Instance.GotoHistWin();
     }
+    
+    public void recommendSetting(int[] eachTotal)
+        {
+            testReportTxt.text = PlayerPrefs.GetString("UserName")+"님의 검진 결과";
+            recommendName.text = PlayerPrefs.GetString("UserName")+"님의";
+            recommendTxt.text = "";
+        }
 
     public void inputSchedule()
     {
-        SD_ = ScoreData.ScoreData_; //데이터 list
+        SD_ = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>().ScoreData_; //데이터 list
         Debug.Log("개수:"+SD_.Count);
         for (int i = 1; i < SD_.Count+1; i++)
         {
@@ -70,8 +83,8 @@ public class graph : MonoBehaviour
 
     public void OnPointClick(GraphEventArgs args)
     {
-        testDate.text = "날짜 : " + args.XString;
-        testResult.text = "점수 : " + args.YString;
+        testDate.text = args.XString;
+        testResult.text = args.YString;
         index = args.Index; //리스트에서 특정 날짜 값 뺴는 용도
         Debug.Log("ind = "+index);
     }

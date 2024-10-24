@@ -4,14 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="">
+    <list default="true" id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="그래프 오류 수정">
+      <change afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Materials/graphChart/borderPoint 1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Materials/graphChart/borderPoint 1.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Materials/graphChart/lineStyle7 1.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Materials/graphChart/lineStyle7 1.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Materials/graphChart/point 6.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Materials/graphChart/point 6.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerHeaderMonth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerHeaderMonth.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Resources/Chart And Graph/DefaultText.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Resources/Chart And Graph/DefaultText.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Materials/graphChart/point 4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Materials/graphChart/point 4.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Meshes/cc0-license/Content/abstract shape/Materials/Icosphere.067_Icosphere.002Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/Graph And Chart - Lite Edition/Themes/Common/Meshes/cc0-license/Content/abstract shape/Materials/Icosphere.067_Icosphere.002Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Screen/DatailWindow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Screen/DatailWindow.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Screen/solutionWin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Screen/solutionWin.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/TestDetail/PointHover.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/TestDetail/PointHover.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/testDetail/graph.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/testDetail/graph.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +35,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0652bf0e14024522b5c92574ad0ef550175c00/a3/786c0b31/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/hyoji/OneDrive/바탕 화면/Unity/HLS/HLS/Assets/Prefab/Screen/DatailWindow.prefab" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/testDetail/graphV2.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -55,7 +63,7 @@
 }</component>
   <component name="RunManager" selected="Unity 에디터에 연결.Unity 에디터에 연결">
     <configuration name="유닛 테스트(배치 모드)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.30f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.21f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\hyoji\OneDrive\바탕 화면\Unity\HLS\HLS&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\hyoji\OneDrive\바탕 화면\Unity\HLS\HLS" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -63,7 +71,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unity 시작" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.30f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.21f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Users\hyoji\OneDrive\바탕 화면\Unity\HLS\HLS&quot; -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\hyoji\OneDrive\바탕 화면\Unity\HLS\HLS" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -123,6 +131,7 @@
       <workItem from="1729350650016" duration="73000" />
       <workItem from="1729491956712" duration="348000" />
       <workItem from="1729510226362" duration="3226000" />
+      <workItem from="1729752599504" duration="2002000" />
     </task>
     <task id="LOCAL-00001" summary="데이터 스키마 공유 및 변수명 컨벤션 개선 제안">
       <option name="closed" value="true" />
@@ -172,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729492032256</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="그래프 오류 수정">
+      <option name="closed" value="true" />
+      <created>1729752347802</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729752347802</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +236,7 @@
     <MESSAGE value="디자인 적용 중" />
     <MESSAGE value="1020" />
     <MESSAGE value="1021" />
-    <option name="LAST_COMMIT_MESSAGE" value="1021" />
+    <MESSAGE value="그래프 오류 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="그래프 오류 수정" />
   </component>
 </project>
