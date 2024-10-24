@@ -32,7 +32,7 @@ public class ScoreData : MonoBehaviour
 
 
     public List<Dictionary<string, object>> ScoreData_ = new List<Dictionary<string, object>>();
-    string Headers = "date,sunlight,water,air,rest,exercise,nutrition,temperance,trust,gpc,total"; //11
+    string Headers = "date,air,water,sunlight,trust,temperance,nutrition,gpc,exercise,rest,total"; //11
     public string[] header;
 
 

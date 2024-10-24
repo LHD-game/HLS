@@ -35,23 +35,27 @@ public class RaderDraw : MonoBehaviour
     private void Start()
     {
         scuns = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>();
-        if (WheelPrent.parent.GetComponent<RectTransform>().rect.width > WheelPrent.rect.height)
+        if (WheelPrent.rect.width > WheelPrent.rect.height)
             chart.Radius = WheelPrent.rect.height / 3f;
         else
-            chart.Radius = WheelPrent.parent.GetComponent<RectTransform>().rect.width / 3f;
+            chart.Radius = WheelPrent.rect.width / 3f;
+        Debug.Log(chart.Radius);
 
-        chart.Angle = 10;
+        Debug.Log(WheelPrent.rect.width + " , " + WheelPrent.rect.height);
+
+        chart.Angle = 70;
         for (int i = 0; i < data.Length; i++)
         {
             chart.DataSource.AddGroup(TitleTxts[i]);
         }
+        Debug.Log("Start");
     }
 
     public void buttonC(int index)
     {
-        GetData(index);
-        DetailPrint(index);
-        SetDate(scuns.ScoreData_[index]["date"].ToString());
+        GetData(1);  //¼öÁ¤
+        DetailPrint(1);
+        SetDate(scuns.ScoreData_[1]["date"].ToString());
         CreateBars();
         WinCtl.Instance.GotoDatailWin();
     }
@@ -91,7 +95,7 @@ public class RaderDraw : MonoBehaviour
 
         for (int i = 0; i < data.Length; i++)
         {
-            float angle = (i * angleStep) - 90;
+            float angle = (i * angleStep) + 50;
             Vector3 barPosition = Quaternion.Euler(0, 0, angle + 90) * Vector3.up * radius;
 
             Slider bar = Instantiate(slider, BarPos.transform.position + barPosition, Quaternion.identity, BarPos.transform);
