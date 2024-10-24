@@ -7,7 +7,7 @@ public class CustomFormat : MonoBehaviour
 {
     public GraphChart chart;
     // Start is called before the first frame update
-    void Start()  //그래프 Date Format 수정
+    void Start()
     {
         chart.CustomNumberFormat = (nubmer, fractionDigits) =>
         {
