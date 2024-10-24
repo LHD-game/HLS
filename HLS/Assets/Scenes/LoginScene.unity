@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -555,10 +554,10 @@ RectTransform:
   - {fileID: 1412455906}
   m_Father: {fileID: 5552526654594506363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -119.14, y: -221.70001}
-  m_SizeDelta: {x: -258.49725, y: -578.94934}
+  m_SizeDelta: {x: 21.502747, y: 21.05066}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &577883001
 MonoBehaviour:
@@ -1281,7 +1280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &938939142
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1298,7 +1297,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -24.199951}
+  m_AnchoredPosition: {x: 0, y: -29.599976}
   m_SizeDelta: {x: -20, y: -570}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &938939143
@@ -1308,7 +1307,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938939141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -1895,10 +1894,10 @@ RectTransform:
   - {fileID: 1876473082}
   m_Father: {fileID: 5552526654594506363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -119.14, y: -156.5}
-  m_SizeDelta: {x: -258.49725, y: -578.94934}
+  m_SizeDelta: {x: 21.502747, y: 21.05066}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1130295304
 MonoBehaviour:
@@ -2109,10 +2108,10 @@ RectTransform:
   - {fileID: 1923311942}
   m_Father: {fileID: 5552526654594506363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -119.14, y: -193.1}
-  m_SizeDelta: {x: -258.49725, y: -578.94934}
+  m_SizeDelta: {x: 21.502747, y: 21.05066}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1276814145
 MonoBehaviour:
@@ -2825,10 +2824,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 514186247729577648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 165.40002}
-  m_SizeDelta: {x: -94.96188, y: -495.40417}
+  m_SizeDelta: {x: 185.03812, y: 104.595825}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1496571939
 MonoBehaviour:
@@ -4638,7 +4637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 18.999992}
+  m_AnchoredPosition: {x: 0, y: 10.800049}
   m_SizeDelta: {x: -20, y: -560}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2007401838827086842
@@ -4959,7 +4958,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC601\uBB38, \uC218\uC0AC \uC870\uD569 8~16\uC790"
+  m_Text: "\uBE44\uBC00\uBC88\uD638"
 --- !u!224 &3873630275268750327
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5071,7 +5070,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: abc@gmail.com
+  m_Text: "\uC774\uBA54\uC77C"
 --- !u!224 &4387545295467792013
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5474,6 +5473,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 9028520038665776851}
+        m_TargetAssemblyTypeName: FirebaseTest, Assembly-CSharp
+        m_MethodName: ResetStatus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5194967306421250297}
         m_TargetAssemblyTypeName: OnOffButton, Assembly-CSharp
         m_MethodName: Off
@@ -6389,6 +6400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c33fd05d2318ee4c9ad91a95982d854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SignInUI: {fileID: 6310837653719388524}
   IdText: {fileID: 5242634325461535236}
   PwText: {fileID: 7271773666719049725}
   IdTextSignIn: {fileID: 5038078493440981889}
