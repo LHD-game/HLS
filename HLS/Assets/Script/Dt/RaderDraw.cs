@@ -126,6 +126,7 @@ public class RaderDraw : MonoBehaviour
 
     void SetDate(string date)
     {
-        Date.text = date;
+        string[] dates = date.Split(" ");
+        Date.text = $"{dates[1]}월 {dates[2]}일\n리포트 결과";
     }
 }

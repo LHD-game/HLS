@@ -46,5 +46,6 @@ public class MAinWinCtl : MonoBehaviour
                 break;
             }
         }
+        PlayerPrefs.SetString("RecentScore", UserRecentScore.text);
     }
 }

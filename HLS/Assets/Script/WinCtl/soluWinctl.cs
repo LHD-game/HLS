@@ -7,7 +7,11 @@ public class soluWinctl : MonoBehaviour
 {
     public CSVRenderer csvRenderer;
 
-
+    [Header("GridWin")]
+    public Text Foryoutxt;
+    public Text Name;
+    public Text RecentScore;
+    [Header("PrintWin")]
     public Image UpImg; // 윗 쪽 이미지
     public Image Simbol; // 심볼 이미지
     public Text TitleTxt; // 타이틀Text
@@ -20,6 +24,18 @@ public class soluWinctl : MonoBehaviour
 
     public GameObject Loading; // Loading화면(임시)
     private int index = 0;
+
+    /*----------------------처방 Grid 화면-------------------------------------------------*/
+
+    public void setSoluWin()
+    {
+        string name = PlayerPrefs.GetString("UserName");
+        Name.text = name;
+        RecentScore.text = PlayerPrefs.GetString("RecentScore");
+        Foryoutxt.text = $"<color=#32438B>{name}님을 위한</color> \n\n맞춤처방";
+    }
+
+    /*----------------------처방 출력 화면-------------------------------------------------*/
     public void FindTitleIndex()
     {
         string ButtonName = EventSystem.current.currentSelectedGameObject.name;
@@ -36,7 +52,7 @@ public class soluWinctl : MonoBehaviour
                 continue;
             }
         }
-        StartCoroutine(setSoluWin());
+        StartCoroutine(setSoluPrintWin());
     }
     /*public void setexWin()
     {
@@ -51,7 +67,7 @@ public class soluWinctl : MonoBehaviour
         ResetWin();
         soluWin.SetActive(false);
     }
-    IEnumerator setSoluWin()
+    IEnumerator setSoluPrintWin()
     {
         WinCtl.Instance.OpenSolutionWin();
         yield return new WaitForFixedUpdate();
