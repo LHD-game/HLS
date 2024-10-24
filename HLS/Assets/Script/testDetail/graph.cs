@@ -47,7 +47,7 @@ public class graph : MonoBehaviour
             eachDate[i-1] = Date;
             int TotalData = Convert.ToInt32(SD_[SD_.Count - i]["total"]);
             eachTotal[i-1] = TotalData;
-            chart.DataSource.AddPointToCategory("History", Date, i-1); //날짜, total값 가져오기
+            chart.DataSource.AddPointToCategory("History", Date, TotalData); //날짜, total값 가져오기
             if (i == 6) break;
         }
         Debug.Log("데이터갯수=" + chart.DataSource.GetPointCount("History"));
