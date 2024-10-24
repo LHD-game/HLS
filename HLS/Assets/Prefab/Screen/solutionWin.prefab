@@ -971,6 +971,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   csvRenderer: {fileID: 5728040559763385776}
+  Foryoutxt: {fileID: 0}
+  Name: {fileID: 0}
+  RecentScore: {fileID: 0}
   UpImg: {fileID: 4524229904158520148}
   Simbol: {fileID: 4364715827926191296}
   TitleTxt: {fileID: 7445343913370148534}
@@ -6487,9 +6490,9 @@ RectTransform:
   - {fileID: 4914678087725238004}
   m_Father: {fileID: 6535578812680202789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 94.93091, y: -30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 94.93091, y: 0}
   m_SizeDelta: {x: 159.86182, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &104457043976705068
