@@ -17,6 +17,7 @@ public class FirebaseTest : MonoBehaviour
 {
     // TODO: 아래 필드명들은 데이터 스키마로 명확히 정리되어야 함 (JSON 트리 예제 작성되면 가장 좋음)
     //     PascalCase 보다 camelCase 로 변수명 선언하면 좋을 것
+    public GameObject SignInUI;     //ID값 
     public InputField IdText;     //ID값 
     public InputField PwText;     //PW값
     public InputField IdTextSignIn;     //ID값 
@@ -166,7 +167,7 @@ public class FirebaseTest : MonoBehaviour
 
         if (mf != "")
         {
-            nameBool = true;
+            mfBool = true;
         }
         else
         {
@@ -178,6 +179,7 @@ public class FirebaseTest : MonoBehaviour
             termError.gameObject.SetActive(true);
         }
 
+        Debug.Log(emailBool +"+"+ pwBool + "+" + nameBool + "+" + birthBool + "+" + mfBool + "+" + termBool);
         if (emailBool == true && pwBool == true && nameBool == true && birthBool == true && mfBool == true && termBool == true)
         {
 
@@ -189,15 +191,44 @@ public class FirebaseTest : MonoBehaviour
             await FireBase.DataSave(Id, "MF", mf);
 
             Debug.Log("가입 성공");
+
+            ResetStatus();
+            SignInUI.SetActive(false);
         }
         else
         {
 
         }
-        Debug.Log(Id +" "+ Pw + " " + Pw2 + " " + Name + " " + Birth + " " + mf);
         emailBool = false;
         pwBool = false;
         birthBool = false;
+    }
+
+    public void ResetStatus()
+    {
+
+        mailError.gameObject.SetActive(false);
+        pass1Error.gameObject.SetActive(false);
+        pass2Error.gameObject.SetActive(false);
+        birthError.gameObject.SetActive(false);
+        mfError.gameObject.SetActive(false);
+        nameError.gameObject.SetActive(false);
+        termError.gameObject.SetActive(false);
+
+        IdTextSignIn.text = "";
+        PwTextSignIn.text = "";
+        PwTextSignIn2.text = "";
+        NameText.text = "";
+        BirthText.text = "";
+        Male.color = new Color(233 / 255f, 233 / 255f, 233 / 255f, 1f);
+        Male.sprite = Resources.Load<Sprite>("UI/block_01");
+        Male.gameObject.transform.GetChild(0).GetComponent<Text>().color = new Color(137 / 255f, 137 / 255f, 137 / 255f, 1f);
+        Female.color = new Color(233 / 255f, 233 / 255f, 233 / 255f, 1f);
+        Female.sprite = Resources.Load<Sprite>("UI/block_01");
+        Female.gameObject.transform.GetChild(0).GetComponent<Text>().color = new Color(137 / 255f, 137 / 255f, 137 / 255f, 1f);
+        mf = "";
+        if (termBool)
+            TermCheckAll();
     }
 
 
@@ -246,7 +277,7 @@ public class FirebaseTest : MonoBehaviour
             check2 = true;
             termBool = false;
         }
-        Debug.Log("a"+checkAll+"1"+check1+"2"+check2+"3");
+        Debug.Log("a"+checkAll+"1"+check1+"2"+check2);
     }
     public void TermCheck1()
     {
