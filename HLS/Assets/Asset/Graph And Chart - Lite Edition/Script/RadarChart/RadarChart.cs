@@ -326,6 +326,7 @@ namespace ChartAndGraph
 
         protected override void Update()
         {
+            AxisPointSize = 3;
             base.Update();
         }
 
@@ -437,11 +438,15 @@ namespace ChartAndGraph
             Vector3[] path = new Vector3[rowCount];
             Vector3 zAdd = Vector3.zero;
 
+            float EditPoint = 2.4f;
             for (int i = 0; i < TotalAxisDevisions; i++)
             {
-                float rad = Radius * ((float)(i + 1) / (float)TotalAxisDevisions);
+                EditPoint = EditPoint - 0.15f * (TotalAxisDevisions-i);
+                float rad = Radius * ((float)(i + EditPoint) / (float)TotalAxisDevisions); //수정 i+n
+
                 for (int j = 0; j < rowCount; j++)
-                    path[j] = (mDirections[j] * rad) + zAdd;
+                { path[j] = (mDirections[j] * (rad)) + zAdd;
+                }
               //  path[rowCount] = path[0];
                 zAdd.z += AxisAdd;
                 GameObject axisObject = CreateAxisObject(AxisThickness, path);

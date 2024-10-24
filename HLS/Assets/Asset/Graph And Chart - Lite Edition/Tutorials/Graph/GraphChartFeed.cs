@@ -9,7 +9,6 @@ public class GraphChartFeed : MonoBehaviour
         GraphChartBase graph = GetComponent<GraphChartBase>();
         if (graph != null)
         {
-            
             graph.Scrollable = false;
             graph.HorizontalValueToStringMap[0.0] = "Zero"; // example of how to set custom axis strings
             graph.DataSource.StartBatch();

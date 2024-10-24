@@ -27,7 +27,6 @@ public class BarRunChart : MonoBehaviour
     void Start()
     {
         switchTimeCounter = switchTime;
-
         
         var bar = GetComponent<BarChart>();
         bar.TransitionTimeBetaFeature = switchTime;
