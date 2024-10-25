@@ -8,47 +8,8 @@ public class CbsScoreManager : MonoBehaviour
     public int totalScore = 0; // 총점
     private float cutOffScore = -9.69f; // Cut-off 점수 초기값
 
-    void Start()
-    {
-        csvReader = GetComponent<CbsCsvReader>(); // CbsCsvReader로부터 데이터 받아옴
-
-        if (csvReader == null)
-        {
-            Debug.LogError("CSVReader가 할당되지 않았습니다.");
-            return;
-        }
-
-        if (csvReader.csvData.Count == 0)
-        {
-            Debug.LogError("CSV 데이터가 비어있습니다.");
-            return;
-        }
-
-        InitializeScoreRules(); // 점수 규칙 설정
-    }
-
-    private void InitializeScoreRules()
-    {
-        if (csvReader == null || csvReader.csvData.Count == 0)
-        {
-            Debug.LogError("CSV 데이터가 없습니다.");
-            return;
-        }
-
-        for (int i = 0; i < csvReader.csvData.Count; i++)
-        {
-            string[] questionData = csvReader.csvData[i];
-        }
-    }
-
     public void AddScore(int questionIndex, int answerIndex)
     {
-        if (csvReader == null || questionIndex < 0 || questionIndex >= csvReader.csvData.Count)
-        {
-            Debug.LogError("잘못된 질문 인덱스입니다.");
-            return;
-        }
-
         // 선택지 인덱스를 점수로 사용합니다.
         int score = answerIndex; // 인덱스에 따른 점수 계산
         questionScores[questionIndex] = score; // 점수 저장
