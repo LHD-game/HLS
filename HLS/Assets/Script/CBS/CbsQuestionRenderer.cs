@@ -3,166 +3,115 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class CbsQuestionRenderer : MonoBehaviour
+public class CbsQuestionRenderer : QuestionRendererParent
 {
-    public Text questionText; // 질문을 표시할 텍스트
-    public GameObject buttonPrefab; // 버튼 프리팹
-    public GameObject buttonPanel; // 버튼들이 생성될 패널
-    public Button nextButton; // 다음 버튼
-    public Button previousButton; // 이전 버튼
-    public CbsScoreManager scoreManager;
+    private CbsScoreManager scoreManager; // 점수 매니저
     private CbsCsvReader csvReader;
-    private int currentQuestionIndex = 0; // 첫 번째 질문 인덱스 (0부터 시작)
-    private int lastCBSQuestionIndex = 7; // CBS 마지막 질문 인덱스
-    private List<GameObject> activeButtons = new List<GameObject>(); // 생성된 버튼을 추적하는 리스트
-    private Dictionary<int, int> userSelections = new Dictionary<int, int>(); // 사용자가 선택한 답변 기록 (질문 인덱스 -> 선택 인덱스)
-    private bool isAnswerSelected = false; // 답변 선택 여부 확인 변수
 
-    void Start()
+    private int currentQuestionIndex = 0; // CBS 설문지 첫 번째 질문 인덱스
+    private int lastCbsQuestionIndex = 7; // CBS 마지막 질문 인덱스
+
+    private void Awake()
     {
         csvReader = GetComponent<CbsCsvReader>();
-        StartCoroutine(WaitForCSVData());
-
-        // "다음" 버튼을 처음에는 비활성화
-        nextButton.interactable = false;
+        scoreManager = GetComponent<CbsScoreManager>();
     }
 
-    IEnumerator WaitForCSVData()
+    public void StartQuestion()
     {
-        if (csvReader == null)
-        {
-            Debug.LogError("CSVReader가 할당되지 않았습니다."); // 여기서 null 체크
-            yield break;
-        }
+        nextButton.onClick.AddListener(NextQuestion);
+        previousButton.onClick.AddListener(PreviousQuestion);
 
-        while (csvReader.csvData.Count == 0) // 데이터가 로드될 때까지 대기
-        {
-            yield return null;
-        }
-
-        RenderQuestions(); // 질문 렌더링
+        nextButton.interactable = false;
+        RenderQuestions();
     }
 
     public void RenderQuestions()
     {
-        Debug.Log($"Rendering question {currentQuestionIndex}");
+        // 질문 텍스트 설정
+        string question = csvReader.csvData[currentQuestionIndex][0];
+        questionText.text = question; // 첫 번째 열이 질문
 
-        questionText.text = csvReader.csvData[currentQuestionIndex][0]; // 질문 설정
+        // 기존 버튼들을 제거
+        ClearButtons();
 
-        // 기존에 활성화된 버튼들을 모두 제거
-        foreach (GameObject button in activeButtons)
+        // 선택지 동적 생성 (CSV 파일에서 5개의 선택지라고 가정)
+        for (int i = 0; i < 5; i++)
         {
-            Destroy(button); // 기존 버튼 제거
-        }
-
-        activeButtons.Clear(); // 리스트 초기화
-        isAnswerSelected = false; // 새로운 질문에서는 아직 선택되지 않음
-        nextButton.interactable = false; // "다음" 버튼 비활성화
-
-        // 버튼을 동적으로 생성
-        for (int i = 1; i <= 5; i++) // CBS는 5개의 선택지가 있다고 가정
-        {
-            string choiceText = csvReader.csvData[currentQuestionIndex][i];
+            string choiceText = csvReader.csvData[currentQuestionIndex][i + 1]; // CSV 데이터에서 선택지 가져오기
             if (!string.IsNullOrEmpty(choiceText))
             {
-                GameObject newButton = Instantiate(buttonPrefab, buttonPanel.transform);
-
-                // Null 체크 후 강제 활성화
-                if (newButton != null)
-                {
-                    Button button = newButton.GetComponent<Button>();
-                    Text buttonText = newButton.GetComponentInChildren<Text>();
-                    Image buttonImage = newButton.GetComponent<Image>(); // 이미지 컴포넌트 확인
-
-                    if (buttonText != null)
-                    {
-                        buttonText.text = choiceText; // CSV에서 가져온 텍스트
-                        buttonText.enabled = true; // 텍스트 강제 활성화
-                        Debug.Log($"Button Text {i}: {choiceText}");
-                    }
-
-                    int score = i; // 1~5점 처리
-
-                    // 버튼 클릭 시 이벤트 연결
-                    if (button != null)
-                    {
-                        button.onClick.AddListener(() => OnButtonClick(currentQuestionIndex, score));
-                        button.interactable = true; // 버튼 강제 활성화
-
-                        // 사용자가 선택한 버튼을 표시
-                        if (userSelections.ContainsKey(currentQuestionIndex) && userSelections[currentQuestionIndex] == score)
-                        {
-                            // 사용자가 이전에 선택한 답변을 자동으로 활성화
-                            buttonImage.color = Color.green; // 선택한 버튼을 시각적으로 표시 (색상 변경)
-                            isAnswerSelected = true; // 이미 선택된 답변이므로 "다음" 버튼 활성화
-                            nextButton.interactable = true;
-                        }
-                    }
-
-                    // RaycastTarget 강제 활성화 (이벤트 받기 위함)
-                    if (buttonImage != null)
-                    {
-                        buttonImage.raycastTarget = true; // Raycast를 활성화하여 클릭 가능하게 설정
-                    }
-
-                    newButton.SetActive(true); // 버튼 강제 활성화
-                    activeButtons.Add(newButton); // 리스트에 추가
-                }
-            }
-        }
-    }
-
-    public void OnButtonClick(int questionIndex, int answerIndex)
-    {
-        Debug.Log($"Question: {questionIndex}, Answer: {answerIndex}");
-        scoreManager.AddScore(questionIndex, answerIndex); // ScoreManager의 AddScore 호출
-        isAnswerSelected = true; // 답변이 선택되었음을 표시
-        nextButton.interactable = true; // 답변을 선택했으므로 "다음" 버튼 활성화
-
-        // 사용자가 선택한 답변 기록
-        userSelections[questionIndex] = answerIndex;
-
-        // 선택한 버튼의 시각적 표시 업데이트
-        foreach (GameObject button in activeButtons)
-        {
-            Image buttonImage = button.GetComponent<Image>();
-            if (buttonImage != null)
-            {
-                buttonImage.color = Color.white; // 선택되지 않은 버튼은 흰색으로 초기화
+                CreateButton(choiceText, i); // 선택지에 맞는 버튼 생성
             }
         }
 
-        // 선택한 버튼의 색상 변경
-        Button clickedButton = activeButtons[answerIndex - 1].GetComponent<Button>();
-        if (clickedButton != null)
+        // 이전 선택 상태에 따른 버튼 강조 및 nextButton 활성화
+        if (userSelections.ContainsKey(currentQuestionIndex))
         {
-            Image clickedImage = clickedButton.GetComponent<Image>();
-            if (clickedImage != null)
-            {
-                clickedImage.color = Color.green; // 선택한 버튼을 초록색으로 표시
-            }
-        }
-    }
-
-    public void NextQuestions()
-    {
-        if (currentQuestionIndex < lastCBSQuestionIndex) // CBS 마지막 질문까지만 처리
-        {
-            currentQuestionIndex++;
-            RenderQuestions();
+            int selectedButtonIndex = userSelections[currentQuestionIndex];
+            HighlightSelectedButton(selectedButtonIndex);
+            nextButton.interactable = true; // 이미 선택된 버튼이 있으면 다음 버튼 활성화
         }
         else
         {
-            Debug.Log("더 이상 질문이 없습니다."); // CBS 범위 끝났을 때 처리
+            nextButton.interactable = false; // 처음에는 무조건 다음 버튼 비활성화
         }
     }
 
-    public void PreviousQuestions()
+    public void CreateButton(string choiceText, int scoreIndex)
     {
-        if (currentQuestionIndex > 0) // CBS 첫 번째 질문 인덱스
+        GameObject newButton = Instantiate(buttonPrefab, buttonPanel.transform);
+        Text buttonText = newButton.GetComponentInChildren<Text>();
+        buttonText.text = choiceText;
+
+        Button button = newButton.GetComponentInChildren<Button>();
+        button.onClick.AddListener(() => OnButtonClick(scoreIndex));
+
+        activeButtons.Add(newButton); // 생성된 버튼을 리스트에 추가
+        newButton.SetActive(true);
+    }
+
+    public void OnButtonClick(int scoreIndex)
+    {
+        // 기존에 저장된 점수를 덮어씌움으로써 점수가 누적되지 않도록 처리
+        userSelections[currentQuestionIndex] = scoreIndex; // 선택한 버튼 저장
+        nextButton.interactable = true; // 다음 버튼 활성화
+        HighlightSelectedButton(scoreIndex);
+        scoreManager.AddScore(currentQuestionIndex, scoreIndex); // 점수 추가
+    }
+
+    public void HighlightSelectedButton(int selectedIndex)
+    {
+        foreach (GameObject button in activeButtons)
+        {
+            Button answerButton = button.GetComponentInChildren<Button>();
+            answerButton.image.color = Color.white; // 기본 상태로 리셋
+        }
+
+        if (selectedIndex >= 0 && selectedIndex < activeButtons.Count)
+        {
+            Button selectedButton = activeButtons[selectedIndex].GetComponentInChildren<Button>();
+            selectedButton.image.color = Color.green; // 선택된 버튼을 강조 표시
+        }
+    }
+
+    public void NextQuestion()
+    {
+        if (currentQuestionIndex < lastCbsQuestionIndex)
+        {
+            currentQuestionIndex++;
+
+            // 새로운 질문을 렌더링
+            RenderQuestions();
+        }
+    }
+
+    public void PreviousQuestion()
+    {
+        if (currentQuestionIndex > 0)
         {
             currentQuestionIndex--;
-            RenderQuestions(); // 이전 질문을 다시 렌더링할 때 선택한 답변도 복구됨
+            RenderQuestions();
         }
     }
 }

@@ -3,45 +3,29 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class RcbQuestionRenderer : MonoBehaviour
+public class RcbQuestionRenderer : QuestionRendererParent
 {
-    public Text questionText; // 질문을 표시할 텍스트
-    public GameObject buttonPrefab; // 버튼 프리팹
-    public GameObject buttonPanel; // 버튼들이 생성될 패널
-    public Button nextButton; // 다음 버튼
-    public Button previousButton; // 이전 버튼
-    public RcbScoreManager scoreManager;
+    private RcbScoreManager scoreManager;
     private RcbCsvReader csvReader;
     private int currentQuestionIndex = 1; // 첫 번째 질문 인덱스
     private int lastRcbQuestionIndex = 6; // RCBS 마지막 질문 인덱스
-    private List<GameObject> activeButtons = new List<GameObject>(); // 생성된 버튼을 추적하는 리스트
-    private Dictionary<int, int> userSelections = new Dictionary<int, int>(); // 사용자가 선택한 답변 기록 (질문 인덱스 -> 선택 인덱스)
     private bool isAnswerSelected = false; // 답변 선택 여부 확인 변수
 
-    void Start()
+    void Awake()
     {
         csvReader = GetComponent<RcbCsvReader>();
-        StartCoroutine(WaitForCSVData());
-
-        // "다음" 버튼을 처음에는 비활성화
-        nextButton.interactable = false;
+        scoreManager = GetComponent<RcbScoreManager>();
     }
 
-    IEnumerator WaitForCSVData()
+    public void StartQuestion()
     {
-        if (csvReader == null)
-        {
-            Debug.LogError("CSVReader가 할당되지 않았습니다."); // 여기서 null 체크
-            yield break;
-        }
+        nextButton.onClick.AddListener(NextQuestion);
+        previousButton.onClick.AddListener(PreviousQuestion);
 
-        while (csvReader.csvData.Count == 0) // 데이터가 로드될 때까지 대기
-        {
-            yield return null;
-        }
-
-        RenderQuestions(); // 질문 렌더링
+        nextButton.interactable = false;
+        RenderQuestions();
     }
+
 
     public void RenderQuestions()
     {
@@ -50,12 +34,8 @@ public class RcbQuestionRenderer : MonoBehaviour
         questionText.text = csvReader.csvData[currentQuestionIndex][0]; // 질문 설정
 
         // 기존에 활성화된 버튼들을 모두 제거
-        foreach (GameObject button in activeButtons)
-        {
-            Destroy(button); // 기존 버튼 제거
-        }
-
-        activeButtons.Clear(); // 리스트 초기화
+        ClearButtons();
+        // 리스트 초기화
         isAnswerSelected = false; // 새로운 질문에서는 아직 선택되지 않음
         nextButton.interactable = false; // "다음" 버튼 비활성화
 
@@ -70,7 +50,9 @@ public class RcbQuestionRenderer : MonoBehaviour
                 // Null 체크 후 강제 활성화
                 if (newButton != null)
                 {
-                    Button button = newButton.GetComponent<Button>();
+                    newButton.SetActive(true);
+
+                    Button button = newButton.GetComponentInChildren<Button>();
                     Text buttonText = newButton.GetComponentInChildren<Text>();
                     Image buttonImage = newButton.GetComponent<Image>(); // 이미지 컴포넌트 확인
 
@@ -144,7 +126,7 @@ public class RcbQuestionRenderer : MonoBehaviour
         }
     }
 
-    public void NextQuestions()
+    public void NextQuestion()
     {
         if (currentQuestionIndex < lastRcbQuestionIndex) // RCBS 마지막 질문까지만 처리
         {
@@ -157,7 +139,7 @@ public class RcbQuestionRenderer : MonoBehaviour
         }
     }
 
-    public void PreviousQuestions()
+    public void PreviousQuestion()
     {
         if (currentQuestionIndex > 1) // 1번 질문부터 시작
         {
