@@ -105,7 +105,7 @@ public class FirebaseTest : MonoBehaviour
         string Id = IdTextSignIn.text;    //자료형변환
         string Pw = PwTextSignIn.text;
         string Pw2 = PwTextSignIn2.text;
-        string Name = NameText.text;
+        string name = NameText.text;
         string Birth = BirthText.text;
 
         mailError.gameObject.SetActive(false);
@@ -173,7 +173,7 @@ public class FirebaseTest : MonoBehaviour
         }
         else
         {
-            mfError.gameObject.SetActive(true);
+            nameError.gameObject.SetActive(true);
         }
 
         if (mf != "")
@@ -196,7 +196,7 @@ public class FirebaseTest : MonoBehaviour
 
             //FireBase.DataSave([유저 ID], [Key값], [Data값]) | Dictionary형 자료임으로 Key(string)와 Data(string)를 동시에 저장
             //ID와 Key가 겹칠시 자동으로 덮어쓰기되므로 주의
-            await FireBase.DataSave(Id, "Name", Name);
+            await FireBase.DataSave(Id, "Name", name);
             await FireBase.DataSave(Id, "Password", Encrypt(Pw));
             await FireBase.DataSave(Id, "Birth", Birth);
             await FireBase.DataSave(Id, "MF", mf);
@@ -214,6 +214,7 @@ public class FirebaseTest : MonoBehaviour
         emailBool = false;
         pwBool = false;
         birthBool = false;
+        nameBool = false;
     }
 
     public void ResetStatus()
