@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 5477402035252109419}
   - component: {fileID: 1607825180623657534}
   m_Layer: 5
-  m_Name: recommendtxt
+  m_Name: resultScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -994,7 +994,7 @@ GameObject:
   - component: {fileID: 2587281199510012815}
   - component: {fileID: 6161356361993399949}
   m_Layer: 5
-  m_Name: name
+  m_Name: resultName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1078,7 +1078,7 @@ GameObject:
   - component: {fileID: 189304568605323760}
   - component: {fileID: 4305117521092071835}
   m_Layer: 5
-  m_Name: recommendBox
+  m_Name: resultBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1297,7 +1297,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2024-10-15
+  m_Text: 
 --- !u!1 &5359629457776787075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,9 +1483,9 @@ RectTransform:
   - {fileID: 5439761306081317966}
   m_Father: {fileID: 4310616656183174755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -85.77809}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 127.396385, y: 0}
   m_SizeDelta: {x: 224.79277, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6513240036738812894
@@ -2016,10 +2016,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chart: {fileID: 5020993769019965943}
   raderDraw: {fileID: 0}
-  ScoreData: {fileID: 0}
+  Sd: {fileID: 0}
   schedule: {fileID: 0}
   testDate: {fileID: 2473878804610859371}
   testResult: {fileID: 1062661424749450695}
+  testReportTxt: {fileID: 8146111398011270827}
+  resultName: {fileID: 6161356361993399949}
+  resultDate: {fileID: 8188205359798835171}
+  resultScore: {fileID: 1607825180623657534}
   horiAxis: {fileID: 0}
 --- !u!114 &1986122757126780333
 MonoBehaviour:
@@ -2051,7 +2055,7 @@ GameObject:
   - component: {fileID: 8717845213886487100}
   - component: {fileID: 8188205359798835171}
   m_Layer: 5
-  m_Name: Text (Legacy) (1)
+  m_Name: resultDate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2318,7 +2322,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 120
+  m_Text: 
 --- !u!1 &8818518313914962429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2656,7 +2660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8695918942230250325, guid: 05d216af4fb4d2541a4c5a56fe5e5db1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 244.79276
+      value: 262.6
       objectReference: {fileID: 0}
     - target: {fileID: 8695918942230250325, guid: 05d216af4fb4d2541a4c5a56fe5e5db1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2704,7 +2708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8695918942230250325, guid: 05d216af4fb4d2541a4c5a56fe5e5db1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 137.39638
+      value: 128.67
       objectReference: {fileID: 0}
     - target: {fileID: 8695918942230250325, guid: 05d216af4fb4d2541a4c5a56fe5e5db1, type: 3}
       propertyPath: m_AnchoredPosition.y
