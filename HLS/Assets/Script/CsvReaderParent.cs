@@ -11,13 +11,13 @@ public abstract class CsvReaderParent : MonoBehaviour
     public string fileName;// CSV 파일 이름
     public List<string[]> csvData = new List<string[]>(); // CSV 데이터를 저장할 리스트
 
-    public void StartLoadCsvData()
+    public void StartLoadCsvData(string buttonName)
     {
         csvData.Clear();
-        StartCoroutine(DoStartLoadCsvData());
+        StartCoroutine(DoStartLoadCsvData($"{buttonName}.csv"));
     }
 
-    protected abstract IEnumerator DoStartLoadCsvData();
+    protected abstract IEnumerator DoStartLoadCsvData(string fileName);
 
     public IEnumerator ReadCSV(string filePath)
     {
