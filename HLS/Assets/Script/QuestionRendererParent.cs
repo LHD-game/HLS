@@ -13,6 +13,8 @@ public abstract class QuestionRendererParent : MonoBehaviour
     public List<GameObject> activeButtons = new List<GameObject>(); // 생성된 버튼 리스트
     protected Dictionary<int, int> userSelections = new Dictionary<int, int>();
 
+
+
     // 버튼을 삭제하는 메서드
     public virtual void ClearButtons()
     {

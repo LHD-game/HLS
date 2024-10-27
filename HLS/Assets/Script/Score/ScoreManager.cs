@@ -75,6 +75,6 @@ public class ScoreManager : MonoBehaviour
 
     
 
-        questionRenderer.ResetQuestions(); // 첫 번째 질문과 키워드로 돌아가기
+        //questionRenderer.ResetQuestions(); // 첫 번째 질문과 키워드로 돌아가기
     }
 }
