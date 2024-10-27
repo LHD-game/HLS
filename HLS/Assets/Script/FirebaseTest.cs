@@ -73,6 +73,8 @@ public class FirebaseTest : MonoBehaviour
         //복호화 과정
         DecryptPw = await DecryptAsync(await FireBase.DataLoad(Id, "Password"));
 
+        Debug.Log(DecryptPw);
+
         //Data값 = FireBase.DataLoad([유저 ID], [Key값]) | Dictionary형 자료임으로 Key(string)를 통해 Data(string)를 찾음
         if (DecryptPw == Pw)
         {
@@ -83,6 +85,7 @@ public class FirebaseTest : MonoBehaviour
         }
         else if (DecryptPw == null) //로그인 실패시 아이디 비번 오류 발생
         {
+            Debug.Log("로그인 오류");
             LoginError.gameObject.SetActive(true);
         }
         else
@@ -104,6 +107,14 @@ public class FirebaseTest : MonoBehaviour
         string Pw2 = PwTextSignIn2.text;
         string Name = NameText.text;
         string Birth = BirthText.text;
+
+        mailError.gameObject.SetActive(false);
+        pass1Error.gameObject.SetActive(false);
+        pass2Error.gameObject.SetActive(false);
+        birthError.gameObject.SetActive(false);
+        mfError.gameObject.SetActive(false);
+        nameError.gameObject.SetActive(false);
+        termError.gameObject.SetActive(false);
 
         if (regex.IsMatch(Id))    //이메일 형식 확인
         {
@@ -171,7 +182,7 @@ public class FirebaseTest : MonoBehaviour
         }
         else
         {
-            nameError.gameObject.SetActive(true);
+            mfError.gameObject.SetActive(true);
         }
 
         if (!termBool)
@@ -192,8 +203,9 @@ public class FirebaseTest : MonoBehaviour
 
             Debug.Log("가입 성공");
 
-            ResetStatus();
             SignInUI.SetActive(false);
+            ResetStatus();
+
         }
         else
         {
