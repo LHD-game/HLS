@@ -77,7 +77,7 @@ namespace Maything.UI.CalendarSchedulerUI
             month = DateTime.Today.Month;
             day = DateTime.Today.Day;
             //Initialization(true);
-            Initialization(false);
+            Initialization(true);
         }
 
         public void Initialization(bool isFirst)
@@ -87,7 +87,7 @@ namespace Maything.UI.CalendarSchedulerUI
 
             if (isFirst)
             {
-                // 월과 일을 맟구기 위한 작업
+                // 월과 일을 맞추기 위한 작업
                 // 추가
                 monthControl.UpdateTheme();
                 monthControl.UpdateMonthText();
