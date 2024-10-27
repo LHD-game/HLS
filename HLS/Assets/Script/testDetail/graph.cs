@@ -20,8 +20,9 @@ public class graph : MonoBehaviour
     public Text testResult;
     
     public Text testReportTxt;
-    public Text recommendName;
-    public Text recommendTxt;
+    public Text resultName;
+    public Text resultDate;
+    public Text resultScore;
 
     public HorizontalAxis horiAxis;
     private List<Dictionary<string, object>> SD_;
@@ -55,17 +56,19 @@ public class graph : MonoBehaviour
             chart.DataSource.AddPointToCategory("History", Date, TotalData); //날짜, total값 가져오기
             if (i == 6) break;
         }
-        recommendSetting(eachTotal);
+        recommendSetting();
+        inputSchedule();
         Debug.Log("데이터갯수=" + chart.DataSource.GetPointCount("History"));
         chart.DataSource.EndBatch();
         WinCtl.Instance.GotoHistWin();
     }
     
-    public void recommendSetting(int[] eachTotal)
+    public void recommendSetting()
         {
             testReportTxt.text = PlayerPrefs.GetString("UserName")+"님의 검진 결과";
-            recommendName.text = PlayerPrefs.GetString("UserName")+"님의";
-            recommendTxt.text = "";
+            resultName.text = PlayerPrefs.GetString("UserName")+"님의 점수는";
+            resultDate.text = "";
+            resultScore.text = "";
         }
 
     public void inputSchedule()
@@ -85,6 +88,8 @@ public class graph : MonoBehaviour
     {
         testDate.text = args.XString;
         testResult.text = args.YString;
+        resultDate.text = args.XString;
+        resultScore.text = args.YString;
         index = args.Index; //리스트에서 특정 날짜 값 뺴는 용도
         Debug.Log("ind = "+index);
     }

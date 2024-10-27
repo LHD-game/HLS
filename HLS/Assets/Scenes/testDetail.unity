@@ -973,6 +973,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Maything.UI.CalendarSchedulerUI.DemoCodeToSchedule, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 8160367785836964161, guid: eeca152a1c2084a4eada8721e0227fa6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 262.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8160367785836964161, guid: eeca152a1c2084a4eada8721e0227fa6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 128.67
+      objectReference: {fileID: 0}
     - target: {fileID: 9051867077562962543, guid: eeca152a1c2084a4eada8721e0227fa6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
