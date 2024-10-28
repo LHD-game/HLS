@@ -32,7 +32,7 @@ public class ChooseSurvey : MonoBehaviour
         // 2. ScoreManager 할당 - 버튼 이름에 따라 해당하는 ScoreManager를 동적으로 설정
         switch (clickBtn.name)
         {
-            case "AUDIT-K":
+            case "AUDIT":
                 questionRenderer.scoreManager = adkScoreManager;
                 titleText.text = "AUDIT-K"; // Title 텍스트 업데이트
                 break;

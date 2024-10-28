@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,22 +10,51 @@ public class QuestionRenderer : MonoBehaviour
     public GameObject buttonPrefab;
     public Transform buttonPanel;
     public Text questionText;
+    public Text buttonText;
 
     public Button nextButton; // 다음 버튼을 참조할 변수
     public int currentQuestionIndex = 0;
     public List<GameObject> activeButtons = new List<GameObject>();
 
-    // 현재 선택된 버튼을 저장할 변수
-    private GameObject selectedButton;
+    public GameObject progressBar; // 진행 바 오브젝트
+    public GameObject progressStepPrefab; // 진행 단계 하나에 해당하는 프리팹
 
+    private List<GameObject> progressSteps = new List<GameObject>(); // 생성된 진행 단계 저장
+
+    private GameObject selectedButton;
     public IScoreManager scoreManager;
 
     private void Start()
     {
-        // 처음에 다음 버튼 비활성화
-        if (nextButton != null)
+        UpdateNextButtonState();
+        InitializeProgressBar();
+    }
+
+    private void InitializeProgressBar()
+    {
+        // 질문 수에 따라 진행 바를 초기화
+        int questionCount = csvReader.csvData.Count;
+        for (int i = 0; i < questionCount; i++)
         {
-            nextButton.interactable = false;
+            GameObject step = Instantiate(progressStepPrefab, progressBar.transform);
+            progressSteps.Add(step);
+        }
+        UpdateProgressBar();
+        Debug.Log(questionCount);
+    }
+
+    private void UpdateProgressBar()
+    {
+        for (int i = 0; i < progressSteps.Count; i++)
+        {
+            if (i <= currentQuestionIndex)
+            {
+                progressSteps[i].GetComponent<Image>().color = Color.blue; // 활성화된 단계 색상
+            }
+            else
+            {
+                progressSteps[i].GetComponent<Image>().color = Color.gray; // 비활성화된 단계 색상
+            }
         }
     }
 
@@ -34,12 +64,8 @@ public class QuestionRenderer : MonoBehaviour
         ClearButtons();
         questionText.text = "";
         selectedButton = null;
-
-        // 다음 버튼 비활성화
-        if (nextButton != null)
-        {
-            nextButton.interactable = false;
-        }
+        UpdateNextButtonState();
+        UpdateProgressBar();
 
         Debug.Log("QuestionRenderer 초기화 완료");
     }
@@ -78,12 +104,8 @@ public class QuestionRenderer : MonoBehaviour
         questionText.text = rowData[0];
 
         ClearButtons();
-
-        // "다음" 버튼은 선택이 필요할 때까지 비활성화
-        if (nextButton != null)
-        {
-            nextButton.interactable = false;
-        }
+        UpdateNextButtonState();
+        UpdateProgressBar();
 
         for (int i = 1; i < rowData.Length; i++)
         {
@@ -99,8 +121,7 @@ public class QuestionRenderer : MonoBehaviour
     private void CreateButton(string choiceText)
     {
         GameObject newAnswerPrefab = Instantiate(buttonPrefab, buttonPanel);
-
-        Text buttonText = newAnswerPrefab.transform.Find("Text").GetComponent<Text>();
+        buttonText = newAnswerPrefab.transform.Find("Text").GetComponent<Text>();
         buttonText.text = choiceText;
 
         Button answerButton = newAnswerPrefab.transform.Find("AnswerButtonPrefab").GetComponent<Button>();
@@ -143,29 +164,32 @@ public class QuestionRenderer : MonoBehaviour
         }
     }
 
-
-    // OnAnswerButtonClicked 메서드
     private void OnAnswerButtonClicked(Button button)
     {
-        SetSelectedButtonColor(button);
-
-        // 선택지 클릭 시 "다음" 버튼 활성화
-        if (nextButton != null)
+        if (selectedButton == button.gameObject)
         {
-            nextButton.interactable = true;
+            DeselectButton(button);
         }
-
-        // 현재 질문 인덱스와 선택된 버튼 인덱스를 기반으로 점수 추가
-        int answerIndex = activeButtons.IndexOf(button.transform.parent.gameObject); // 현재 버튼의 인덱스
-
-        if (scoreManager != null)
+        else
         {
-            scoreManager.AddScore(currentQuestionIndex, answerIndex);
-            Debug.Log($"Score added: Question {currentQuestionIndex}, Answer {answerIndex}");
+            SetSelectedButtonColor(button);
+            UpdateNextButtonState();
+
+            int answerIndex = activeButtons.IndexOf(button.transform.parent.gameObject);
+            if (scoreManager != null)
+            {
+                scoreManager.AddScore(currentQuestionIndex, answerIndex);
+                Debug.Log($"Score added: Question {currentQuestionIndex}, Answer {answerIndex}");
+            }
         }
     }
 
-
+    private void DeselectButton(Button button)
+    {
+        button.GetComponent<Image>().color = Color.white;
+        selectedButton = null;
+        UpdateNextButtonState();
+    }
 
     private void SetSelectedButtonColor(Button button)
     {
@@ -173,8 +197,14 @@ public class QuestionRenderer : MonoBehaviour
         {
             selectedButton.GetComponent<Image>().color = Color.white;
         }
-
-        button.GetComponent<Image>().color = Color.green;
         selectedButton = button.gameObject;
+    }
+
+    private void UpdateNextButtonState()
+    {
+        if (nextButton != null)
+        {
+            nextButton.interactable = (selectedButton != null);
+        }
     }
 }
