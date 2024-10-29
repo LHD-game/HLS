@@ -2,11 +2,14 @@ using ChartAndGraph;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Text.RegularExpressions;
 
 public class RaderDraw : MonoBehaviour
 {
+    private const string Pattern = @"\\n";
     public ScoreData scuns;
     public RadarChart chart;
+    public RadarChart chartBg;
     public ScoreManager scoreManager;
     //public int segments; // 그래프의 세그먼트 수 data.Length
     public RectTransform WheelPrent;
@@ -28,6 +31,7 @@ public class RaderDraw : MonoBehaviour
     public int[] data;
     [Space(5f)]
     public Text Date;
+    public Text adviceTxt;
     [Space(5f)]
     public int Score;
 
@@ -39,11 +43,14 @@ public class RaderDraw : MonoBehaviour
             chart.Radius = WheelPrent.rect.height / 3f;
         else
             chart.Radius = WheelPrent.rect.width / 3f;
-        Debug.Log(chart.Radius);
 
-        Debug.Log(WheelPrent.rect.width + " , " + WheelPrent.rect.height);
+        chartBg.Radius = chart.Radius;
+        //Debug.Log(chart.Radius);
+
+        //Debug.Log(WheelPrent.rect.width + " , " + WheelPrent.rect.height);
 
         chart.Angle = 70;
+        chartBg.Angle = chart.Angle;
         for (int i = 0; i < data.Length; i++)
         {
             chart.DataSource.AddGroup(TitleTxts[i]);
@@ -53,10 +60,10 @@ public class RaderDraw : MonoBehaviour
 
     public void buttonC(int index)
     {
-        GetData(1);  //수정
-        DetailPrint(1);
-        SetDate(scuns.ScoreData_[1]["date"].ToString());
-        CreateBars();
+        GetData(index);  //수정
+        DetailPrint(index);
+        SetDate(index);
+        CreateBars(index);
         WinCtl.Instance.GotoDatailWin();
     }
 
@@ -87,7 +94,7 @@ public class RaderDraw : MonoBehaviour
         buttonC(scuns.ScoreData_.Count-1);
     }
 
-    void CreateBars()
+    void CreateBars(int index)
     {
         bars = new Slider[data.Length];
 
@@ -95,7 +102,7 @@ public class RaderDraw : MonoBehaviour
 
         for (int i = 0; i < data.Length; i++)
         {
-            float angle = (i * angleStep) + 50;
+            float angle = (i * angleStep) -110;
             Vector3 barPosition = Quaternion.Euler(0, 0, angle + 90) * Vector3.up * radius;
 
             Slider bar = Instantiate(slider, BarPos.transform.position + barPosition, Quaternion.identity, BarPos.transform);
@@ -111,6 +118,10 @@ public class RaderDraw : MonoBehaviour
 
             // 막대의 회전 조절
             bar.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+            //막대의 라벨 변경
+            string LabelTxt = Regex.Replace(chart.DataSource.GetGroupName(i), Pattern, " ");
+            bar.GetComponentInChildren<Text>().text = LabelTxt;//scuns.header[i + 1].ToString();
 
         }
 
@@ -128,9 +139,11 @@ public class RaderDraw : MonoBehaviour
                 Mysign.GetComponent<Image>().color = Color.green;
     }
 
-    void SetDate(string date)
+    void SetDate(int index)
     {
+        string date = scuns.ScoreData_[index]["date"].ToString();
         string[] dates = date.Split(" ");
         Date.text = $"{dates[1]}월 {dates[2]}일\n리포트 결과";
+        adviceTxt.text = $"{PlayerPrefs.GetString("UserName")} 님의 \n라이프 스타일 점수는\n<color=#32438B><size=15>{scuns.ScoreData_[index]["total"].ToString()}점이에요!</size></color>";
     }
 }

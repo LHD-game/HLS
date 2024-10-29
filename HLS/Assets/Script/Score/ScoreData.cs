@@ -30,7 +30,6 @@ public class ScoreData : MonoBehaviour
     public string id;
     public string surveyType = "healthydata";
 
-
     public List<Dictionary<string, object>> ScoreData_ = new List<Dictionary<string, object>>();
     string Headers = "date,air,water,sunlight,trust,temperance,nutrition,gpc,exercise,rest,total"; //11
     public string[] header;
