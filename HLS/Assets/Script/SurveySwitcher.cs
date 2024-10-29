@@ -1,31 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class SurveySwitcher : MonoBehaviour
 {
-    [SerializeField] private GameObject surveyPanel;
+    [SerializeField] public GameObject surveyPanel;
     [SerializeField] private Transform buttonPanelTransform; // 버튼들이 있는 Panel의 Transform을 받아옴
+    [SerializeField] private List<Button> surveyButtons; // Inspector에서 버튼들을 할당
+    [SerializeField] private SurveyCsvReader csvReader; // 통합 CsvReader
 
-    [SerializeField] private CsvReaderParent firstQuestionCsvReader;
-    private QuestionRendererParent currentQuestionRenderer;
+    public ChooseSurvey chooseSurvey;
 
-    // 이전에 사용했던 검사지 렌더러를 기억하는 변수
-    private QuestionRendererParent previousQuestionRenderer;
+    private QuestionRendererParent currentQuestionRenderer; // 현재 렌더러
+    private QuestionRendererParent previousQuestionRenderer; // 이전 렌더러
 
-
-    public void OnClickQuestionButton(CsvReaderParent csvReader)
+    public void OnSurveyButtonClicked(string buttonName)
     {
-
-        // 새로운 검사지의 렌더러를 설정
-        currentQuestionRenderer = csvReader.GetComponent<QuestionRendererParent>();
-
-        // 새로운 검사지 렌더링 시작
         surveyPanel.SetActive(true);
-        csvReader.StartLoadCsvData();
 
-        // 현재 QuestionRenderer를 이전 상태로 저장
-        previousQuestionRenderer = currentQuestionRenderer;
+        /*// 렌더러 교체 전 초기화
+        ClearPanel();
+        if (previousQuestionRenderer != null)
+        {
+            previousQuestionRenderer.ClearButtons();
+        }
+
+        // 현재 렌더러를 업데이트
+        previousQuestionRenderer = currentQuestionRenderer;*/
     }
 
     // 기존 버튼 제거
@@ -40,7 +41,8 @@ public class SurveySwitcher : MonoBehaviour
 
     public void OnClickBack()
     {
-        // 돌아가기 버튼 클릭 시 패널을 초기화
+        // 돌아가기 버튼 클릭 시 패널 초기화 및 렌더러 초기화
+        surveyPanel.SetActive(false);
         ClearPanel();
         if (currentQuestionRenderer != null)
         {

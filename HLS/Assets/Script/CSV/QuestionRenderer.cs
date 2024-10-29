@@ -1,113 +1,210 @@
+using JetBrains.Annotations;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using System.Collections;
-using System;
 
 public class QuestionRenderer : MonoBehaviour
 {
-    public GameObject Keyword; // 키워드 프리팹
-    public GameObject Q1; // 질문 프리팹 1
-    public GameObject Q2; // 질문 프리팹 2
-    public GameObject Q3; // 질문 프리팹 3
-    public GameObject Q4; // 질문 프리팹 4
-    public ScoreManager scoreManager; // ScoreManager 인스턴스
+    public SurveyCsvReader csvReader;
+    public GameObject buttonPrefab;
+    public Transform buttonPanel;
+    public Text questionText;
+    public Text buttonText;
 
+    public Button nextButton; // 다음 버튼을 참조할 변수
+    public int currentQuestionIndex = 0;
+    public List<GameObject> activeButtons = new List<GameObject>();
 
-    private CSVReader csvReader;
-    private int currentQuestionIndex = 1;
-    private int currentKeywordIndex = 1;
+    public GameObject progressBar; // 진행 바 오브젝트
+    public GameObject progressStepPrefab; // 진행 단계 하나에 해당하는 프리팹
 
-    void Start()
+    private List<GameObject> progressSteps = new List<GameObject>(); // 생성된 진행 단계 저장
+
+    private GameObject selectedButton;
+    public IScoreManager scoreManager;
+
+    private void Start()
     {
-        csvReader = GetComponent<CSVReader>();
+        UpdateNextButtonState();
+        InitializeProgressBar();
+    }
+
+    private void InitializeProgressBar()
+    {
+        // 질문 수에 따라 진행 바를 초기화
+        int questionCount = csvReader.csvData.Count;
+        for (int i = 0; i < questionCount; i++)
+        {
+            GameObject step = Instantiate(progressStepPrefab, progressBar.transform);
+            progressSteps.Add(step);
+        }
+        UpdateProgressBar();
+        Debug.Log(questionCount);
+    }
+
+    private void UpdateProgressBar()
+    {
+        for (int i = 0; i < progressSteps.Count; i++)
+        {
+            if (i <= currentQuestionIndex)
+            {
+                progressSteps[i].GetComponent<Image>().color = Color.blue; // 활성화된 단계 색상
+            }
+            else
+            {
+                progressSteps[i].GetComponent<Image>().color = Color.gray; // 비활성화된 단계 색상
+            }
+        }
+    }
+
+    public void ResetRenderer()
+    {
+        currentQuestionIndex = 0;
+        ClearButtons();
+        questionText.text = "";
+        selectedButton = null;
+        UpdateNextButtonState();
+        UpdateProgressBar();
+
+        Debug.Log("QuestionRenderer 초기화 완료");
+    }
+
+    public void setCsvReader()
+    {
+        if (csvReader == null)
+        {
+            Debug.LogError("CSV Reader가 설정되지 않았습니다.");
+            return;
+        }
+
         StartCoroutine(WaitForCSVData());
     }
 
-    IEnumerator WaitForCSVData()
+    private IEnumerator WaitForCSVData()
     {
-        // CSV 데이터가 로드될 때까지 기다립니다.
         while (csvReader.csvData.Count == 0)
         {
             yield return null;
         }
-        // CSV 데이터가 로드되면 첫 화면을 렌더링합니다.
-        RenderQuestions();
+
+        Debug.Log("CSV 데이터 로드 완료, 질문 렌더링 시작");
+        RenderQuestion();
     }
 
-    public void RenderQuestions()
+    public void RenderQuestion()
     {
-        if (csvReader.csvData.Count >= currentQuestionIndex + 4)
+        if (currentQuestionIndex >= csvReader.csvData.Count)
         {
-            // 키워드 프리팹 설정
-            SetupKeywordPrefab(Keyword, currentKeywordIndex);
+            Debug.LogError("질문 인덱스가 csvData 범위를 벗어났습니다.");
+            return;
+        }
 
-            // 첫 번째 질문 프리팹 설정
-            SetupQuestionPrefab(Q1, currentQuestionIndex);
+        string[] rowData = csvReader.csvData[currentQuestionIndex];
+        questionText.text = rowData[0];
 
-            // 두 번째 질문 프리팹 설정
-            SetupQuestionPrefab(Q2, currentQuestionIndex + 1);
+        ClearButtons();
+        UpdateNextButtonState();
+        UpdateProgressBar();
 
-            // 세 번째 질문 프리팹 설정
-            SetupQuestionPrefab(Q3, currentQuestionIndex + 2);
+        for (int i = 1; i < rowData.Length; i++)
+        {
+            if (string.IsNullOrEmpty(rowData[i]))
+            {
+                break;
+            }
 
-            // 네 번째 질문 프리팹 설정
-            SetupQuestionPrefab(Q4, currentQuestionIndex + 3);
+            CreateButton(rowData[i]);
         }
     }
 
-    private void SetupQuestionPrefab(GameObject prefab, int index)
+    private void CreateButton(string choiceText)
     {
-        Text questionText = prefab.GetComponentInChildren<Text>();
-        questionText.text = csvReader.csvData[index][1]; // Question 열의 데이터
+        GameObject newAnswerPrefab = Instantiate(buttonPrefab, buttonPanel);
+        buttonText = newAnswerPrefab.transform.Find("Text").GetComponent<Text>();
+        buttonText.text = choiceText;
 
-        ButtonHandler[] buttonHandlers = prefab.GetComponentsInChildren<ButtonHandler>();
-        foreach (var handler in buttonHandlers)
+        Button answerButton = newAnswerPrefab.transform.Find("AnswerButtonPrefab").GetComponent<Button>();
+        if (answerButton != null)
         {
-            handler.Initialize(scoreManager);
-            handler.questionIndex = index;
+            answerButton.onClick.AddListener(() => OnAnswerButtonClicked(answerButton));
+        }
+
+        activeButtons.Add(newAnswerPrefab);
+    }
+
+    private void ClearButtons()
+    {
+        foreach (GameObject button in activeButtons)
+        {
+            Destroy(button);
+        }
+        activeButtons.Clear();
+    }
+
+    public void NextQuestion()
+    {
+        if (currentQuestionIndex + 1 < csvReader.csvData.Count)
+        {
+            currentQuestionIndex++;
+            RenderQuestion();
+        }
+        else
+        {
+            Debug.Log("End of survey");
         }
     }
 
-    private void SetupKeywordPrefab(GameObject prefab, int index)
+    public void PreviousQuestion()
     {
-        Text keywordText = prefab.GetComponentInChildren<Text>();
-        keywordText.text = csvReader.csvData[index][2]; // Keyword 열의 데이터
-
-        ButtonHandler[] buttonHandlers = prefab.GetComponentsInChildren<ButtonHandler>();
-
-        foreach (var handler in buttonHandlers)
+        if (currentQuestionIndex > 0)
         {
-            handler.Initialize(scoreManager);
-            handler.questionIndex = index;
+            currentQuestionIndex--;
+            RenderQuestion();
         }
     }
 
-    public void ResetQuestions()
+    private void OnAnswerButtonClicked(Button button)
     {
-        currentQuestionIndex = 1; // 질문 인덱스 초기화
-        currentKeywordIndex = 1; // 키워드 인덱스 초기화
-        RenderQuestions(); // 첫 번째 질문과 키워드 렌더링
-    }
-
-    public void NextQuestions()
-    {
- 
-        if (csvReader.csvData.Count >= currentQuestionIndex + 4)
+        if (selectedButton == button.gameObject)
         {
-            currentQuestionIndex += 4;
-            currentKeywordIndex += 4;
-
-            RenderQuestions();
+            DeselectButton(button);
         }
+        else
+        {
+            SetSelectedButtonColor(button);
+            UpdateNextButtonState();
 
+            int answerIndex = activeButtons.IndexOf(button.transform.parent.gameObject);
+            if (scoreManager != null)
+            {
+                scoreManager.AddScore(currentQuestionIndex, answerIndex);
+                Debug.Log($"Score added: Question {currentQuestionIndex}, Answer {answerIndex}");
+            }
+        }
     }
 
-    public void PreviousQuestions()
+    private void DeselectButton(Button button)
     {
-        currentQuestionIndex -= 4;
-        currentKeywordIndex -= 4;
+        button.GetComponent<Image>().color = Color.white;
+        selectedButton = null;
+        UpdateNextButtonState();
+    }
 
-        RenderQuestions();
+    private void SetSelectedButtonColor(Button button)
+    {
+        if (selectedButton != null)
+        {
+            selectedButton.GetComponent<Image>().color = Color.white;
+        }
+        selectedButton = button.gameObject;
+    }
+
+    private void UpdateNextButtonState()
+    {
+        if (nextButton != null)
+        {
+            nextButton.interactable = (selectedButton != null);
+        }
     }
 }
