@@ -259,6 +259,7 @@ namespace ChartAndGraph
         }
         public int GetGroupIndex(String name)
         {
+            Debug.Log($"mGroups.Length = {mGroups.Length}");
             for (int i = 0; i < mGroups.Length; i++)
                 if (mGroups[i] == name)
                     return i;
@@ -297,6 +298,7 @@ namespace ChartAndGraph
             double[,] raw = mDataSource.getRawData();
             int current = 0;
             mData = new DataEntry[raw.GetLength(0) * raw.GetLength(1)];
+            //Debug.Log($"raw.GetLength(0) = {raw.GetLength(0)}\nraw.GetLength(1) = {raw.GetLength(1)}");
             for (int i = 0; i < raw.GetLength(0); ++i)
             {
                 for (int j = 0; j < raw.GetLength(1); ++j)
@@ -322,16 +324,16 @@ namespace ChartAndGraph
             if (mData == null)
                 mData = new DataEntry[0];
             for (int i = 0; i < mCategories.Length; i++)
-                AddCategory(mCategories[i].Name, mCategories[i]);
+                AddCategory(mCategories[i].Name, mCategories[i]);  //수정
             for (int i = 0; i < mGroups.Length; i++)
                 AddGroup(mGroups[i]);
-
+            //Debug.Log($"mData.Length = {mData.Length}");
             for (int i = 0; i < mData.Length; i++)
             {
                 try
                 {
                     DataEntry entry = mData[i];
-                    mDataSource.SetValue(entry.ColumnName, entry.GroupName, entry.Amount);
+                    mDataSource.SetValue(entry.ColumnName, entry.GroupName, entry.Amount); //어? 이거인 듯?
                 }
                 catch (Exception)
                 {
@@ -390,6 +392,7 @@ namespace ChartAndGraph
         /// </summary>
         protected void AddInnerCategory(string name, PathGenerator linePrefab, Material lineMaterial, float lineThickness, GameObject pointPrefab, Material pointMaterial, float pointSize, Material fillMaterial,int fillSmoothing, float curve, float seperation)
         {
+            Debug.Log("여기?");
             ChartDataColumn column = new ChartDataColumn(name);
             CategoryData data = new CategoryData();
             data.LinePrefab = linePrefab;
