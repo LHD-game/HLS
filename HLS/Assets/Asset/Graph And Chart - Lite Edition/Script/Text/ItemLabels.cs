@@ -11,7 +11,7 @@ namespace ChartAndGraph
         /// <summary>
         /// the number of fraction digits in the text labels
         /// </summary>
-        [Range(0, 7)]
+        [Range(2, 7)]
         [SerializeField]
         private int fractionDigits;
 

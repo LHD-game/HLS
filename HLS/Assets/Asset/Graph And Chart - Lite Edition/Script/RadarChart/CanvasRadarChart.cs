@@ -66,8 +66,9 @@ namespace ChartAndGraph
                 CanvasLines points = CreateLinesObject(conatiner);
                 points.material = AxisPointMaterial;
                 AxisPointSize = AxisPointSize + 4;  //포인트 크기설정
-                Debug.Log(AxisPointSize);
+                //Debug.Log(AxisPointSize);
                 points.MakePointRender(AxisPointSize);
+                
                 points.SetLines(seg);
             }
                        
