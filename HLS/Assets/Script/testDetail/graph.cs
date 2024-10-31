@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using static ChartAndGraph.GraphChartBase;
 using ChartAndGraph.Axis;
 using Maything.UI.CalendarSchedulerUI;
+using Unity.VisualScripting;
 using Random = UnityEngine.Random;
 
 public class graph : MonoBehaviour
@@ -36,6 +37,7 @@ public class graph : MonoBehaviour
         
         chart.DataSource.VerticalViewSize = 144;    // Vertical Axis의 값 설정
         // chart.CustomDateTimeFormat = (date) => { return date.ToString("MM/dd"); }; //그래프 Date Format 수정
+        // horiAxis.MainDivisions.Total = chart.DataSource.GetPointCount("History")-1;
     }
     
 
@@ -54,6 +56,7 @@ public class graph : MonoBehaviour
             int TotalData = Convert.ToInt32(SD_[SD_.Count - i]["total"]);
             eachTotal[i-1] = TotalData;
             chart.DataSource.AddPointToCategory("History", Date, TotalData); //날짜, total값 가져오기
+            
             if (i == 6) break;
         }
         recommendSetting();
