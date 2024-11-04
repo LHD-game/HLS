@@ -8,10 +8,16 @@ public class ButtonTextCtrl : MonoBehaviour
 {
     public Text smallTxt;
 
+
     private void Start()
     {
         smallTxt = transform.Find("smallTxt").GetComponent<Text>();
         EventTrigger eventTrigger = this.GetComponent<EventTrigger>();
+
+        if (smallTxt == null)
+        {
+            Debug.LogError("smallTxt가 연결되지 않았습니다. 이름 또는 경로를 확인하세요.");
+        }
 
         EventTrigger.Entry Downentry = new EventTrigger.Entry();
         Downentry.eventID = EventTriggerType.PointerDown;
