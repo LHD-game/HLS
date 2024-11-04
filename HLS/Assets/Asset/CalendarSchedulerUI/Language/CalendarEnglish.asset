@@ -12,6 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35abac55e511d940a0528eff1089a66, type: 3}
   m_Name: CalendarEnglish
   m_EditorClassIdentifier: 
+  YearName: 
+  isYearBeforeMonth: 0
+  January: JAN
+  February: FEB
+  March: MAR
+  April: APR
+  May: MAY
+  June: JUN
+  July: JUL
+  August: AUG
+  September: SEP
+  October: OCT
+  November: NOV
+  December: DEC
   Monday: Mon
   Tuesday: Tue
   Wednesday: Wed
@@ -19,15 +33,5 @@ MonoBehaviour:
   Friday: Fri
   Saturday: Sat
   Sunday: Sun
-  January: January
-  February: February
-  March: March
-  April: April
-  May: May
-  June: June
-  July: July
-  August: August
-  September: September
-  October: October
-  November: November
-  December: December
+  singleEvent: event
+  multiEvent: events

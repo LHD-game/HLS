@@ -41,10 +41,11 @@ namespace Maything.UI.CalendarSchedulerUI
             calendarSchedulerUI.AddItems(dataList);
         }
         
+        // 스케쥴 내용 디자인
         public void addSingleTestScore(DateTime date, int score)
         {
             CalendarSchedulerData d = new CalendarSchedulerData(
-                score.ToString(),
+                "<color=#32438B><size=12.5%>"+score+"</size></color>",
                 Color.white,
                 date.Year,
                 date.Month,
