@@ -11,12 +11,14 @@ public class WellcomeW : MonoBehaviour
     public RectTransform parent;
     public GridLayoutGroup Maingrid;
     public GridLayoutGroup solugrid;
+    public GridLayoutGroup SelectGrid;
     private void Start()
     {
         originWidth = parent.rect.width;
         originHeight = parent.rect.height;
         SetDynamicGrid(Maingrid, 4, 2, 2);
         SetDynamicGrid(solugrid, 9, 3, 3);
+        SetDynamicGrid(SelectGrid, 7, 2, 3); 
         //ClickWc();
     }
     public void ClickWc()
