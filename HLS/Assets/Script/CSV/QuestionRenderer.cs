@@ -26,13 +26,12 @@ public class QuestionRenderer : MonoBehaviour
 
     private void Start()
     {
-        UpdateNextButtonState();
         InitializeProgressBar();
+        UpdateNextButtonState();  // 초기화 시 항상 비활성화
     }
 
     private void InitializeProgressBar()
     {
-        // 질문 수에 따라 진행 바를 초기화
         int questionCount = csvReader.csvData.Count;
         for (int i = 0; i < questionCount; i++)
         {
@@ -40,7 +39,6 @@ public class QuestionRenderer : MonoBehaviour
             progressSteps.Add(step);
         }
         UpdateProgressBar();
-        Debug.Log(questionCount);
     }
 
     private void UpdateProgressBar()
@@ -49,11 +47,11 @@ public class QuestionRenderer : MonoBehaviour
         {
             if (i <= currentQuestionIndex)
             {
-                progressSteps[i].GetComponent<Image>().color = Color.blue; // 활성화된 단계 색상
+                progressSteps[i].GetComponent<Image>().color = Color.blue;
             }
             else
             {
-                progressSteps[i].GetComponent<Image>().color = Color.gray; // 비활성화된 단계 색상
+                progressSteps[i].GetComponent<Image>().color = Color.gray;
             }
         }
     }
@@ -104,7 +102,9 @@ public class QuestionRenderer : MonoBehaviour
         questionText.text = rowData[0];
 
         ClearButtons();
-        UpdateNextButtonState();
+        selectedButton = null;  // 새 질문 로드 시 선택 초기화
+        UpdateNextButtonState(); // 새 질문 로드 시 항상 "다음" 비활성화
+
         UpdateProgressBar();
 
         for (int i = 1; i < rowData.Length; i++)
@@ -204,7 +204,18 @@ public class QuestionRenderer : MonoBehaviour
     {
         if (nextButton != null)
         {
+            // 선택된 버튼이 없으면 항상 비활성화
             nextButton.interactable = (selectedButton != null);
+
+            // 마지막 질문에서는 "결과보기"로 텍스트 변경
+            if (currentQuestionIndex == csvReader.csvData.Count - 1)
+            {
+                nextButton.GetComponentInChildren<Text>().text = "결과보기";
+            }
+            else
+            {
+                nextButton.GetComponentInChildren<Text>().text = "다음";
+            }
         }
     }
 }
