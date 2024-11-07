@@ -4713,39 +4713,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1245541704247271491, guid: ba6205a343cc2634d99865ddcc437a62, type: 3}
       propertyPath: m_Colors.m_PressedColor.b
-      value: 0.8117647
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245541704247271491, guid: ba6205a343cc2634d99865ddcc437a62, type: 3}
       propertyPath: m_Colors.m_PressedColor.g
-      value: 0.44705883
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245541704247271491, guid: ba6205a343cc2634d99865ddcc437a62, type: 3}
       propertyPath: m_Colors.m_PressedColor.r
-      value: 0.36078432
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245541704247271491, guid: ba6205a343cc2634d99865ddcc437a62, type: 3}
       propertyPath: m_Colors.m_SelectedColor.b
-      value: 0.8117647
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245541704247271491, guid: ba6205a343cc2634d99865ddcc437a62, type: 3}
       propertyPath: m_Colors.m_SelectedColor.g
-      value: 0.44705883
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245541704247271491, guid: ba6205a343cc2634d99865ddcc437a62, type: 3}
       propertyPath: m_Colors.m_SelectedColor.r
-      value: 0.36078432
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245541704247271491, guid: ba6205a343cc2634d99865ddcc437a62, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.b
-      value: 0.8117647
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245541704247271491, guid: ba6205a343cc2634d99865ddcc437a62, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.g
-      value: 0.44705883
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245541704247271491, guid: ba6205a343cc2634d99865ddcc437a62, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.r
-      value: 0.36078432
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245541704247271491, guid: ba6205a343cc2634d99865ddcc437a62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
