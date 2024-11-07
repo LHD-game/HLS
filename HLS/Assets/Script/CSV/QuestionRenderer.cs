@@ -161,7 +161,7 @@ public class QuestionRenderer : MonoBehaviour
         }
         else
         {
-            Debug.Log("End of survey");
+            Debug.Log("결과보기");
         }
     }
 
