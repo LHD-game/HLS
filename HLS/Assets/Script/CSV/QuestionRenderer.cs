@@ -22,12 +22,21 @@ public class QuestionRenderer : MonoBehaviour
     private List<GameObject> progressSteps = new List<GameObject>(); // 생성된 진행 단계 저장
 
     private GameObject selectedButton;
+    private GameObject selectedPrefab;
     public IScoreManager scoreManager;
 
     private void Start()
     {
         InitializeProgressBar();
         UpdateNextButtonState();  // 초기화 시 항상 비활성화
+    }
+
+    public void SetupHLSLayout()
+    {
+        // HLS 전용 레이아웃 변경 논리
+        // 예시: 특정 UI 패널 활성화/비활성화, 레이아웃 설정 변경 등
+        Debug.Log("Setting up HLS specific layout");
+        // 필요한 레이아웃 조작을 여기에 추가
     }
 
     private void InitializeProgressBar()
@@ -103,6 +112,7 @@ public class QuestionRenderer : MonoBehaviour
 
         ClearButtons();
         selectedButton = null;  // 새 질문 로드 시 선택 초기화
+        selectedPrefab = null;
         UpdateNextButtonState(); // 새 질문 로드 시 항상 "다음" 비활성화
 
         UpdateProgressBar();
@@ -151,7 +161,7 @@ public class QuestionRenderer : MonoBehaviour
         }
         else
         {
-            Debug.Log("End of survey");
+            Debug.Log("결과보기");
         }
     }
 
@@ -168,10 +178,12 @@ public class QuestionRenderer : MonoBehaviour
     {
         if (selectedButton == button.gameObject)
         {
-            DeselectButton(button);
+            // DeselectButton(button);
+            UpdateNextButtonState();
         }
         else
         {
+         
             SetSelectedButtonColor(button);
             UpdateNextButtonState();
 
@@ -186,26 +198,29 @@ public class QuestionRenderer : MonoBehaviour
 
     private void DeselectButton(Button button)
     {
-        button.GetComponent<Image>().color = Color.white;
-        selectedButton = null;
-        UpdateNextButtonState();
+        return;
     }
 
     private void SetSelectedButtonColor(Button button)
     {
         if (selectedButton != null)
         {
+            // 선택 해제된 버튼을 흰색으로 복원
             selectedButton.GetComponent<Image>().color = Color.white;
         }
+
+        // 선택된 버튼 설정 및 색상 지정
         selectedButton = button.gameObject;
+        selectedButton.GetComponent<Image>().color = new Color32(92, 114, 207, 255);// 5C72CF 색상
     }
+
 
     private void UpdateNextButtonState()
     {
         if (nextButton != null)
         {
             // 선택된 버튼이 없으면 항상 비활성화
-            nextButton.interactable = (selectedButton != null);
+            nextButton.interactable = (selectedButton);
 
             // 마지막 질문에서는 "결과보기"로 텍스트 변경
             if (currentQuestionIndex == csvReader.csvData.Count - 1)

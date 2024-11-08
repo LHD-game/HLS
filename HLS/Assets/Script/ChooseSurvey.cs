@@ -19,6 +19,15 @@ public class ChooseSurvey : MonoBehaviour
     public FtnScoreManager ftnScoreManager;
     public HlsScoreManager hlsScoreManager;
 
+
+    public void SetupHLSLayout()
+    {
+        // HLS 전용 레이아웃 변경 논리
+        // 예시: 특정 UI 패널 활성화/비활성화, 레이아웃 설정 변경 등
+        Debug.Log("Setting up HLS specific layout");
+        // 필요한 레이아웃 조작을 여기에 추가
+    }
+
     public void ButtonEvent()
     {
         UpdatePanel();
@@ -59,11 +68,16 @@ public class ChooseSurvey : MonoBehaviour
             case "HLS":
                 questionRenderer.scoreManager = hlsScoreManager;
                 titleText.text = "HLS"; // Title 텍스트 업데이트
+
+                // HLS 전용 레이아웃 설정
+                questionRenderer.SetupHLSLayout();
                 break;
             default:
                 Debug.LogWarning("Unknown survey type");
                 break;
         }
+
+
 
         // 3. QuestionRenderer 초기화 후 CSV 데이터 로드 시작
         questionRenderer.ResetRenderer();
