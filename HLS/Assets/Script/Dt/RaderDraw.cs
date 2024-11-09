@@ -60,7 +60,7 @@ public class RaderDraw : MonoBehaviour
 
     public void buttonC(int index)
     {
-        GetData(index);  //¼öÁ¤
+        GetData(index); 
         DetailPrint(index);
         SetDate(index);
         CreateBars(index);

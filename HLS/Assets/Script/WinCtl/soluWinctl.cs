@@ -38,6 +38,7 @@ public class soluWinctl : MonoBehaviour
     /*----------------------처방 출력 화면-------------------------------------------------*/
     public void FindTitleIndex()
     {
+        ResetWin();
         string ButtonName = EventSystem.current.currentSelectedGameObject.name;
         Debug.Log(ButtonName);
         for (int i = 0; i <= csvRenderer.SolutionData.Count; i++)
