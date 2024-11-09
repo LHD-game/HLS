@@ -17,6 +17,8 @@ public class FirebaseTest : MonoBehaviour
 {
     // TODO: 아래 필드명들은 데이터 스키마로 명확히 정리되어야 함 (JSON 트리 예제 작성되면 가장 좋음)
     //     PascalCase 보다 camelCase 로 변수명 선언하면 좋을 것
+
+    [Header("SignInText")]
     public GameObject SignInUI;     //ID값 
     public InputField IdText;     //ID값 
     public InputField PwText;     //PW값
@@ -34,7 +36,9 @@ public class FirebaseTest : MonoBehaviour
     public Image Check2; //약관체크2
     bool check2 = true;
     //로그인오류문구
+    [Header("LogInError")]
     public Text LoginError;
+    [Header("SignInError")]
     //회원가입 오류 문구
     public Text mailError;
     public Text pass1Error;
@@ -43,6 +47,9 @@ public class FirebaseTest : MonoBehaviour
     public Text birthError;
     public Text mfError;
     public Text termError;
+
+    [Header("Panel")]
+    public GameObject SignInComplete;
 
     string mf = "";             //회원가입시 사용할 성별값
     bool nameBool = false;          //회원가입시 이름 확인
@@ -203,7 +210,7 @@ public class FirebaseTest : MonoBehaviour
 
             Debug.Log("가입 성공");
 
-            SignInUI.SetActive(false);
+            SignInComplete.SetActive(true);
             ResetStatus();
 
         }

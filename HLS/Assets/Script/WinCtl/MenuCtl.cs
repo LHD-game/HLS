@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class MenuCtl : MonoBehaviour
@@ -15,11 +16,17 @@ public class MenuCtl : MonoBehaviour
     }
     public void SubMenuSetting(GameObject nowSub)
     {
-        StartCoroutine(subCloseAnima(subCtl_.GetComponent<RectTransform>()));
+        GameObject Button = EventSystem.current.currentSelectedGameObject;
+
+        //StartCoroutine(subCloseAnima(subCtl_.GetComponent<RectTransform>()));
         subCtl_.SetActive(false);
         subCtl_ = nowSub;
+        RectTransform CtlSub = subCtl_.GetComponent<RectTransform>();
+        int count = CtlSub.childCount;
+        CtlSub.sizeDelta = new Vector2(CtlSub.rect.width, 25 * count);
+        subCtl_.transform.parent.position = new Vector2(Button.transform.position.x-50, Button.transform.position.y);
         subCtl_.SetActive(true);
-        StartCoroutine(subOpenAnima(subCtl_.GetComponent<RectTransform>()));
+        //StartCoroutine(subOpenAnima(subCtl_.GetComponent<RectTransform>()));
     }
 
     IEnumerator subOpenAnima(RectTransform CtlSub)
