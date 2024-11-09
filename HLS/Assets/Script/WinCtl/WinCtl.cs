@@ -87,6 +87,7 @@ public class WinCtl : MonoBehaviour
         DatailWin.SetActive(false);
         SolutionWin.SetActive(false);
         Menu.SetActive(false);
+        SolutionDetailWin.SetActive(false);
         WinCtl_ = MainWin;
         WinSetting(MainWin);
     }
