@@ -19,15 +19,6 @@ public class ChooseSurvey : MonoBehaviour
     public FtnScoreManager ftnScoreManager;
     public HlsScoreManager hlsScoreManager;
 
-
-    public void SetupHLSLayout()
-    {
-        // HLS 전용 레이아웃 변경 논리
-        // 예시: 특정 UI 패널 활성화/비활성화, 레이아웃 설정 변경 등
-        Debug.Log("Setting up HLS specific layout");
-        // 필요한 레이아웃 조작을 여기에 추가
-    }
-
     public void ButtonEvent()
     {
         UpdatePanel();
@@ -44,47 +35,51 @@ public class ChooseSurvey : MonoBehaviour
             case "AUDIT":
                 questionRenderer.scoreManager = adkScoreManager;
                 titleText.text = "AUDIT-K"; // Title 텍스트 업데이트
+                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
                 break;
             case "RCBS":
                 questionRenderer.scoreManager = rcbScoreManager;
                 titleText.text = "RCBS"; // Title 텍스트 업데이트
+                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
                 break;
             case "CBS":
                 questionRenderer.scoreManager = cbsScoreManager;
                 titleText.text = "CBS"; // Title 텍스트 업데이트
+                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
                 break;
             case "SAPS":
                 questionRenderer.scoreManager = sapsScoreManager;
                 titleText.text = "SAPS"; // Title 텍스트 업데이트
+                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
                 break;
             case "YFAS":
                 questionRenderer.scoreManager = yfasScoreManager;
                 titleText.text = "YFAS"; // Title 텍스트 업데이트
+                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
                 break;
             case "FTND":
                 questionRenderer.scoreManager = ftnScoreManager;
                 titleText.text = "FTND"; // Title 텍스트 업데이트
+                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
                 break;
             case "HLS":
                 questionRenderer.scoreManager = hlsScoreManager;
                 titleText.text = "HLS"; // Title 텍스트 업데이트
-
-                // HLS 전용 레이아웃 설정
-                questionRenderer.SetupHLSLayout();
+                questionRenderer.isHLSMode = true; // HLS 모드 활성화
                 break;
             default:
                 Debug.LogWarning("Unknown survey type");
                 break;
         }
 
-
-
         // 3. QuestionRenderer 초기화 후 CSV 데이터 로드 시작
         questionRenderer.ResetRenderer();
         questionRenderer.setCsvReader();
 
         // 4. SurveyPanel 활성화
-        switcher.surveyPanel.SetActive(true);
+        if (!questionRenderer.isHLSMode) {
+            switcher.surveyPanel.SetActive(true);
+        }
     }
 
     public void UpdatePanel()
