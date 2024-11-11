@@ -11,6 +11,7 @@ public class QuestionRenderer : MonoBehaviour
     public Transform buttonPanel;
     public Text questionText;
     public Text buttonText;
+    public List<GameObject> hlsButtonPrefabs; // 인스펙터에 HLS 버튼 프리팹 추가
 
     public Button nextButton; // 다음 버튼을 참조할 변수
     public int currentQuestionIndex = 0;
@@ -25,6 +26,12 @@ public class QuestionRenderer : MonoBehaviour
     private GameObject selectedPrefab;
     public IScoreManager scoreManager;
 
+    // HLS 관련 필드
+    public GameObject hlsPanel;
+    public bool isHLSMode = false;
+    public List<Text> hlsQuestions = new List<Text>(); // 인스펙터에서 연결할 HLS 질문 Text
+    public List<Transform> hlsButtonPanels = new List<Transform>(); // 인스펙터에서 연결할 HLS 버튼 패널
+
     private void Start()
     {
         InitializeProgressBar();
@@ -33,10 +40,17 @@ public class QuestionRenderer : MonoBehaviour
 
     public void SetupHLSLayout()
     {
-        // HLS 전용 레이아웃 변경 논리
-        // 예시: 특정 UI 패널 활성화/비활성화, 레이아웃 설정 변경 등
-        Debug.Log("Setting up HLS specific layout");
-        // 필요한 레이아웃 조작을 여기에 추가
+        if (isHLSMode && hlsPanel != null)
+        {
+            hlsPanel.SetActive(true);
+            buttonPanel.gameObject.SetActive(false); // 기본 패널 비활성화
+            Debug.Log("Setting up HLS specific layout");
+        }
+        else
+        {
+            hlsPanel.SetActive(false);
+            buttonPanel.gameObject.SetActive(true); // 기본 패널 활성화
+        }
     }
 
     private void InitializeProgressBar()
@@ -74,6 +88,11 @@ public class QuestionRenderer : MonoBehaviour
         UpdateNextButtonState();
         UpdateProgressBar();
 
+        if (isHLSMode)
+        {
+            SetupHLSLayout();
+        }
+
         Debug.Log("QuestionRenderer 초기화 완료");
     }
 
@@ -96,7 +115,14 @@ public class QuestionRenderer : MonoBehaviour
         }
 
         Debug.Log("CSV 데이터 로드 완료, 질문 렌더링 시작");
-        RenderQuestion();
+        if (isHLSMode)
+        {
+            RenderHLSQuestions();
+        }
+        else
+        {
+            RenderQuestion();
+        }
     }
 
     public void RenderQuestion()
@@ -128,6 +154,43 @@ public class QuestionRenderer : MonoBehaviour
         }
     }
 
+    public void RenderHLSQuestions()
+    {
+        if (csvReader.csvData.Count < 5)
+        {
+            Debug.LogError("HLS용 데이터를 5개 이상 가져와야 합니다.");
+            return;
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            string[] rowData = csvReader.csvData[currentQuestionIndex + i]; // 각 질문 데이터 가져오기
+            hlsQuestions[i].text = rowData[0]; // 질문 텍스트 설정
+
+            // 기존 버튼 제거
+            foreach (Transform child in hlsButtonPanels[i])
+            {
+                Destroy(child.gameObject);
+            }
+
+            // 버튼 생성 로직 - HLS 전용 버튼 프리팹 사용
+            for (int j = 1; j < rowData.Length; j++)
+            {
+                if (string.IsNullOrEmpty(rowData[j])) break;
+
+                GameObject newButton = Instantiate(hlsButtonPrefabs[j - 1], hlsButtonPanels[i]);
+                newButton.transform.Find("Text").GetComponent<Text>().text = rowData[j];
+
+                Button btn = newButton.GetComponent<Button>();
+                btn.onClick.AddListener(() => OnAnswerButtonClicked(btn));
+            }
+        }
+    }
+
+
+
+
+
     private void CreateButton(string choiceText)
     {
         GameObject newAnswerPrefab = Instantiate(buttonPrefab, buttonPanel);
@@ -154,36 +217,56 @@ public class QuestionRenderer : MonoBehaviour
 
     public void NextQuestion()
     {
-        if (currentQuestionIndex + 1 < csvReader.csvData.Count)
+        if (isHLSMode)
         {
-            currentQuestionIndex++;
-            RenderQuestion();
+            currentQuestionIndex += 5; // HLS 모드에서는 한 번에 5개씩 이동
+            RenderHLSQuestions();
         }
         else
         {
-            Debug.Log("결과보기");
+            if (currentQuestionIndex + 1 < csvReader.csvData.Count)
+            {
+                currentQuestionIndex++;
+                RenderQuestion();
+            }
+            else
+            {
+                Debug.Log("결과보기");
+            }
         }
     }
 
     public void PreviousQuestion()
     {
-        if (currentQuestionIndex > 0)
+        if (isHLSMode)
         {
-            currentQuestionIndex--;
-            RenderQuestion();
+            // HLS 모드에서는 한 번에 5개씩 이동
+            currentQuestionIndex -= 5;
+            if (currentQuestionIndex < 0)
+            {
+                currentQuestionIndex = 0; // 인덱스가 0보다 작아지지 않도록 보정
+            }
+            RenderHLSQuestions();
+        }
+        else
+        {
+            if (currentQuestionIndex > 0)
+            {
+                currentQuestionIndex--;
+                RenderQuestion();
+            }
         }
     }
+
 
     private void OnAnswerButtonClicked(Button button)
     {
         if (selectedButton == button.gameObject)
         {
-            // DeselectButton(button);
             UpdateNextButtonState();
         }
         else
         {
-         
             SetSelectedButtonColor(button);
             UpdateNextButtonState();
 
@@ -196,33 +279,23 @@ public class QuestionRenderer : MonoBehaviour
         }
     }
 
-    private void DeselectButton(Button button)
-    {
-        return;
-    }
-
     private void SetSelectedButtonColor(Button button)
     {
         if (selectedButton != null)
         {
-            // 선택 해제된 버튼을 흰색으로 복원
             selectedButton.GetComponent<Image>().color = Color.white;
         }
 
-        // 선택된 버튼 설정 및 색상 지정
         selectedButton = button.gameObject;
-        selectedButton.GetComponent<Image>().color = new Color32(92, 114, 207, 255);// 5C72CF 색상
+        selectedButton.GetComponent<Image>().color = new Color32(92, 114, 207, 255); // 5C72CF 색상
     }
-
 
     private void UpdateNextButtonState()
     {
         if (nextButton != null)
         {
-            // 선택된 버튼이 없으면 항상 비활성화
-            nextButton.interactable = (selectedButton);
+            nextButton.interactable = (selectedButton != null);
 
-            // 마지막 질문에서는 "결과보기"로 텍스트 변경
             if (currentQuestionIndex == csvReader.csvData.Count - 1)
             {
                 nextButton.GetComponentInChildren<Text>().text = "결과보기";
