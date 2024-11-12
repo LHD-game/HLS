@@ -1,16 +1,20 @@
 using ChartAndGraph;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Collections;
 using System;
 using System.Text.RegularExpressions;
 
 public class RaderDraw : MonoBehaviour
 {
+    [Header("script")]
     private const string Pattern = @"\\n";
     public ScoreData scuns;
     public RadarChart chart;
     public RadarChart chartBg;
     public ScoreManager scoreManager;
+    public ResolutWinCtrl ResolutWinCtrl;
     //public int segments; // 그래프의 세그먼트 수 data.Length
     public RectTransform WheelPrent;
 
@@ -23,6 +27,8 @@ public class RaderDraw : MonoBehaviour
 
     [Space(10f)]
     public GameObject Mysign;
+    public Sprite[] MysignImgs;
+    string mysigncolor;
     public Text scoreTxt;
 
     [Header("Data")]
@@ -55,7 +61,6 @@ public class RaderDraw : MonoBehaviour
         {
             chart.DataSource.AddGroup(TitleTxts[i]);
         }
-        Debug.Log("Start");
     }
 
     public void buttonC(int index)
@@ -81,17 +86,33 @@ public class RaderDraw : MonoBehaviour
         }
     }
 
-    public void addData()
+    public void addData(Dictionary<string, string> Data, string surveyType)
     {
-        string[] data = new string[] { System.DateTime.Now.ToString("yy MM dd"), scoreManager.scores[0].ToString(), scoreManager.scores[1].ToString(), 
-            scoreManager.scores[2].ToString(), scoreManager.scores[3].ToString(), scoreManager.scores[4].ToString(), scoreManager.scores[5].ToString(), 
-            scoreManager.scores[6].ToString(), scoreManager.scores[7].ToString(), scoreManager.scores[8].ToString(),scoreManager.totalScore.ToString()};
+        //for문 수정
+        //배열 -> list 수정
+        /* string[] data = new string[] { System.DateTime.Now.ToString("yy MM dd"), scoreManager.scores[0].ToString(), scoreManager.scores[1].ToString(), 
+             scoreManager.scores[2].ToString(), scoreManager.scores[3].ToString(), scoreManager.scores[4].ToString(), scoreManager.scores[5].ToString(), 
+             scoreManager.scores[6].ToString(), scoreManager.scores[7].ToString(), scoreManager.scores[8].ToString(),scoreManager.totalScore.ToString()};
+ */
+        Data.Add("date", System.DateTime.Now.ToString("yy MM dd"));
+        //Data.Add("date", System.DateTime.Now.ToString("yy MM dd"));
+        //Data.Add("totalscore",scoreManager.totalScore.ToString());
 
-        scuns.SetData(data,data[0]);
+        scuns.SetData(Data, Data["date"], surveyType);
 
         Debug.Log("데이터 갯수=" + scuns.ScoreData_.Count);
 
-        buttonC(scuns.ScoreData_.Count-1);
+        buttonC(scuns.ScoreData_.Count - 1);
+
+        ResolutWinCtrl.setResolutWin(mysigncolor);
+    }
+    public void addotherData(Dictionary<string, string> Data, string surveyType)
+    {
+        var entry = new Dictionary<string, object>();
+        Data.Add("date", System.DateTime.Now.ToString("yy MM dd"));
+        entry["total"] = Data["total"];
+        entry["date"] = Data["date"];
+        scuns.DataUpload(surveyType, entry);
     }
 
     void CreateBars(int index)
@@ -132,11 +153,19 @@ public class RaderDraw : MonoBehaviour
     {
         for (int i = 0; i < data.Length; i++)
             if (Score < 92)
-                Mysign.GetComponent<Image>().color = Color.red;
+            { Mysign.GetComponent<Image>().sprite = MysignImgs[0];
+                mysigncolor = "빨간불";
+            }
             else if (92 < Score && Score < 114)
-                Mysign.GetComponent<Image>().color = Color.yellow;
+            {
+                Mysign.GetComponent<Image>().sprite = MysignImgs[1];
+                mysigncolor = "노란불";
+            }
             else if (114 < Score)
-                Mysign.GetComponent<Image>().color = Color.green;
+            {
+                Mysign.GetComponent<Image>().sprite = MysignImgs[2];
+                mysigncolor = "초록불";
+            }
     }
 
     void SetDate(int index)

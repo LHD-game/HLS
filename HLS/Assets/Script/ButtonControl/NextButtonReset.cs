@@ -15,6 +15,7 @@ public class NextButtonReset : MonoBehaviour
     private int questionsPerSet = 4;
     private int currentQuestionIndex = 0;
 
+    //삭제 스크립트?
     void Start()
     {
         nextButton = GetComponentInChildren<Button>();  // 이 부분은 기존대로 둡니다.
@@ -107,7 +108,7 @@ public class NextButtonReset : MonoBehaviour
             if (currentQuestionIndex >= totalQuestions)
             {
                 //WinCtl.Instance.GotoDatailWin();
-                RD.addData();
+                //RD.addData();
                 Time.timeScale = 1f;
             }
             else

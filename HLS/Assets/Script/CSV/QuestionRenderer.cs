@@ -1,12 +1,14 @@
 using JetBrains.Annotations;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class QuestionRenderer : MonoBehaviour
 {
+    [Header("script")]
     public SurveyCsvReader csvReader;
+    [Space(5f)]
     public GameObject buttonPrefab;
     public Transform buttonPanel;
     public Text questionText;
@@ -231,7 +233,8 @@ public class QuestionRenderer : MonoBehaviour
             }
             else
             {
-                Debug.Log("결과보기");
+                scoreManager.SetData();
+                Debug.Log("결과보기"); ///////
             }
         }
     }
