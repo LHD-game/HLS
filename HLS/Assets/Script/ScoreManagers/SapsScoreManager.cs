@@ -6,6 +6,8 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
     public int totalScore = 0; // 총점
 
+    public Dictionary<string, string> ScoreData { get; private set; }
+
     public void AddScore(int questionIndex, int answerIndex)
     {
         // SAPS에서는 선택지 인덱스를 점수로 사용합니다. (1~4점)
@@ -28,6 +30,16 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
         Debug.Log("Total Score: " + totalScore);
     }
 
+    [Header("script")]
+    public ScoreData sd;
+    public RaderDraw rd;
+    public void SetData()
+    {
+        ScoreData = new Dictionary<string, string>();
+
+        ScoreData.Add("total", totalScore.ToString());
+        rd.addotherData(ScoreData, "SAPS");
+    }
     public void ResetScores()
     {
         questionScores.Clear();

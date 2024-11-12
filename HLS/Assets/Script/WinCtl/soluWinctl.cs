@@ -27,6 +27,10 @@ public class soluWinctl : MonoBehaviour
 
     /*----------------------처방 Grid 화면-------------------------------------------------*/
 
+    private void Start()
+    {
+        setSoluWin();
+    }
     public void setSoluWin()
     {
         string name = PlayerPrefs.GetString("UserName");
@@ -70,6 +74,7 @@ public class soluWinctl : MonoBehaviour
     }
     IEnumerator setSoluPrintWin()
     {
+        Loading.SetActive(true);
         WinCtl.Instance.OpenSolutionWin();
         yield return new WaitForFixedUpdate();
         setTopImg();
@@ -149,7 +154,7 @@ public class soluWinctl : MonoBehaviour
                 Transform commentBg = TextIns.transform.Find("commentbg");
                 Text Number = commentBg.Find("Number").GetComponent<Text>();
                 Text Title = commentBg.Find("commentTitle").GetComponent<Text>();
-                Text Text = commentBg.Find("comment Txt").GetComponent<Text>();
+                Text Text = Title.gameObject.transform.Find("comment Txt").GetComponent<Text>();
                 Number.text = i.ToString();
                 Title.text = inputtext[0];
                 Text.text = inputtext[1];
@@ -198,8 +203,5 @@ public class soluWinctl : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
-
-        Loading.SetActive(true);
     }
 }

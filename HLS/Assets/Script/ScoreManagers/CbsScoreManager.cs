@@ -6,6 +6,8 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
     public int totalScore = 0; // 총점
 
+    public Dictionary<string, string> ScoreData { get; private set; }
+
     /*private float cutOffScore = -9.69f; // Cut-off 점수 초기값*/
 
     public void AddScore(int questionIndex, int answerIndex)
@@ -63,6 +65,16 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
         Debug.Log("Total Score: " + totalScore);
     }
 
+    [Header("script")]
+    public ScoreData sd;
+    public RaderDraw rd;
+    public void SetData()
+    {
+        ScoreData = new Dictionary<string, string>();
+
+        ScoreData.Add("total", totalScore.ToString());
+        rd.addotherData(ScoreData, "CBS");
+    }
     public void ResetScores()
     {
         questionScores.Clear();
