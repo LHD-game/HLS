@@ -7,6 +7,8 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
     public int totalScore = 0; // 총점
 
+    public Dictionary<string, string> ScoreData { get; private set; }
+
     // 점수 추가 (선택지 인덱스를 그대로 점수로 사용)
     public void AddScore(int questionIndex, int answerIndex)
     {
@@ -29,6 +31,17 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
 
         // 총점 디버그 메시지 출력
         Debug.Log("Total Score: " + totalScore);
+    }
+
+    [Header("script")]
+    public ScoreData sd;
+    public RaderDraw rd;
+    public void SetData()
+    {
+        ScoreData = new Dictionary<string, string>();
+
+        ScoreData.Add("total", totalScore.ToString());
+        rd.addotherData(ScoreData, "AUDIT");
     }
 
     // 점수 초기화

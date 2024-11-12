@@ -8,8 +8,12 @@ public class HisWinCtrl : MonoBehaviour
     [Header("UserSetting")]
     public Text Name;
 
+    private void Start()
+    {
+        setHisWin();
+    }
     public void setHisWin()
     {
-        Name.text = $"{PlayerPrefs.GetString("UserName")}님의 검진 결과";
+        Name.text = $"{PlayerPrefs.GetString("UserName")}님의 지난 결과를 확인 해보세요";
     }
 }
