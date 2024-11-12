@@ -67,11 +67,6 @@ public class FireBase : MonoBehaviour
         foreach (KeyValuePair<string, object> pair in ddata)
         {
             if (pair.Key.ToString() == "date") ;
-                //Debug.Log("³¯Â¥");
-            //else
-                //totalScore += Int32.Parse(pair.Value.ToString());
-
-            //Debug.Log("key = " + pair.Key + "\ndata = " + pair.Value);
 
             entry[pair.Key] = pair.Value.ToString();
         }
@@ -85,6 +80,7 @@ public class FireBase : MonoBehaviour
 
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("user").Document(UserID);
+        Debug.Log(surType);
         if (await DataCheck(UserID)&& await SDataCheck(UserID, surType, Date))
         {
             await docRef.Collection(surType).Document(Date).UpdateAsync(new Dictionary<string, object>(){

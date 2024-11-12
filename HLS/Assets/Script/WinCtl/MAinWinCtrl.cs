@@ -9,6 +9,8 @@ public class MAinWinCtl : MonoBehaviour
     public Text MenuUserName;
     public Text HelloUser;
     public Text UserRecentScore;
+    [Space(10f)]
+    public Sprite[] BenaImg;
 
     public ScoreData Sd;
 
@@ -49,5 +51,11 @@ public class MAinWinCtl : MonoBehaviour
             }
         }
         PlayerPrefs.SetString("RecentScore", UserRecentScore.text);
+    }
+
+    private void BenaImage()
+    {
+        BenaImg = Resources.LoadAll<Sprite>("sprite/main/BaneImg");
+
     }
 }

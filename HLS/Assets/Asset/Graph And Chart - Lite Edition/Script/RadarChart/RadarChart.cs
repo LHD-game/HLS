@@ -521,7 +521,7 @@ namespace ChartAndGraph
                         float rad = Radius * factor + mItemLabels.Seperation;
                         string value = ChartAdancedSettings.Instance.FormatFractionDigits(mItemLabels.FractionDigits,(float)(Mathf.Lerp((float)minValue,(float)maxValue, originfactor)), CustomNumberFormat);
                         Vector3 position = Vector3.Lerp(mDirections[index] , mDirections[nextIndex] , blend) * rad;
-                        Debug.Log($"value = {value}");
+                        //Debug.Log($"value = {value}");
                         position.z = mItemLabels.Location.Depth;
                         string toSet = mItemLabels.TextFormat.Format(value, "", "");
                         BillboardText billboard = ChartCommon.CreateBillboardText(null,mItemLabels.TextPrefab, transform, toSet, position.x, position.y, position.z,0f, transform,hideHierarchy, mItemLabels.FontSize, mItemLabels.FontSharpness);

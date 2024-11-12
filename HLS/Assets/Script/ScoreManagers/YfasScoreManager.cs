@@ -6,6 +6,7 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
     public int totalCategories = 0; // 음식 중독 범주에 해당하는 개수
     public int totalScore = 0; // 총점
+    public Dictionary<string, string> ScoreData { get; private set; }
 
     private readonly Dictionary<int, (int min, int max)> scoringRules = new Dictionary<int, (int, int)>
     {
@@ -84,8 +85,19 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
         {
             totalScore += score;
         }
+
     }
 
+    [Header("script")]
+    public ScoreData sd;
+    public RaderDraw rd;
+    public void SetData()
+    {
+        ScoreData = new Dictionary<string, string>();
+
+        ScoreData.Add("total", totalScore.ToString());
+        rd.addotherData(ScoreData, "YFAS");
+    }
     public void ResetScores()
     {
         questionScores.Clear();

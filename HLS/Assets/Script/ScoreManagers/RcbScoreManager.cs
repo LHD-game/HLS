@@ -6,6 +6,8 @@ public class RcbScoreManager : MonoBehaviour, IScoreManager
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
     public int totalScore = 0; // 총점
 
+    public Dictionary<string, string> ScoreData { get; private set; }
+
     public void AddScore(int questionIndex, int answerIndex)
     {
         // CSV 파일에서 점수를 처리하는 방식으로 변경
@@ -27,6 +29,16 @@ public class RcbScoreManager : MonoBehaviour, IScoreManager
         Debug.Log("Total Score: " + totalScore);
     }
 
+    [Header("script")]
+    public ScoreData sd;
+    public RaderDraw rd;
+    public void SetData()
+    {
+        ScoreData = new Dictionary<string, string>();
+
+        ScoreData.Add("total", totalScore.ToString());
+        rd.addotherData(ScoreData, "RCBS");
+    }
     public void ResetScores()
     {
         questionScores.Clear();
