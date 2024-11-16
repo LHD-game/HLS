@@ -8,6 +8,10 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
     public int totalScore = 0; // 총점
     public Dictionary<string, string> ScoreData { get; private set; }
 
+    public QuestionRenderer questionRenderer;
+   
+   
+
     private readonly Dictionary<int, (int min, int max)> scoringRules = new Dictionary<int, (int, int)>
     {
         { 3, (0, 1) }, { 5, (0, 2) }, { 7, (0, 3) },  // 예시: 문항 3, 5, 7에 대한 점수 규칙
@@ -37,6 +41,7 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
         Debug.Log($"Question {questionIndex} score: {score}");
         Debug.Log($"Total categories met: {totalCategories}");
         Debug.Log($"Total Score: {totalScore}"); // 총점 출력
+        questionRenderer.scoreText.text = totalScore.ToString();
     }
 
     private int CalculateScore(int questionIndex, int answerIndex)
