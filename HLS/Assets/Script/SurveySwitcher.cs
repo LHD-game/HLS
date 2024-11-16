@@ -16,6 +16,7 @@ public class SurveySwitcher : MonoBehaviour
 
     public void OnSurveyButtonClicked(string buttonName)
     {
+        Debug.Log($"OnSurveyButtonClicked called with buttonName: {buttonName}");
         surveyPanel.SetActive(true);
 
         /*// 렌더러 교체 전 초기화

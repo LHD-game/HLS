@@ -7,7 +7,7 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
     public int totalScore = 0; // 총점
 
     public Dictionary<string, string> ScoreData { get; private set; }
-
+    public QuestionRenderer questionRenderer;
     /*private float cutOffScore = -9.69f; // Cut-off 점수 초기값*/
 
     public void AddScore(int questionIndex, int answerIndex)
@@ -63,6 +63,7 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
         }
 
         Debug.Log("Total Score: " + totalScore);
+        questionRenderer.scoreText.text = totalScore.ToString();
     }
 
     [Header("script")]
