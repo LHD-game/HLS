@@ -541,8 +541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
-    m_Right: 10
+    m_Left: 20
+    m_Right: 20
     m_Top: 60
     m_Bottom: 70
   m_ChildAlignment: 1
@@ -782,7 +782,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WinCtl, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: GotoHelpWin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -832,8 +832,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 139.89635, y: -380}
-  m_SizeDelta: {x: 259.79272, y: 0}
+  m_AnchoredPosition: {x: 139.89636, y: -380}
+  m_SizeDelta: {x: 239.79272, y: 0}
   m_Pivot: {x: 0.49999997, y: 1}
 --- !u!222 &8560988768591947510
 CanvasRenderer:
@@ -1535,7 +1535,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: graph, Assembly-CSharp
-        m_MethodName: inputData
+        m_MethodName: printTestResoult
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2344,8 +2344,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 88.264244, y: -30}
-  m_SizeDelta: {x: 146.52849, y: 60}
+  m_AnchoredPosition: {x: 64.94818, y: -30}
+  m_SizeDelta: {x: 99.89636, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5013436555095403595
 CanvasRenderer:
@@ -2416,7 +2416,7 @@ MonoBehaviour:
   m_MinHeight: -1
   m_PreferredWidth: -1
   m_PreferredHeight: -1
-  m_FlexibleWidth: 2
+  m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 0
 --- !u!1 &6523110410130070969
@@ -2829,11 +2829,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6b95f12eeee7695458ab3fe032597183, type: 3}
-    m_FontSize: 7
+    m_FontSize: 11
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 0
-    m_MaxSize: 40
+    m_MinSize: 11
+    m_MaxSize: 15
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1

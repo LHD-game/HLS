@@ -44,6 +44,17 @@ public class RaderDraw : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(start());
+    }
+
+    IEnumerator start()
+    {
+        yield return new WaitForSeconds(0.2f);
+        startSet();
+    }
+
+    private void startSet()
+    {
         scuns = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>();
         if (WheelPrent.rect.width > WheelPrent.rect.height)
             chart.Radius = WheelPrent.rect.height / 3f;
@@ -63,13 +74,18 @@ public class RaderDraw : MonoBehaviour
         }
     }
 
+    public void PrintDetail(int index)
+    {
+        buttonC(index);
+        WinCtl.Instance.GotoDatailWin();
+    }
+
     public void buttonC(int index)
     {
         GetData(index); 
         DetailPrint(index);
         SetDate(index);
         CreateBars(index);
-        WinCtl.Instance.GotoDatailWin();
     }
 
     void DetailPrint(int index)
@@ -82,8 +98,9 @@ public class RaderDraw : MonoBehaviour
     {
         for (int i = 0; i < data.Length; i++) //segment -> header.Length-1
         {
-            chart.DataSource.SetValue("MyScore", TitleTxts[i], Int32.Parse(scuns.ScoreData_[index][scuns.header[i+1]].ToString()));
+            chart.DataSource.SetValue("MyScore", TitleTxts[i], Int32.Parse(scuns.ScoreData_[index][scuns.header[i + 1]].ToString()));
         }
+
     }
 
     public void addData(Dictionary<string, string> Data, string surveyType)
@@ -100,7 +117,7 @@ public class RaderDraw : MonoBehaviour
 
         scuns.SetData(Data, Data["date"], surveyType);
 
-        Debug.Log("等檜攪 偎熱=" + scuns.ScoreData_.Count);
+        //Debug.Log("等檜攪 偎熱=" + scuns.ScoreData_.Count);
 
         buttonC(scuns.ScoreData_.Count - 1);
 

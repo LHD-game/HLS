@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 1184422876400880965}
   - component: {fileID: 2665305456497099621}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: PrintDetailbtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,7 +408,7 @@ MonoBehaviour:
   horizontalPanning: 0
   verticalPanning: 0
   heightRatio: 162.5
-  widthRatio: 259.79272
+  widthRatio: 239.79272
   PointClicked:
     m_PersistentCalls:
       m_Calls: []
@@ -1226,8 +1226,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 127.39636, y: -85.77809}
-  m_SizeDelta: {x: 224.79272, y: 60}
+  m_AnchoredPosition: {x: 117.39636, y: -85.77809}
+  m_SizeDelta: {x: 204.79272, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6513240036738812894
 CanvasRenderer:
@@ -1542,8 +1542,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
-    m_Right: 10
+    m_Left: 20
+    m_Right: 20
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
