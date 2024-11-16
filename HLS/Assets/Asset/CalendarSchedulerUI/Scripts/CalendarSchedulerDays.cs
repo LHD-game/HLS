@@ -27,13 +27,18 @@ namespace Maything.UI.CalendarSchedulerUI
         // Start is called before the first frame update
         void Start()
         {
-            Initialization();
+            StartCoroutine(start());
         }
 
+        IEnumerator start()
+        {
+            yield return new WaitForSeconds(0.5f);
+            Initialization();
+        }
         public void Initialization()
         {
             ownerTransform = GetComponent<RectTransform>();
-            UpdateTheme();
+            //UpdateTheme();
             UpdateBorders();
             AddCells();
             UpdateDays(UI.year, UI.month, UI.day, UI.sundayIsFirst);
@@ -100,6 +105,7 @@ namespace Maything.UI.CalendarSchedulerUI
         {
             float singleWidth = ownerTransform.rect.width / 7f;
             float singleHeight = ownerTransform.rect.height / 6f;
+            Debug.Log($"ownerTransform.rect.width = {ownerTransform.rect.width}\n ownerTransform.rect.height = {ownerTransform.rect.height}");
             int idx = 0;
 
 
@@ -296,8 +302,8 @@ namespace Maything.UI.CalendarSchedulerUI
                     //Ôö¼ÓItem£¡
                     GameObject go = Instantiate(UI.scheduleItemTemplate, rect);
                     RectTransform goRect = go.GetComponent<RectTransform>();
-                    goRect.sizeDelta = new Vector2(rect.rect.width - 10, 25f);
-                    goRect.localPosition = new Vector3(5, -25f * day.itemCount - UI.theme.itemTopOffset);
+                    //goRect.sizeDelta = new Vector2(rect.rect.width - 10, rect.rect.height/2);
+                    //goRect.localPosition = new Vector3(5, -25f * day.itemCount - UI.theme.itemTopOffset);
 
                     CalendarSchedulerItem item = go.GetComponent<CalendarSchedulerItem>();
                     item.days = this;

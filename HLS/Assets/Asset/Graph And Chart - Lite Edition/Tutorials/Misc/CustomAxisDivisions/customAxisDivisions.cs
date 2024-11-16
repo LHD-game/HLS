@@ -13,7 +13,7 @@ public class customAxisDivisions : MonoBehaviour
         chart.DataSource.ClearCategory("Player 1");
         DateTime now = DateTime.Now; 
         for (int i = 0; i < 36; i++)
-            chart.DataSource.AddPointToCategory("Player 1", now + TimeSpan.FromDays(i * UnityEngine.Random.Range(0f, 10f)), UnityEngine.Random.Range(0f, 4f));
+            chart.DataSource.AddPointToCategory("Player 1", now + TimeSpan.FromDays(i * 10), UnityEngine.Random.Range(0f, 10f));
         DateTime month = now;
         chart.ClearHorizontalCustomDivisions();
         for (int i = 0; i < 12; i++)

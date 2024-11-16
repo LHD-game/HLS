@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SimpleView: 1
-  format: 2
+  format: 3
   withEdges2: 1
   depth:
     Automatic: 0

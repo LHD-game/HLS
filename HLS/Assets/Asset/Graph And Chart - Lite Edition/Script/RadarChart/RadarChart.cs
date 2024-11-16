@@ -326,6 +326,7 @@ namespace ChartAndGraph
 
         protected override void Update()
         {
+            AxisPointSize = 3;
             base.Update();
         }
 
@@ -437,12 +438,27 @@ namespace ChartAndGraph
             Vector3[] path = new Vector3[rowCount];
             Vector3 zAdd = Vector3.zero;
 
+            float EditPoint = 2.4f;
+            ///path를 새로운 리스트를 만들어 2차원 배열 저장.
+            ///기존에 material을 지정하는 코드 주석 처리 후 위의 리스트로 위치지정된 것을 
+            ///기존 포인트 위치와 똑같은 곳에 생성.
+            ///if(data가 n점보다 큰 경우 - 노란색 pointer생성)
+            ///이거를 데이터쪽에서 실행
             for (int i = 0; i < TotalAxisDevisions; i++)
             {
-                float rad = Radius * ((float)(i + 1) / (float)TotalAxisDevisions);
+                EditPoint = EditPoint - 0.15f * (TotalAxisDevisions-i);
+                float rad = Radius * ((float)(i + EditPoint) / (float)TotalAxisDevisions); //수정 i+EditPoint
+
                 for (int j = 0; j < rowCount; j++)
-                    path[j] = (mDirections[j] * rad) + zAdd;
-              //  path[rowCount] = path[0];
+                {
+                    //Debug.Log($"data[{j}, 0] = {data[j, 0]}");
+                    if (data[j, 0] / 4 < i+1)
+                        path[j] = (mDirections[j] * (0)) + zAdd; //원본
+                    else
+                        path[j] = (mDirections[j] * (rad)) + zAdd; //원본
+                }
+
+                //  path[rowCount] = path[0];
                 zAdd.z += AxisAdd;
                 GameObject axisObject = CreateAxisObject(AxisThickness, path);
                 mAxisObjects.Add(axisObject);
@@ -492,16 +508,20 @@ namespace ChartAndGraph
                     float angle = mItemLabels.Location.Breadth;
                     float blend = (angle / 360f);
                     blend -= Mathf.Floor(blend);
-                    blend *= rowCount;
+                    blend *= rowCount; //여기
                     int index = (int)blend;
                     int nextIndex = (index + 1) % rowCount;
                     blend = blend - Mathf.Floor(blend);
+                    EditPoint = 2.4f;
                     for (int i = 0; i < TotalAxisDevisions; i++)
-                    { 
-                        float factor = ((float)(i + 1) / (float)TotalAxisDevisions);
+                    {
+                        EditPoint = EditPoint - 0.15f * (TotalAxisDevisions - i);
+                        float factor = ((float)(i + EditPoint) / (float)TotalAxisDevisions); //수정지점
+                        float originfactor = ((float)(i + 1) / (float)TotalAxisDevisions); //수정지점
                         float rad = Radius * factor + mItemLabels.Seperation;
-                        string value = ChartAdancedSettings.Instance.FormatFractionDigits(mItemLabels.FractionDigits,(float)(Mathf.Lerp((float)minValue,(float)maxValue,factor)), CustomNumberFormat);
+                        string value = ChartAdancedSettings.Instance.FormatFractionDigits(mItemLabels.FractionDigits,(float)(Mathf.Lerp((float)minValue,(float)maxValue, originfactor)), CustomNumberFormat);
                         Vector3 position = Vector3.Lerp(mDirections[index] , mDirections[nextIndex] , blend) * rad;
+                        //Debug.Log($"value = {value}");
                         position.z = mItemLabels.Location.Depth;
                         string toSet = mItemLabels.TextFormat.Format(value, "", "");
                         BillboardText billboard = ChartCommon.CreateBillboardText(null,mItemLabels.TextPrefab, transform, toSet, position.x, position.y, position.z,0f, transform,hideHierarchy, mItemLabels.FontSize, mItemLabels.FontSharpness);

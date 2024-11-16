@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class MAinWinCtl : MonoBehaviour
 {
     public Text UserName;
+    public Text MenuUserName;
     public Text HelloUser;
     public Text UserRecentScore;
+    [Space(10f)]
+    public Sprite[] BenaImg;
 
     public ScoreData Sd;
 
@@ -20,6 +23,7 @@ public class MAinWinCtl : MonoBehaviour
     public void MainSetting()
     {
         UserName.text = PlayerPrefs.GetString("UserName");
+        MenuUserName.text = PlayerPrefs.GetString("UserName");
         HelloUser.text = $"<color=#32438B>{UserName.text}님 안녕하세요?</color>\n\nHLS에서 전문가와 함께 건강한 라이프를 만나보세요.";
         //Debug.Log("Main"+Sd.ScoreData_.Count);
         StartCoroutine(UpdateRecentScore());
@@ -47,5 +51,11 @@ public class MAinWinCtl : MonoBehaviour
             }
         }
         PlayerPrefs.SetString("RecentScore", UserRecentScore.text);
+    }
+
+    private void BenaImage()
+    {
+        BenaImg = Resources.LoadAll<Sprite>("sprite/main/BaneImg");
+
     }
 }
