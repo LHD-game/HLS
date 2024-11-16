@@ -34,6 +34,7 @@ public class WinCtl : MonoBehaviour
     public GameObject DatailWin;
     public GameObject SolutionWin;
     public GameObject TCWin;
+    public GameObject TCBtn;
     public GameObject SolutionDetailWin;
     public GameObject Menu;
     public GameObject Loading;
@@ -69,6 +70,7 @@ public class WinCtl : MonoBehaviour
     {
         WinSetting(ResolutWin);
         TCWin.SetActive(true);
+        TCBtn.SetActive(true);
         HistWin.SetActive(true);
         DatailWin.SetActive(true);
     }
@@ -107,6 +109,7 @@ public class WinCtl : MonoBehaviour
         DatailWin.SetActive(false);
         SolutionWin.SetActive(false);
         TCWin.SetActive(false);
+        TCBtn.SetActive(false);
         Menu.SetActive(false);
         SolutionDetailWin.SetActive(false);
         WinCtl_ = MainWin;
