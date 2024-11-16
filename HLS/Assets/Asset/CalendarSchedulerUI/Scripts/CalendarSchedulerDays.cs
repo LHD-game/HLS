@@ -30,9 +30,9 @@ namespace Maything.UI.CalendarSchedulerUI
             StartCoroutine(start());
         }
 
-        IEnumerator start()
+        private IEnumerator start()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
             Initialization();
         }
         public void Initialization()
