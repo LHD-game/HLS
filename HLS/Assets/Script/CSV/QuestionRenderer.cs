@@ -258,7 +258,7 @@ public class QuestionRenderer : MonoBehaviour
             surveySwitcher.surveyPanel.SetActive(false);
             Debug.Log("결과보기");
             scoreText.text = $"{Uname}님의 점수는 {scoreManager.totalScore}입니다.";
-            Debug.Log(scoreText);
+            //Debug.Log(scoreText);
         }
         //}
     }
@@ -307,7 +307,7 @@ public class QuestionRenderer : MonoBehaviour
             if (scoreManager != null)
             {
                 scoreManager.AddScore(currentQuestionIndex, answerIndex);
-                Debug.Log($"Score added: Question {currentQuestionIndex}, Answer {answerIndex}");
+                //Debug.Log($"Score added: Question {currentQuestionIndex}, Answer {answerIndex}");
             }
         }
     }

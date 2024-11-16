@@ -105,7 +105,6 @@ namespace Maything.UI.CalendarSchedulerUI
         {
             float singleWidth = ownerTransform.rect.width / 7f;
             float singleHeight = ownerTransform.rect.height / 6f;
-            Debug.Log($"ownerTransform.rect.width = {ownerTransform.rect.width}\n ownerTransform.rect.height = {ownerTransform.rect.height}");
             int idx = 0;
 
 
