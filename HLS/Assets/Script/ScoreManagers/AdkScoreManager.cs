@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class AdkScoreManager : MonoBehaviour, IScoreManager
 {
@@ -44,6 +45,8 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
         }
 
     }
+
+  
 
     [Header("script")]
     public ScoreData sd;
