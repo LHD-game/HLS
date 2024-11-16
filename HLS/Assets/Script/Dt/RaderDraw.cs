@@ -105,6 +105,7 @@ public class RaderDraw : MonoBehaviour
         buttonC(scuns.ScoreData_.Count - 1);
 
         ResolutWinCtrl.setResolutWin(mysigncolor);
+
     }
     public void addotherData(Dictionary<string, string> Data, string surveyType)
     {
@@ -173,6 +174,7 @@ public class RaderDraw : MonoBehaviour
         string date = scuns.ScoreData_[index]["date"].ToString();
         string[] dates = date.Split(" ");
         Date.text = $"{dates[1]}월 {dates[2]}일\n리포트 결과";
-        adviceTxt.text = $"{PlayerPrefs.GetString("UserName")} 님의 \n라이프 스타일 점수는\n<color=#32438B><size=15>{scuns.ScoreData_[index]["total"].ToString()}점이에요!</size></color>";
+        int textSize = adviceTxt.fontSize;
+        adviceTxt.text = $"{PlayerPrefs.GetString("UserName")} 님의 \n라이프 스타일 점수는\n<color=#32438B><size={textSize+2}>{scuns.ScoreData_[index]["total"].ToString()}점이에요!</size></color>";
     }
 }

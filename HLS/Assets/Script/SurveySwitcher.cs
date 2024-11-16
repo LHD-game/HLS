@@ -48,6 +48,7 @@ public class SurveySwitcher : MonoBehaviour
         // 돌아가기 버튼 클릭 시 패널 초기화 및 렌더러 초기화
         surveyPanel.SetActive(false);
         ClearPanel();
+        chooseSurvey.CheckItDone();
         if (currentQuestionRenderer != null)
         {
             currentQuestionRenderer.ClearButtons();

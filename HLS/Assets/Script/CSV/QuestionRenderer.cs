@@ -11,6 +11,7 @@ public class QuestionRenderer : MonoBehaviour
 {
     [Header("script")]
     public SurveyCsvReader csvReader;
+    public SurveySwitcher surveySwitcher; //설문창 닫기 용
     [Space(5f)]
     public GameObject buttonPrefab;
     public Transform buttonPanel;
@@ -43,36 +44,38 @@ public class QuestionRenderer : MonoBehaviour
      public List<Transform> hlsButtonPanels = new List<Transform>(); // 인스펙터에서 연결할 HLS 버튼 패널
  */
     // 결과창 관련 필드 
+    [Header("OtherResoult")]
     public Text typeText;
     public Text scoreText;
     public Text noticeText;
-    
+    public GameObject otherRwin;
+
     private void Start()
     {
         Ugen = PlayerPrefs.GetString("MF");
         Uname = PlayerPrefs.GetString("UserName");
-        setCsvReader();
+        //setCsvReader();
         ResetRenderer();
         InitializeProgressBar();
         UpdateNextButtonState();  // 초기화 시 항상 비활성화
-        noticeText.text = $"{Uname}님의 점수는 {scoreText.text}입니다.";
-        Debug.Log($"{Uname}님의 점수는 {scoreText.text}입니다.");
+        //noticeText.text = $"{Uname}님의 점수는 {scoreText.text}입니다.";
+        //Debug.Log($"noticeText.text");
     }
-   
-   /* public void SetupHLSLayout()
-    {
-        if (isHLSMode && hlsPanel != null)
-        {
-            hlsPanel.SetActive(true);
-            buttonPanel.gameObject.SetActive(false); // 기본 패널 비활성화
-            Debug.Log("Setting up HLS specific layout");
-        }
-        else
-        {
-            hlsPanel.SetActive(false);
-            buttonPanel.gameObject.SetActive(true); // 기본 패널 활성화
-        }
-    }*/
+
+    /* public void SetupHLSLayout()
+     {
+         if (isHLSMode && hlsPanel != null)
+         {
+             hlsPanel.SetActive(true);
+             buttonPanel.gameObject.SetActive(false); // 기본 패널 비활성화
+             Debug.Log("Setting up HLS specific layout");
+         }
+         else
+         {
+             hlsPanel.SetActive(false);
+             buttonPanel.gameObject.SetActive(true); // 기본 패널 활성화
+         }
+     }*/
 
     private void InitializeProgressBar()
     {
@@ -125,7 +128,7 @@ public class QuestionRenderer : MonoBehaviour
             Debug.LogError("CSV Reader가 설정되지 않았습니다.");
             return;
         }
-        csvReader.SetFiles(); // 파일 설정 후 데이터 로드 시작
+        //csvReader.SetFiles(); // 파일 설정 후 데이터 로드 시작
         StartCoroutine(WaitForCSVData());
     }
 
@@ -252,10 +255,18 @@ public class QuestionRenderer : MonoBehaviour
         else
         {
             scoreManager.SetData();
+            surveySwitcher.surveyPanel.SetActive(false);
             Debug.Log("결과보기");
+            scoreText.text = $"{Uname}님의 점수는 {scoreManager.totalScore}입니다.";
             Debug.Log(scoreText);
         }
         //}
+    }
+
+    public void OtherTestComplete()
+    {
+        
+        otherRwin.SetActive(true);
     }
 
     public void PreviousQuestion()
