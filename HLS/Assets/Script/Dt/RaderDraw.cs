@@ -1,13 +1,20 @@
 using ChartAndGraph;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Collections;
 using System;
+using System.Text.RegularExpressions;
 
 public class RaderDraw : MonoBehaviour
 {
+    [Header("script")]
+    private const string Pattern = @"\\n";
     public ScoreData scuns;
     public RadarChart chart;
+    public RadarChart chartBg;
     public ScoreManager scoreManager;
+    public ResolutWinCtrl ResolutWinCtrl;
     //public int segments; // 그래프의 세그먼트 수 data.Length
     public RectTransform WheelPrent;
 
@@ -20,6 +27,8 @@ public class RaderDraw : MonoBehaviour
 
     [Space(10f)]
     public GameObject Mysign;
+    public Sprite[] MysignImgs;
+    string mysigncolor;
     public Text scoreTxt;
 
     [Header("Data")]
@@ -28,6 +37,7 @@ public class RaderDraw : MonoBehaviour
     public int[] data;
     [Space(5f)]
     public Text Date;
+    public Text adviceTxt;
     [Space(5f)]
     public int Score;
 
@@ -35,12 +45,18 @@ public class RaderDraw : MonoBehaviour
     private void Start()
     {
         scuns = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>();
-        if (WheelPrent.parent.GetComponent<RectTransform>().rect.width > WheelPrent.rect.height)
+        if (WheelPrent.rect.width > WheelPrent.rect.height)
             chart.Radius = WheelPrent.rect.height / 3f;
         else
-            chart.Radius = WheelPrent.parent.GetComponent<RectTransform>().rect.width / 3f;
+            chart.Radius = WheelPrent.rect.width / 3f;
 
-        chart.Angle = 10;
+        chartBg.Radius = chart.Radius;
+        //Debug.Log(chart.Radius);
+
+        //Debug.Log(WheelPrent.rect.width + " , " + WheelPrent.rect.height);
+
+        chart.Angle = 70;
+        chartBg.Angle = chart.Angle;
         for (int i = 0; i < data.Length; i++)
         {
             chart.DataSource.AddGroup(TitleTxts[i]);
@@ -49,10 +65,10 @@ public class RaderDraw : MonoBehaviour
 
     public void buttonC(int index)
     {
-        GetData(index);
+        GetData(index); 
         DetailPrint(index);
-        SetDate(scuns.ScoreData_[index]["date"].ToString());
-        CreateBars();
+        SetDate(index);
+        CreateBars(index);
         WinCtl.Instance.GotoDatailWin();
     }
 
@@ -70,20 +86,37 @@ public class RaderDraw : MonoBehaviour
         }
     }
 
-    public void addData()
+    public void addData(Dictionary<string, string> Data, string surveyType)
     {
-        string[] data = new string[] { System.DateTime.Now.ToString("yy MM dd"), scoreManager.scores[0].ToString(), scoreManager.scores[1].ToString(), 
-            scoreManager.scores[2].ToString(), scoreManager.scores[3].ToString(), scoreManager.scores[4].ToString(), scoreManager.scores[5].ToString(), 
-            scoreManager.scores[6].ToString(), scoreManager.scores[7].ToString(), scoreManager.scores[8].ToString(),scoreManager.totalScore.ToString()};
+        //for문 수정
+        //배열 -> list 수정
+        /* string[] data = new string[] { System.DateTime.Now.ToString("yy MM dd"), scoreManager.scores[0].ToString(), scoreManager.scores[1].ToString(), 
+             scoreManager.scores[2].ToString(), scoreManager.scores[3].ToString(), scoreManager.scores[4].ToString(), scoreManager.scores[5].ToString(), 
+             scoreManager.scores[6].ToString(), scoreManager.scores[7].ToString(), scoreManager.scores[8].ToString(),scoreManager.totalScore.ToString()};
+ */
+        Data.Add("date", System.DateTime.Now.ToString("yy MM dd"));
+        //Data.Add("date", System.DateTime.Now.ToString("yy MM dd"));
+        //Data.Add("totalscore",scoreManager.totalScore.ToString());
 
-        scuns.SetData(data,data[0]);
+        scuns.SetData(Data, Data["date"], surveyType);
 
         Debug.Log("데이터 갯수=" + scuns.ScoreData_.Count);
 
-        buttonC(scuns.ScoreData_.Count-1);
+        buttonC(scuns.ScoreData_.Count - 1);
+
+        ResolutWinCtrl.setResolutWin(mysigncolor);
+
+    }
+    public void addotherData(Dictionary<string, string> Data, string surveyType)
+    {
+        var entry = new Dictionary<string, object>();
+        Data.Add("date", System.DateTime.Now.ToString("yy MM dd"));
+        entry["total"] = Data["total"];
+        entry["date"] = Data["date"];
+        scuns.DataUpload(surveyType, entry);
     }
 
-    void CreateBars()
+    void CreateBars(int index)
     {
         bars = new Slider[data.Length];
 
@@ -91,7 +124,7 @@ public class RaderDraw : MonoBehaviour
 
         for (int i = 0; i < data.Length; i++)
         {
-            float angle = (i * angleStep) - 90;
+            float angle = (i * angleStep) -110;
             Vector3 barPosition = Quaternion.Euler(0, 0, angle + 90) * Vector3.up * radius;
 
             Slider bar = Instantiate(slider, BarPos.transform.position + barPosition, Quaternion.identity, BarPos.transform);
@@ -108,6 +141,10 @@ public class RaderDraw : MonoBehaviour
             // 막대의 회전 조절
             bar.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
+            //막대의 라벨 변경
+            string LabelTxt = Regex.Replace(chart.DataSource.GetGroupName(i), Pattern, " ");
+            bar.GetComponentInChildren<Text>().text = LabelTxt;//scuns.header[i + 1].ToString();
+
         }
 
         UpdateGraph();
@@ -117,16 +154,27 @@ public class RaderDraw : MonoBehaviour
     {
         for (int i = 0; i < data.Length; i++)
             if (Score < 92)
-                Mysign.GetComponent<Image>().color = Color.red;
+            { Mysign.GetComponent<Image>().sprite = MysignImgs[0];
+                mysigncolor = "빨간불";
+            }
             else if (92 < Score && Score < 114)
-                Mysign.GetComponent<Image>().color = Color.yellow;
+            {
+                Mysign.GetComponent<Image>().sprite = MysignImgs[1];
+                mysigncolor = "노란불";
+            }
             else if (114 < Score)
-                Mysign.GetComponent<Image>().color = Color.green;
+            {
+                Mysign.GetComponent<Image>().sprite = MysignImgs[2];
+                mysigncolor = "초록불";
+            }
     }
 
-    void SetDate(string date)
+    void SetDate(int index)
     {
+        string date = scuns.ScoreData_[index]["date"].ToString();
         string[] dates = date.Split(" ");
         Date.text = $"{dates[1]}월 {dates[2]}일\n리포트 결과";
+        int textSize = adviceTxt.fontSize;
+        adviceTxt.text = $"{PlayerPrefs.GetString("UserName")} 님의 \n라이프 스타일 점수는\n<color=#32438B><size={textSize+2}>{scuns.ScoreData_[index]["total"].ToString()}점이에요!</size></color>";
     }
 }

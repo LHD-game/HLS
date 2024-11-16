@@ -17,6 +17,9 @@ public class FirebaseTest : MonoBehaviour
 {
     // TODO: 아래 필드명들은 데이터 스키마로 명확히 정리되어야 함 (JSON 트리 예제 작성되면 가장 좋음)
     //     PascalCase 보다 camelCase 로 변수명 선언하면 좋을 것
+
+    [Header("SignInText")]
+    public GameObject SignInUI;     //ID값 
     public InputField IdText;     //ID값 
     public InputField PwText;     //PW값
     public InputField IdTextSignIn;     //ID값 
@@ -33,7 +36,9 @@ public class FirebaseTest : MonoBehaviour
     public Image Check2; //약관체크2
     bool check2 = true;
     //로그인오류문구
+    [Header("LogInError")]
     public Text LoginError;
+    [Header("SignInError")]
     //회원가입 오류 문구
     public Text mailError;
     public Text pass1Error;
@@ -42,6 +47,9 @@ public class FirebaseTest : MonoBehaviour
     public Text birthError;
     public Text mfError;
     public Text termError;
+
+    [Header("Panel")]
+    public GameObject SignInComplete;
 
     string mf = "";             //회원가입시 사용할 성별값
     bool nameBool = false;          //회원가입시 이름 확인
@@ -72,6 +80,8 @@ public class FirebaseTest : MonoBehaviour
         //복호화 과정
         DecryptPw = await DecryptAsync(await FireBase.DataLoad(Id, "Password"));
 
+        Debug.Log(DecryptPw);
+
         //Data값 = FireBase.DataLoad([유저 ID], [Key값]) | Dictionary형 자료임으로 Key(string)를 통해 Data(string)를 찾음
         if (DecryptPw == Pw)
         {
@@ -82,6 +92,7 @@ public class FirebaseTest : MonoBehaviour
         }
         else if (DecryptPw == null) //로그인 실패시 아이디 비번 오류 발생
         {
+            Debug.Log("로그인 오류");
             LoginError.gameObject.SetActive(true);
         }
         else
@@ -101,8 +112,16 @@ public class FirebaseTest : MonoBehaviour
         string Id = IdTextSignIn.text;    //자료형변환
         string Pw = PwTextSignIn.text;
         string Pw2 = PwTextSignIn2.text;
-        string Name = NameText.text;
+        string name = NameText.text;
         string Birth = BirthText.text;
+
+        mailError.gameObject.SetActive(false);
+        pass1Error.gameObject.SetActive(false);
+        pass2Error.gameObject.SetActive(false);
+        birthError.gameObject.SetActive(false);
+        mfError.gameObject.SetActive(false);
+        nameError.gameObject.SetActive(false);
+        termError.gameObject.SetActive(false);
 
         if (regex.IsMatch(Id))    //이메일 형식 확인
         {
@@ -161,16 +180,16 @@ public class FirebaseTest : MonoBehaviour
         }
         else
         {
-            mfError.gameObject.SetActive(true);
+            nameError.gameObject.SetActive(true);
         }
 
         if (mf != "")
         {
-            nameBool = true;
+            mfBool = true;
         }
         else
         {
-            nameError.gameObject.SetActive(true);
+            mfError.gameObject.SetActive(true);
         }
 
         if (!termBool)
@@ -178,26 +197,58 @@ public class FirebaseTest : MonoBehaviour
             termError.gameObject.SetActive(true);
         }
 
+        Debug.Log(emailBool +"+"+ pwBool + "+" + nameBool + "+" + birthBool + "+" + mfBool + "+" + termBool);
         if (emailBool == true && pwBool == true && nameBool == true && birthBool == true && mfBool == true && termBool == true)
         {
 
             //FireBase.DataSave([유저 ID], [Key값], [Data값]) | Dictionary형 자료임으로 Key(string)와 Data(string)를 동시에 저장
             //ID와 Key가 겹칠시 자동으로 덮어쓰기되므로 주의
-            await FireBase.DataSave(Id, "Name", Name);
+            await FireBase.DataSave(Id, "Name", name);
             await FireBase.DataSave(Id, "Password", Encrypt(Pw));
             await FireBase.DataSave(Id, "Birth", Birth);
             await FireBase.DataSave(Id, "MF", mf);
 
             Debug.Log("가입 성공");
+
+            SignInComplete.SetActive(true);
+            ResetStatus();
+
         }
         else
         {
 
         }
-        Debug.Log(Id +" "+ Pw + " " + Pw2 + " " + Name + " " + Birth + " " + mf);
         emailBool = false;
         pwBool = false;
         birthBool = false;
+        nameBool = false;
+    }
+
+    public void ResetStatus()
+    {
+
+        mailError.gameObject.SetActive(false);
+        pass1Error.gameObject.SetActive(false);
+        pass2Error.gameObject.SetActive(false);
+        birthError.gameObject.SetActive(false);
+        mfError.gameObject.SetActive(false);
+        nameError.gameObject.SetActive(false);
+        termError.gameObject.SetActive(false);
+
+        IdTextSignIn.text = "";
+        PwTextSignIn.text = "";
+        PwTextSignIn2.text = "";
+        NameText.text = "";
+        BirthText.text = "";
+        Male.color = new Color(233 / 255f, 233 / 255f, 233 / 255f, 1f);
+        Male.sprite = Resources.Load<Sprite>("UI/block_01");
+        Male.gameObject.transform.GetChild(0).GetComponent<Text>().color = new Color(137 / 255f, 137 / 255f, 137 / 255f, 1f);
+        Female.color = new Color(233 / 255f, 233 / 255f, 233 / 255f, 1f);
+        Female.sprite = Resources.Load<Sprite>("UI/block_01");
+        Female.gameObject.transform.GetChild(0).GetComponent<Text>().color = new Color(137 / 255f, 137 / 255f, 137 / 255f, 1f);
+        mf = "";
+        if (termBool)
+            TermCheckAll();
     }
 
 
@@ -246,7 +297,7 @@ public class FirebaseTest : MonoBehaviour
             check2 = true;
             termBool = false;
         }
-        Debug.Log("a"+checkAll+"1"+check1+"2"+check2+"3");
+        Debug.Log("a"+checkAll+"1"+check1+"2"+check2);
     }
     public void TermCheck1()
     {
