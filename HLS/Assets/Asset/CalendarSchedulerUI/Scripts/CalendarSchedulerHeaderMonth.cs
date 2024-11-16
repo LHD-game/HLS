@@ -22,7 +22,6 @@ namespace Maything.UI.CalendarSchedulerUI
         // Start is called before the first frame update
         void Start()
         {
-            ownerTransform = GetComponent<RectTransform>();
 
             UpdateTheme();
             UpdateMonthText();
@@ -34,6 +33,7 @@ namespace Maything.UI.CalendarSchedulerUI
         }
         public void UpdateTheme()
         {
+            ownerTransform = GetComponent<RectTransform>();
             if (UI == null) return;
             if (UI.theme == null) return;
             if (UI.language == null) return;

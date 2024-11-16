@@ -59,13 +59,13 @@ public class ScoreData : MonoBehaviour
     {
         header = Regex.Split(Headers, ",");
         otherheader = Regex.Split(otherHeaders, ",");
-        Debug.Log("헤더길이=" + header.Length);
+        //Debug.Log("헤더길이=" + header.Length);
     }
     public void SetData(Dictionary<string, string> Data, string Date, string surveyType) //데이터 삽입
     {
         var entry = new Dictionary<string, object>();
 
-        Debug.Log("헤더길이=" + header.Length);
+        //Debug.Log("헤더길이=" + header.Length);
         for (var j = 0; j < header.Length; j++)
         {
             entry[header[j]] = Data[header[j]];
@@ -140,7 +140,7 @@ public class ScoreData : MonoBehaviour
             ScoreData_.Add(await FireBase.ScoreDataLoad(documentSnapshot, surtype, id));
         }
 
-        Debug.Log("FireBaseLoad" + ScoreData_.Count);
+        //Debug.Log("FireBaseLoad" + ScoreData_.Count);
     }
     //|-------------------------------------------------------------------------|
 }

@@ -80,7 +80,7 @@ public class FireBase : MonoBehaviour
 
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("user").Document(UserID);
-        Debug.Log(surType);
+        //Debug.Log(surType);
         if (await DataCheck(UserID)&& await SDataCheck(UserID, surType, Date))
         {
             await docRef.Collection(surType).Document(Date).UpdateAsync(new Dictionary<string, object>(){
@@ -103,15 +103,15 @@ public class FireBase : MonoBehaviour
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("user").Document(UserID);
         DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-        Debug.Log(UserID);
+        //Debug.Log(UserID);
         if (snapshot.Exists)
         {
-            Debug.Log("유저 검색 성공");
+            //Debug.Log("유저 검색 성공");
             data = true;
         }
         else
         {
-            Debug.Log("유저 검색 실패");
+            //Debug.Log("유저 검색 실패");
         }
         return data;
     }
@@ -125,15 +125,15 @@ public class FireBase : MonoBehaviour
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("user").Document(UserID).Collection(sur).Document(Date);
         DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-        Debug.Log(UserID);
+        //Debug.Log(UserID);
         if (snapshot.Exists)
         {
-            Debug.Log("설문존재");
+            //Debug.Log("설문존재");
             data = true;
         }
         else
         {
-            Debug.Log("설문비존재");
+            //Debug.Log("설문비존재");
         }
         return data;
     }

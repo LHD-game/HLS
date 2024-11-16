@@ -302,7 +302,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: graph, Assembly-CSharp
-        m_MethodName: inputData
+        m_MethodName: printTestResoult
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
