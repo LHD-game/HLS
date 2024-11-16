@@ -10,6 +10,15 @@ public class FtnScoreManager : MonoBehaviour, IScoreManager
 
     public Dictionary<string, string> ScoreData { get; private set; }
 
+
+    private void Start()
+    {
+        if (questionRenderer != null && questionRenderer.scoreText != null)
+        {
+            questionRenderer.scoreText.text = totalScore.ToString(); // 초기값 설정
+        }
+    }
+
     public void AddScore(int questionIndex, int answerIndex)
     {
         // 0점, 1점, 2점, 3점
@@ -29,7 +38,8 @@ public class FtnScoreManager : MonoBehaviour, IScoreManager
         }
 
         Debug.Log("Total Score: " + totalScore);
-        questionRenderer.scoreText.text = totalScore.ToString();
+        Debug.Log(totalScore.ToString());
+        questionRenderer.scoreText.text = totalScore.ToString(); // 최종 점수 반영
     }
 
     [Header("script")]

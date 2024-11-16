@@ -30,6 +30,9 @@ public class SurveySwitcher : MonoBehaviour
         previousQuestionRenderer = currentQuestionRenderer;*/
     }
 
+ 
+
+
     // 기존 버튼 제거
     public void ClearPanel()
     {
