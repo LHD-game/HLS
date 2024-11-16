@@ -40,7 +40,11 @@ public class graph : MonoBehaviour
         // horiAxis.MainDivisions.Total = chart.DataSource.GetPointCount("History")-1;
     }
     
-
+    public void printTestResoult()
+    {
+        inputData();
+        WinCtl.Instance.GotoHistWin();
+    }
     public void inputData()  //데이터 가져와 넣기
     {
         Sd = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>();
@@ -61,9 +65,8 @@ public class graph : MonoBehaviour
         }
         recommendSetting();
         inputSchedule();
-        Debug.Log("데이터갯수=" + chart.DataSource.GetPointCount("History"));
+        //Debug.Log("데이터갯수=" + chart.DataSource.GetPointCount("History"));
         chart.DataSource.EndBatch();
-        WinCtl.Instance.GotoHistWin();
     }
     
     public void recommendSetting()
@@ -77,13 +80,13 @@ public class graph : MonoBehaviour
     public void inputSchedule()
     {
         SD_ = GameObject.FindGameObjectWithTag("ScoreData").GetComponent<ScoreData>().ScoreData_; //데이터 list
-        Debug.Log("개수:"+SD_.Count);
+        //Debug.Log("개수:"+SD_.Count);
         for (int i = 1; i < SD_.Count+1; i++)
         {
             DateTime Date = Convert.ToDateTime(SD_[SD_.Count - i]["date"]);
             int TotalData = Convert.ToInt32(SD_[SD_.Count - i]["total"]);
             schedule.addSingleTestScore(Date, TotalData);
-            Debug.Log("스케쥴"+i);
+            //Debug.Log("스케쥴"+i);
         }
     }
 
@@ -94,10 +97,12 @@ public class graph : MonoBehaviour
         resultDate.text = args.XString;
         resultScore.text = args.YString;
         index = args.Index; //리스트에서 특정 날짜 값 뺴는 용도
-        Debug.Log("ind = "+index);
+        //Debug.Log("ind = "+index);
     }
     public void DetailP()
     {
-        raderDraw.buttonC(index); //디테일창 출력
+        if (Sd.ScoreData_.Count == 0) return;
+        else
+            raderDraw.PrintDetail(index); //디테일창 출력
     }
 }

@@ -36,10 +36,13 @@ public class WinCtl : MonoBehaviour
     public GameObject TCWin;
     public GameObject TCBtn;
     public GameObject SolutionDetailWin;
+    public GameObject HelpWin;
     public GameObject Menu;
     public GameObject Loading;
 
     GameObject WinCtl_;
+
+    private bool coRisRunning=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,13 +52,17 @@ public class WinCtl : MonoBehaviour
 
     private IEnumerator WinSetting(GameObject nowWin)
     {
+        coRisRunning = true;
+        Debug.Log("Loadingopen");
         Loading.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        WinCtl_.SetActive(false);
         yield return new WaitForSeconds(0.2f);
+        WinCtl_.SetActive(false);
         WinCtl_ = nowWin;
         WinCtl_.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
+        coRisRunning = false;   
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("Loadingclose");
         Loading.SetActive(false);
     }
 
@@ -76,14 +83,26 @@ public class WinCtl : MonoBehaviour
     {
         StartCoroutine(WinSetting(ResolutWin));
         TCWin.SetActive(true);
-        TCBtn.SetActive(true);
         HistWin.SetActive(true);
         DatailWin.SetActive(true);
+        StartCoroutine(Waitco(ResolutWin));
     }
+
+    private IEnumerator Waitco(GameObject Window)
+    {
+        while (coRisRunning)
+        {
+            Debug.Log("While");
+            yield return new WaitForSeconds(0.1f);
+        }
+        Window.SetActive(false);
+        Window.SetActive(true);
+    }
+
     public void GotoHistWin()
     {
         StartCoroutine(WinSetting(HistWin));
-        ResolutWin.SetActive(true);
+        StartCoroutine(Waitco(ResolutWin));
     }
     public void GotosurveyWin()
     {
@@ -97,6 +116,10 @@ public class WinCtl : MonoBehaviour
     public void GotoSolutionWin()
     {
         StartCoroutine(WinSetting(SolutionWin));
+    }
+    public void GotoHelpWin()
+    {
+        StartCoroutine(WinSetting(HelpWin));
     }
     public void OpenSolutionWin()
     {
@@ -115,6 +138,7 @@ public class WinCtl : MonoBehaviour
         SolutionWin.SetActive(false);
         TCWin.SetActive(false);
         TCBtn.SetActive(false);
+        HelpWin.SetActive(false);
         Menu.SetActive(false);
         SolutionDetailWin.SetActive(false);
         WinCtl_ = MainWin;

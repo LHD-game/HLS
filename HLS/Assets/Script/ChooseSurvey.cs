@@ -37,7 +37,6 @@ public class ChooseSurvey : MonoBehaviour
         /*questionRenderer.setCsvReader();*/
         for (int i = 0; i < buttonparent.childCount; i++)
         {
-            Debug.Log(i);
             buttons[i] = buttonparent.GetChild(i).gameObject;
         }
 

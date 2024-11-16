@@ -17,7 +17,7 @@ public class SurveyCsvReader : MonoBehaviour
 
     public void SetFiles()
     {
-        Debug.Log("SetFiles() 메서드 호출");
+        //Debug.Log("SetFiles() 메서드 호출");
         csvData.Clear();
         filePath = Path.Combine(Application.streamingAssetsPath, fileName);
         filePath += ".csv";
@@ -31,8 +31,8 @@ public class SurveyCsvReader : MonoBehaviour
         Debug.Log("CSV Data Loaded:");
         for (int i = 0; i < dataCount; i++)
         {
-            Debug.Log("Row " + i + ": " + string.Join(",", csvData[i]));
-            Debug.Log(csvData[i]);
+            //Debug.Log("Row " + i + ": " + string.Join(",", csvData[i]));
+            //Debug.Log(csvData[i]);
         }
         Debug.Log($"CSV 파일에서 {dataCount}개의 질문이 로드되었습니다.");
     }

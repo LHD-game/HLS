@@ -44,7 +44,7 @@ public class HlsScoreManager : MonoBehaviour, IScoreManager
         }
 
         // 총점 디버그 메시지 출력
-        Debug.Log("Total Score: " + totalScore);
+        //Debug.Log("Total Score: " + totalScore);
         questionRenderer.scoreText.text = totalScore.ToString();
     }
 
@@ -57,11 +57,11 @@ public class HlsScoreManager : MonoBehaviour, IScoreManager
         {
             count++;
             groupScore += score;
-            Debug.Log($"count%4={count % 4}");
+            //Debug.Log($"count%4={count % 4}");
             if (count % 4 == 0)
             {
-                Debug.Log($"count/4={count / 4}");
-                Debug.Log($"{sd.header[(count / 4) - 1]}");
+                //Debug.Log($"count/4={count / 4}");
+                //Debug.Log($"{sd.header[(count / 4) - 1]}");
                 if ((count / 4)-1 < 9)
                     ScoreData.Add(sd.header[(count / 4)-1], groupScore.ToString());
                 groupScore = 0;
@@ -78,6 +78,6 @@ public class HlsScoreManager : MonoBehaviour, IScoreManager
     {
         questionScores.Clear();
         totalScore = 0;
-        Debug.Log("Scores Reset");
+        //Debug.Log("Scores Reset");
     }
 }
