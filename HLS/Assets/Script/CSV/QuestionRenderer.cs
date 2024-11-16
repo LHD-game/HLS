@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Firebase.Firestore;
 
 public class QuestionRenderer : MonoBehaviour
 {
@@ -29,18 +30,24 @@ public class QuestionRenderer : MonoBehaviour
     public IScoreManager scoreManager;
 
     // HLS 관련 필드
-    public GameObject hlsPanel;
+   /* public GameObject hlsPanel;
     public bool isHLSMode = false;
     public List<Text> hlsQuestions = new List<Text>(); // 인스펙터에서 연결할 HLS 질문 Text
     public List<Transform> hlsButtonPanels = new List<Transform>(); // 인스펙터에서 연결할 HLS 버튼 패널
+*/
+    // 결과창 관련 필드 
+    public Text typeText;
+    public Text scoreText;
 
     private void Start()
     {
+        setCsvReader();
+        ResetRenderer();
         InitializeProgressBar();
         UpdateNextButtonState();  // 초기화 시 항상 비활성화
     }
 
-    public void SetupHLSLayout()
+   /* public void SetupHLSLayout()
     {
         if (isHLSMode && hlsPanel != null)
         {
@@ -53,7 +60,7 @@ public class QuestionRenderer : MonoBehaviour
             hlsPanel.SetActive(false);
             buttonPanel.gameObject.SetActive(true); // 기본 패널 활성화
         }
-    }
+    }*/
 
     private void InitializeProgressBar()
     {
@@ -89,23 +96,25 @@ public class QuestionRenderer : MonoBehaviour
         selectedButton = null;
         UpdateNextButtonState();
         UpdateProgressBar();
-
-        if (isHLSMode)
+        scoreText.text = "";
+        /*if (isHLSMode)
         {
             SetupHLSLayout();
-        }
+        }*/
 
         Debug.Log("QuestionRenderer 초기화 완료");
     }
 
     public void setCsvReader()
     {
+        Debug.Log("setCsvReader 호출됨");
+        ResetRenderer();
         if (csvReader == null)
         {
             Debug.LogError("CSV Reader가 설정되지 않았습니다.");
             return;
         }
-
+        csvReader.SetFiles(); // 파일 설정 후 데이터 로드 시작
         StartCoroutine(WaitForCSVData());
     }
 
@@ -115,16 +124,17 @@ public class QuestionRenderer : MonoBehaviour
         {
             yield return null;
         }
+        RenderQuestion();
 
         Debug.Log("CSV 데이터 로드 완료, 질문 렌더링 시작");
-        if (isHLSMode)
+        /*if (isHLSMode)
         {
             RenderHLSQuestions();
         }
         else
         {
             RenderQuestion();
-        }
+        }*/
     }
 
     public void RenderQuestion()
@@ -156,7 +166,7 @@ public class QuestionRenderer : MonoBehaviour
         }
     }
 
-    public void RenderHLSQuestions()
+    /*public void RenderHLSQuestions()
     {
         if (csvReader.csvData.Count < 5)
         {
@@ -187,11 +197,7 @@ public class QuestionRenderer : MonoBehaviour
                 btn.onClick.AddListener(() => OnAnswerButtonClicked(btn));
             }
         }
-    }
-
-
-
-
+    }*/
 
     private void CreateButton(string choiceText)
     {
@@ -219,29 +225,30 @@ public class QuestionRenderer : MonoBehaviour
 
     public void NextQuestion()
     {
-        if (isHLSMode)
+        /*if (isHLSMode)
         {
             currentQuestionIndex += 5; // HLS 모드에서는 한 번에 5개씩 이동
             RenderHLSQuestions();
         }
         else
+        {*/
+        if (currentQuestionIndex + 1 < csvReader.csvData.Count)
         {
-            if (currentQuestionIndex + 1 < csvReader.csvData.Count)
-            {
-                currentQuestionIndex++;
-                RenderQuestion();
-            }
-            else
-            {
-                scoreManager.SetData();
-                Debug.Log("결과보기"); ///////
-            }
+            currentQuestionIndex++;
+            RenderQuestion();
         }
+        else
+        {
+            scoreManager.SetData();
+            Debug.Log("결과보기");
+            Debug.Log(scoreText);
+        }
+        //}
     }
 
     public void PreviousQuestion()
     {
-        if (isHLSMode)
+        /*if (isHLSMode)
         {
             // HLS 모드에서는 한 번에 5개씩 이동
             currentQuestionIndex -= 5;
@@ -252,13 +259,13 @@ public class QuestionRenderer : MonoBehaviour
             RenderHLSQuestions();
         }
         else
+        {*/
+        if (currentQuestionIndex > 0)
         {
-            if (currentQuestionIndex > 0)
-            {
-                currentQuestionIndex--;
-                RenderQuestion();
-            }
+            currentQuestionIndex--;
+            RenderQuestion();
         }
+        //}
     }
 
 

@@ -8,6 +8,8 @@ public class HlsScoreManager : MonoBehaviour, IScoreManager
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
     [SerializeField] public int totalScore = 0; // 총점
 
+    public QuestionRenderer questionRenderer;
+
     [Header("script")]
     public ScoreData sd;
     public RaderDraw rd;
@@ -43,6 +45,7 @@ public class HlsScoreManager : MonoBehaviour, IScoreManager
 
         // 총점 디버그 메시지 출력
         Debug.Log("Total Score: " + totalScore);
+        questionRenderer.scoreText.text = totalScore.ToString();
     }
 
     public void SetData()

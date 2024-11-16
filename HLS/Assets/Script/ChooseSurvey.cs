@@ -14,7 +14,7 @@ public class ChooseSurvey : MonoBehaviour
     [Space(5f)]
     // 추가: Title 텍스트를 위한 변수
     [Header("OBJ")]
-    //public Text titleText;
+    public Text titleText;
     public Transform buttonparent;
     [SerializeField]
     private GameObject[] buttons;
@@ -29,15 +29,19 @@ public class ChooseSurvey : MonoBehaviour
     public YFASScoreManager yfasScoreManager;
     public FtnScoreManager ftnScoreManager;
     public HlsScoreManager hlsScoreManager;
+    
+      
 
     private void Start()
     {
+
+        /*questionRenderer.setCsvReader();*/
         CheckItDone();
-        /*for (int i = 0; i < buttonparent.childCount; i++)
+        for (int i = 0; i < buttonparent.childCount; i++)
         {
             Debug.Log(i);
             buttons[i] = buttonparent.GetChild(i).gameObject;
-        }*/
+        }
     }
     async public void CheckItDone()//서버에 오늘자 데이터 있는지 확인
     {
@@ -67,48 +71,66 @@ public class ChooseSurvey : MonoBehaviour
     public void ButtonEvent()
     {
         UpdatePanel();
+        Debug.Log("ButtonEvent() called");
+
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
+        titleText.text = clickBtn.name;
+
+        // SurveySwitcher를 통해 패널 활성화
+        switcher.OnSurveyButtonClicked(clickBtn.name);
         Debug.Log($"Button clicked: {clickBtn.name}");
 
         // 1. 선택된 버튼의 이름으로 파일 설정
         csvReader.fileName = clickBtn.name;
         csvReader.SetFiles();
 
+        questionRenderer.ResetRenderer(); // 상태 초기화 추가
+                                          // 데이터 로드 및 질문 렌더링
+        questionRenderer.setCsvReader(); // 데이터 로드 시작
+
         // 2. ScoreManager 할당 - 버튼 이름에 따라 해당하는 ScoreManager를 동적으로 설정
         switch (clickBtn.name)
         {
             case "AUDIT":
                 questionRenderer.scoreManager = adkScoreManager;
-                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                questionRenderer.typeText.text = "알코올중독";
                 break;
             case "RCBS":
                 questionRenderer.scoreManager = rcbScoreManager;
-                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                questionRenderer.typeText.text = "쇼핑중독 유형1";
                 break;
             case "CBS":
                 questionRenderer.scoreManager = cbsScoreManager;
-                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                questionRenderer.typeText.text = "쇼핑중독 유형2";
                 break;
             case "SAPS":
                 questionRenderer.scoreManager = sapsScoreManager;
-                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                questionRenderer.typeText.text = "스마트폰중독";
                 break;
             case "YFAS":
                 questionRenderer.scoreManager = yfasScoreManager;
-                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                questionRenderer.typeText.text = "과식중독";
                 break;
             case "FTND":
                 questionRenderer.scoreManager = ftnScoreManager;
-                questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
+                questionRenderer.typeText.text = "니코틴중독";
                 break;
             case "HLS":
                 questionRenderer.scoreManager = hlsScoreManager;
-                questionRenderer.isHLSMode = true; // HLS 모드 활성화
+                //questionRenderer.isHLSMode = true; // HLS 모드 활성화
+                questionRenderer.typeText.text = "HLS 건강";
                 break;
             default:
                 Debug.LogWarning("Unknown survey type");
                 break;
         }
+        
 
     }
 
@@ -133,6 +155,7 @@ public class ChooseSurvey : MonoBehaviour
 
     public void UpdatePanel()
     {
+        questionRenderer.setCsvReader(); // 초기화
         switcher.ClearPanel();
         switcher.OnClickBack();
     }

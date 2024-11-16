@@ -6,6 +6,8 @@ public class FtnScoreManager : MonoBehaviour, IScoreManager
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
     public int totalScore = 0; // 총점
 
+    public QuestionRenderer questionRenderer;
+
     public Dictionary<string, string> ScoreData { get; private set; }
 
     public void AddScore(int questionIndex, int answerIndex)
@@ -27,6 +29,7 @@ public class FtnScoreManager : MonoBehaviour, IScoreManager
         }
 
         Debug.Log("Total Score: " + totalScore);
+        questionRenderer.scoreText.text = totalScore.ToString();
     }
 
     [Header("script")]
