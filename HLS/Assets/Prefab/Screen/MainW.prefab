@@ -544,7 +544,7 @@ MonoBehaviour:
     m_Left: 10
     m_Right: 10
     m_Top: 60
-    m_Bottom: 20
+    m_Bottom: 70
   m_ChildAlignment: 1
   m_Spacing: 20
   m_ChildForceExpandWidth: 1
@@ -806,8 +806,8 @@ GameObject:
   - component: {fileID: 1276717505712714904}
   - component: {fileID: 3742692538652143018}
   - component: {fileID: 6602082850821151117}
-  - component: {fileID: 8328101681764966882}
   - component: {fileID: 4088194107979941643}
+  - component: {fileID: 2336919444338155026}
   m_Layer: 5
   m_Name: Bena
   m_TagString: Untagged
@@ -832,9 +832,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 108.35214, y: -450.00003}
-  m_SizeDelta: {x: 196.7043, y: 0}
-  m_Pivot: {x: 0.49999997, y: 0.49999988}
+  m_AnchoredPosition: {x: 139.89635, y: -380}
+  m_SizeDelta: {x: 259.79272, y: 0}
+  m_Pivot: {x: 0.49999997, y: 1}
 --- !u!222 &8560988768591947510
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -957,20 +957,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
---- !u!114 &8328101681764966882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567792819154662201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 2.361752
 --- !u!114 &4088194107979941643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,11 +972,25 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: 84
-  m_PreferredWidth: 150
+  m_PreferredWidth: 330
   m_PreferredHeight: 140
-  m_FlexibleWidth: -1
+  m_FlexibleWidth: 0
   m_FlexibleHeight: 1
-  m_LayoutPriority: 2
+  m_LayoutPriority: 0
+--- !u!114 &2336919444338155026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567792819154662201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 2.5
 --- !u!1 &3699378603799863364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,18 +1844,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: soluWinctl, Assembly-CSharp
-        m_MethodName: setSoluWin
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &5582371204807556519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,7 +2252,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: 10}
+  m_AnchoredPosition: {x: 0, y: 10}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1987375402715226818
@@ -2356,8 +2344,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 67.23477, y: -30}
-  m_SizeDelta: {x: 104.469536, y: 60}
+  m_AnchoredPosition: {x: 88.264244, y: -30}
+  m_SizeDelta: {x: 146.52849, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5013436555095403595
 CanvasRenderer:

@@ -34,14 +34,14 @@ public class ChooseSurvey : MonoBehaviour
 
     private void Start()
     {
-
         /*questionRenderer.setCsvReader();*/
-        CheckItDone();
         for (int i = 0; i < buttonparent.childCount; i++)
         {
             Debug.Log(i);
             buttons[i] = buttonparent.GetChild(i).gameObject;
         }
+
+        CheckItDone();
     }
     async public void CheckItDone()//서버에 오늘자 데이터 있는지 확인
     {
@@ -52,14 +52,15 @@ public class ChooseSurvey : MonoBehaviour
             if (await CheckTodayTest(buttons[i].name))
             {
                 checkImg.SetActive(true);
-                // 기존 모든 클릭 이벤트 제거
-                btn.onClick.RemoveAllListeners();
-
-                // 새 클릭 이벤트 추가
+                // 완료 이벤트
                 btn.onClick.AddListener(ItsDone);
             }
             else
+            {
                 checkImg.SetActive(false);
+                //검사이벤트
+                btn.onClick.AddListener(ButtonEvent);
+            }
         }
     }
 
@@ -74,7 +75,7 @@ public class ChooseSurvey : MonoBehaviour
         Debug.Log("ButtonEvent() called");
 
         GameObject clickBtn = EventSystem.current.currentSelectedGameObject;
-        titleText.text = clickBtn.name;
+        //titleText.text = clickBtn.name;
 
         // SurveySwitcher를 통해 패널 활성화
         switcher.OnSurveyButtonClicked(clickBtn.name);
@@ -94,44 +95,45 @@ public class ChooseSurvey : MonoBehaviour
             case "AUDIT":
                 questionRenderer.scoreManager = adkScoreManager;
                 //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
-                questionRenderer.typeText.text = "알코올중독";
+                //questionRenderer.typeText.text = "알코올중독";
                 break;
             case "RCBS":
                 questionRenderer.scoreManager = rcbScoreManager;
                 //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
-                questionRenderer.typeText.text = "쇼핑중독 유형1";
+                //questionRenderer.typeText.text = "쇼핑중독 유형1";
                 break;
             case "CBS":
                 questionRenderer.scoreManager = cbsScoreManager;
                 //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
-                questionRenderer.typeText.text = "쇼핑중독 유형2";
+                //questionRenderer.typeText.text = "쇼핑중독 유형2";
                 break;
             case "SAPS":
                 questionRenderer.scoreManager = sapsScoreManager;
                 //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
-                questionRenderer.typeText.text = "스마트폰중독";
+                //questionRenderer.typeText.text = "스마트폰중독";
                 break;
             case "YFAS":
                 questionRenderer.scoreManager = yfasScoreManager;
                 //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
-                questionRenderer.typeText.text = "과식중독";
+                //questionRenderer.typeText.text = "과식중독";
                 break;
             case "FTND":
                 questionRenderer.scoreManager = ftnScoreManager;
                 //questionRenderer.isHLSMode = false; // HLS 모드 비활성화
-                questionRenderer.typeText.text = "니코틴중독";
+                //questionRenderer.typeText.text = "니코틴중독";
                 break;
             case "HLS":
                 questionRenderer.scoreManager = hlsScoreManager;
                 //questionRenderer.isHLSMode = true; // HLS 모드 활성화
-                questionRenderer.typeText.text = "HLS 건강";
+                //questionRenderer.typeText.text = "HLS 건강";
                 break;
             default:
                 Debug.LogWarning("Unknown survey type");
                 break;
         }
-        
 
+        string testName = clickBtn.transform.Find("smallTxt").GetComponent<Text>().text;
+        questionRenderer.typeText.text = $"{testName} \n자가진단 테스트 결과";
     }
 
     IEnumerator warningWinCtl()

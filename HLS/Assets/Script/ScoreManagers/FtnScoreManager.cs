@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class FtnScoreManager : MonoBehaviour, IScoreManager
 {
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
-    public int totalScore = 0; // 총점
+    public int totalScore { get; set; } // 총점
 
     public QuestionRenderer questionRenderer;
 
@@ -49,6 +49,7 @@ public class FtnScoreManager : MonoBehaviour, IScoreManager
     {
         ScoreData = new Dictionary<string, string>();
 
+        questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
         rd.addotherData(ScoreData, "FTND");
     }

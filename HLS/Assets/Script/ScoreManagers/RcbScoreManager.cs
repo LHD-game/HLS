@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class RcbScoreManager : MonoBehaviour, IScoreManager
 {
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
-    public int totalScore = 0; // 총점
+    public int totalScore { get; set; } // 총점
 
     public Dictionary<string, string> ScoreData { get; private set; }
 
@@ -41,6 +41,7 @@ public class RcbScoreManager : MonoBehaviour, IScoreManager
     {
         ScoreData = new Dictionary<string, string>();
 
+        questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
         rd.addotherData(ScoreData, "RCBS");
     }
