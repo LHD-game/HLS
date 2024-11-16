@@ -43,14 +43,20 @@ public class WinCtl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Loading.SetActive(true);
         StartCoroutine(appStart());
     }
 
-    private void WinSetting(GameObject nowWin)
+    private IEnumerator WinSetting(GameObject nowWin)
     {
+        Loading.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
         WinCtl_.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
         WinCtl_ = nowWin;
         WinCtl_.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        Loading.SetActive(false);
     }
 
     public void GotoMainScence()
@@ -59,16 +65,16 @@ public class WinCtl : MonoBehaviour
     }
     public void GotoMainWin()
     {
-        WinSetting(MainWin);
+        StartCoroutine(WinSetting(MainWin));
     }
     public void GotoResolutWin()
     {
-        WinSetting(ResolutWin);
+        StartCoroutine(WinSetting(ResolutWin));
         HistWin.SetActive(true);
     }
     public void GotoTCWin()
     {
-        WinSetting(ResolutWin);
+        StartCoroutine(WinSetting(ResolutWin));
         TCWin.SetActive(true);
         TCBtn.SetActive(true);
         HistWin.SetActive(true);
@@ -76,21 +82,21 @@ public class WinCtl : MonoBehaviour
     }
     public void GotoHistWin()
     {
-        WinSetting(HistWin);
+        StartCoroutine(WinSetting(HistWin));
         ResolutWin.SetActive(true);
     }
     public void GotosurveyWin()
     {
-        WinSetting(surveyWin);
+        StartCoroutine(WinSetting(surveyWin));
     }
     public void GotoDatailWin()
     {
-        WinSetting(DatailWin);
+        StartCoroutine(WinSetting(DatailWin));
         ResolutWin.SetActive(true);
     }
     public void GotoSolutionWin()
     {
-        WinSetting(SolutionWin);
+        StartCoroutine(WinSetting(SolutionWin));
     }
     public void OpenSolutionWin()
     {
@@ -99,7 +105,6 @@ public class WinCtl : MonoBehaviour
 
     private IEnumerator appStart()
     {
-        Loading.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         //WellcomeWin.SetActive(false);
         MainWin.SetActive(false);
@@ -113,8 +118,6 @@ public class WinCtl : MonoBehaviour
         Menu.SetActive(false);
         SolutionDetailWin.SetActive(false);
         WinCtl_ = MainWin;
-        WinSetting(MainWin);
-        yield return new WaitForSeconds(0.5f);
-        Loading.SetActive(false);
+        StartCoroutine(WinSetting(MainWin));
     }
 }
