@@ -5,6 +5,7 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
 {
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
     public int totalScore = 0; // 총점
+    public QuestionRenderer questionRenderer;
 
     public Dictionary<string, string> ScoreData { get; private set; }
 
@@ -16,6 +17,8 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
 
         // 총 점수 갱신
         CalculateTotalScore();
+        questionRenderer.scoreText.text = totalScore.ToString();
+        
     }
 
     private void CalculateTotalScore()

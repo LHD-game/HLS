@@ -8,6 +8,9 @@ public class RcbScoreManager : MonoBehaviour, IScoreManager
 
     public Dictionary<string, string> ScoreData { get; private set; }
 
+    public QuestionRenderer questionRenderer;
+    
+
     public void AddScore(int questionIndex, int answerIndex)
     {
         // CSV 파일에서 점수를 처리하는 방식으로 변경
@@ -16,6 +19,7 @@ public class RcbScoreManager : MonoBehaviour, IScoreManager
 
         // 총 점수 갱신
         CalculateTotalScore();
+
     }
 
     private void CalculateTotalScore()
@@ -27,6 +31,7 @@ public class RcbScoreManager : MonoBehaviour, IScoreManager
         }
 
         Debug.Log("Total Score: " + totalScore);
+        questionRenderer.scoreText.text = totalScore.ToString();
     }
 
     [Header("script")]
