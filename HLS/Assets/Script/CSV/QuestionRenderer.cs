@@ -4,6 +4,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Firebase.Firestore;
+using static UnityEngine.PlayerPrefs;
+using System.Collections.Specialized;
 
 public class QuestionRenderer : MonoBehaviour
 {
@@ -29,24 +31,34 @@ public class QuestionRenderer : MonoBehaviour
     private GameObject selectedPrefab;
     public IScoreManager scoreManager;
 
+    // 유저 관련 정보 
+    public string Ugen;
+    public string Uname;
+
+
     // HLS 관련 필드
-   /* public GameObject hlsPanel;
-    public bool isHLSMode = false;
-    public List<Text> hlsQuestions = new List<Text>(); // 인스펙터에서 연결할 HLS 질문 Text
-    public List<Transform> hlsButtonPanels = new List<Transform>(); // 인스펙터에서 연결할 HLS 버튼 패널
-*/
+    /* public GameObject hlsPanel;
+     public bool isHLSMode = false;
+     public List<Text> hlsQuestions = new List<Text>(); // 인스펙터에서 연결할 HLS 질문 Text
+     public List<Transform> hlsButtonPanels = new List<Transform>(); // 인스펙터에서 연결할 HLS 버튼 패널
+ */
     // 결과창 관련 필드 
     public Text typeText;
     public Text scoreText;
-
+    public Text noticeText;
+    
     private void Start()
     {
+        Ugen = PlayerPrefs.GetString("MF");
+        Uname = PlayerPrefs.GetString("UserName");
         setCsvReader();
         ResetRenderer();
         InitializeProgressBar();
         UpdateNextButtonState();  // 초기화 시 항상 비활성화
+        noticeText.text = $"{Uname}님의 점수는 {scoreText.text}입니다.";
+        Debug.Log($"{Uname}님의 점수는 {scoreText.text}입니다.");
     }
-
+   
    /* public void SetupHLSLayout()
     {
         if (isHLSMode && hlsPanel != null)
@@ -96,7 +108,6 @@ public class QuestionRenderer : MonoBehaviour
         selectedButton = null;
         UpdateNextButtonState();
         UpdateProgressBar();
-        scoreText.text = "";
         /*if (isHLSMode)
         {
             SetupHLSLayout();
@@ -127,6 +138,7 @@ public class QuestionRenderer : MonoBehaviour
         RenderQuestion();
 
         Debug.Log("CSV 데이터 로드 완료, 질문 렌더링 시작");
+        
         /*if (isHLSMode)
         {
             RenderHLSQuestions();
