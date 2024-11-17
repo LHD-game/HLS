@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.Analytics;
+using JetBrains.Annotations;
+using UnityEngine.UI;
 
 public class AdkScoreManager : MonoBehaviour, IScoreManager
 {
@@ -9,6 +12,11 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
     public int totalScore { get; set; } // 총점
 
     public QuestionRenderer questionRenderer;
+    public string gender;
+    public Text level;
+    public Text notice;
+    public string name;
+    public Image targetImage;
 
     public Dictionary<string, string> ScoreData { get; private set; }
 
@@ -18,9 +26,64 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
         // 선택지 인덱스를 점수로 처리 (0점부터 시작)
         int score = answerIndex; // 선택지 인덱스를 그대로 점수로 사용
         questionScores[questionIndex] = score; // 해당 질문의 점수를 저장
-
+        gender = questionRenderer.Ugen; // 성별 정보 불러오기
+        name = questionRenderer.Uname;
+        level = questionRenderer.levelText;
+        notice = questionRenderer.noticeText;
+        
         // 총 점수 갱신
         CalculateTotalScore();
+
+        if (gender == "M")
+        {
+            if (totalScore <= 9)
+            {
+                level.text = "정상음주군";
+                Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
+                if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
+            }
+
+            else if (totalScore <= 19)
+            {
+                level.text = "위험음주군";
+                Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/dangerorange");
+                if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
+            }
+
+            else
+            {
+                level.text = "알코올 사용장애";
+                Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/danger");
+                if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
+            }
+        }
+
+        else
+        {
+            if (totalScore <= 5)
+            {
+                level.text = "정상음주군";
+                Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
+                if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
+            }
+
+            else if (totalScore <= 9)
+            {
+                level.text = "위험음주군";
+                Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/dangerorange");
+                if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
+            }
+
+            else
+            {
+                level.text = "알코올 사용장애";
+                Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/danger");
+                if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
+
+            }
+        }
+
+        notice.text = $"{name}님의 점수는 {totalScore}점 입니다.";
     }
 
     // 총점 계산

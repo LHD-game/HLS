@@ -17,6 +17,7 @@ public class QuestionRenderer : MonoBehaviour
     public Transform buttonPanel;
     public Text questionText;
     public Text buttonText;
+    public Text title;
     public List<GameObject> hlsButtonPrefabs; // 인스펙터에 HLS 버튼 프리팹 추가
 
     public Button nextButton; // 다음 버튼을 참조할 변수
@@ -48,6 +49,7 @@ public class QuestionRenderer : MonoBehaviour
     public Text typeText;
     public Text scoreText;
     public Text noticeText;
+    public Text levelText; // 중독의 위험도
     public GameObject otherRwin;
 
     private void Start()
@@ -58,8 +60,7 @@ public class QuestionRenderer : MonoBehaviour
         ResetRenderer();
         InitializeProgressBar();
         UpdateNextButtonState();  // 초기화 시 항상 비활성화
-        //noticeText.text = $"{Uname}님의 점수는 {scoreText.text}입니다.";
-        //Debug.Log($"noticeText.text");
+        Debug.Log($"noticeText.text");
     }
 
     /* public void SetupHLSLayout()
@@ -257,7 +258,7 @@ public class QuestionRenderer : MonoBehaviour
             scoreManager.SetData();
             surveySwitcher.surveyPanel.SetActive(false);
             Debug.Log("결과보기");
-            scoreText.text = $"{Uname}님의 점수는 {scoreManager.totalScore}입니다.";
+
             //Debug.Log(scoreText);
         }
         //}
@@ -332,6 +333,7 @@ public class QuestionRenderer : MonoBehaviour
             if (currentQuestionIndex == csvReader.csvData.Count - 1)
             {
                 nextButton.GetComponentInChildren<Text>().text = "결과보기";
+
             }
             else
             {
