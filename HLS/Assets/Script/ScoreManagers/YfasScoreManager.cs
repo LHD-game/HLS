@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class YFASScoreManager : MonoBehaviour, IScoreManager
 {
@@ -9,8 +10,11 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
     public Dictionary<string, string> ScoreData { get; private set; }
 
     public QuestionRenderer questionRenderer;
-   
-   
+    public Text level;
+    public Text notice;
+    public string name;
+    public Image targetImage;
+
 
     private readonly Dictionary<int, (int min, int max)> scoringRules = new Dictionary<int, (int, int)>
     {
@@ -32,6 +36,10 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
 
     public void AddScore(int questionIndex, int answerIndex)
     {
+        name = questionRenderer.Uname;
+        level = questionRenderer.levelText;
+        notice = questionRenderer.noticeText;
+
         int score = CalculateScore(questionIndex, answerIndex);
         questionScores[questionIndex] = score; // 점수 저장
 
@@ -42,6 +50,26 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
         Debug.Log($"Total categories met: {totalCategories}");
         Debug.Log($"Total Score: {totalScore}"); // 총점 출력
         //questionRenderer.scoreText.text = totalScore.ToString();
+
+        // 예시 분기문 코드
+ 
+        if (totalCategories >= 3)
+        {
+            // 3개 항목 이상 - 음식 중독 위험군
+            level.text = "음식 중독 위험군";
+            Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/danger");
+            if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
+        }
+        else
+        {
+            // 정상
+            level.text = "정상";
+            Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
+            if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
+        }
+
+        notice.text = $"{name}님의 점수는 {totalScore}점 입니다.";
+
     }
 
     private int CalculateScore(int questionIndex, int answerIndex)

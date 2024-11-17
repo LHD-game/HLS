@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CbsScoreManager : MonoBehaviour, IScoreManager
 {
@@ -8,22 +9,47 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
 
     public Dictionary<string, string> ScoreData { get; private set; }
     public QuestionRenderer questionRenderer;
-    /*private float cutOffScore = -9.69f; // Cut-off 점수 초기값*/
+    public Text level;
+    public Text notice;
+    public string name;
+    public Image targetImage;
+    private float cutOffScore = -9.69f; // Cut-off 점수 초기값
 
     public void AddScore(int questionIndex, int answerIndex)
     {
         // 선택지 인덱스를 점수로 사용합니다.
         int score = answerIndex + 1; // 인덱스에 따른 점수 계산
         questionScores[questionIndex] = score; // 점수 저장
+        name = questionRenderer.Uname;
+        level = questionRenderer.levelText;
+        notice = questionRenderer.noticeText;
 
         // Cut-off 점수 계산
-        /*CalculateCutOffScore(questionIndex, answerIndex);*/
+        CalculateCutOffScore(questionIndex, answerIndex);
 
         // 총 점수 갱신
         CalculateTotalScore();
+
+        // Cut-off 점수를 기준으로 상태 분기
+        if (cutOffScore > -1.34f)
+        {
+            // 위험군
+            level.text = "쇼핑 중독 위험군";
+            Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/danger");
+            if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
+
+        }
+        else
+        {
+            // 정상
+            level.text = "정상음주군";
+            Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
+            if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
+        }
+        notice.text = $"{name}님의 점수는 {totalScore}점 입니다.";
     }
 
-    /*private void CalculateCutOffScore(int questionIndex, int answerIndex)
+    private void CalculateCutOffScore(int questionIndex, int answerIndex)
     {
         // Cut-off 방정식 계산
         switch (questionIndex)
@@ -52,7 +78,7 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
         }
 
         Debug.Log("Cut-off Score: " + cutOffScore);
-    }*/
+    }
 
     private void CalculateTotalScore()
     {
@@ -81,7 +107,7 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
     {
         questionScores.Clear();
         totalScore = 0;
-        /*cutOffScore = -9.69f; // Cut-off 점수 초기화*/
+        cutOffScore = -9.69f; // Cut-off 점수 초기화*/
         Debug.Log("Scores Reset");
     }
 }
