@@ -12,9 +12,9 @@ public class ChooseSurvey : MonoBehaviour
     public QuestionRenderer questionRenderer;
 
     [Space(5f)]
-    // 추가: Title 텍스트를 위한 변수
-    [Header("OBJ")]
     public Text titleText;
+
+    [Header("OBJ")]
     public Transform buttonparent;
     [SerializeField]
     private GameObject[] buttons;
@@ -133,6 +133,7 @@ public class ChooseSurvey : MonoBehaviour
 
         string testName = clickBtn.transform.Find("smallTxt").GetComponent<Text>().text;
         questionRenderer.typeText.text = $"{testName} \n자가진단 테스트 결과";
+        titleText.text = clickBtn.name;
     }
 
     IEnumerator warningWinCtl()
