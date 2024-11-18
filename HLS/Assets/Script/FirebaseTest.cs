@@ -35,6 +35,9 @@ public class FirebaseTest : MonoBehaviour
     bool check1 = true;
     public Image Check2; //약관체크2
     bool check2 = true;
+    //자동로그인
+    public Image ALCheck; //자동로그인체크
+    bool ALCheckbool = false;
     //로그인오류문구
     [Header("LogInError")]
     public Text LoginError;
@@ -70,6 +73,15 @@ public class FirebaseTest : MonoBehaviour
 
     //|-----------------------서버에서 데이터를 읽어오는 과정----------------------|
     //async는 비동기 작업이 있었다는 의미, FireBase는 비동기로 서버를 운영함.
+
+    public void Start()         //자동로그인 활성화시
+    {
+        if (PlayerPrefs.GetInt("autoLogin") == 1)
+        {
+            SceneManager.LoadSceneAsync("Main"); //main화면으로
+        }
+    }
+
     async public void Login()
     {
         string Id = IdText.text;    //자료형변환
@@ -87,6 +99,12 @@ public class FirebaseTest : MonoBehaviour
         {
             Debug.Log("로그인 성공");
             await setDefaultData(Id);
+
+            if (ALCheckbool)   //자동로그인 확정
+            {
+                PlayerPrefs.SetInt("autoLogin", 1);
+            }
+
             SceneManager.LoadSceneAsync("Main"); //main화면으로
 
         }
@@ -353,6 +371,21 @@ public class FirebaseTest : MonoBehaviour
             termBool = false;
         }
         Debug.Log("a" + checkAll + "1" + check1 + "2" + check2 + "3");
+    }
+    //|-------------------------자동로그인 옵션----------------------------|
+    public void AutoLoginCheck()       //자동로그인
+    {
+        if (!ALCheckbool)
+        {
+            ALCheck.sprite = Resources.Load<Sprite>("UI/Toggle_Square_s_on");
+            ALCheckbool = true;
+        }
+        else
+        {
+            ALCheck.sprite = Resources.Load<Sprite>("UI/Frame_ItemFrame02_d_1");
+            ALCheckbool = false;
+        }
+        Debug.Log("자동로그인 활성화");
     }
 
     //|-------------------------암호화 및 복호화----------------------------|
