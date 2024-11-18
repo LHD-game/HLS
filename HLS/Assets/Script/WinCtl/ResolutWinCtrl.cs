@@ -39,7 +39,7 @@ public class ResolutWinCtrl : MonoBehaviour
     {
         resetresolutWin();
         WinCtl.Instance.DatailWin.SetActive(false);
-        WinCtl.Instance.GotoHistWin();
+        WinCtl.Instance.GotoHistoryWin();
     }
 
     public void resetresolutWin()

@@ -17,7 +17,7 @@ public class SurveySwitcher : MonoBehaviour
     public void OnSurveyButtonClicked(string buttonName)
     {
         Debug.Log($"OnSurveyButtonClicked called with buttonName: {buttonName}");
-        surveyPanel.SetActive(true);
+        WinCtl.Instance.GotoPrintsurveyWin();
 
         /*// 렌더러 교체 전 초기화
         ClearPanel();
@@ -46,9 +46,8 @@ public class SurveySwitcher : MonoBehaviour
     public void OnClickBack()
     {
         // 돌아가기 버튼 클릭 시 패널 초기화 및 렌더러 초기화
-        surveyPanel.SetActive(false);
+        WinCtl.Instance.GotoSurveyWin();
         ClearPanel();
-        chooseSurvey.CheckItDone();
         if (currentQuestionRenderer != null)
         {
             currentQuestionRenderer.ClearButtons();

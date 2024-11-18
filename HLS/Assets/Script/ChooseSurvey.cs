@@ -48,6 +48,7 @@ public class ChooseSurvey : MonoBehaviour
         {
             GameObject checkImg = buttons[i].transform.Find("check").gameObject;
             Button btn = buttons[i].GetComponent<Button>();
+            btn.onClick.RemoveAllListeners();
             if (await CheckTodayTest(buttons[i].name))
             {
                 checkImg.SetActive(true);
@@ -84,7 +85,7 @@ public class ChooseSurvey : MonoBehaviour
         csvReader.fileName = clickBtn.name;
         csvReader.SetFiles();
 
-        questionRenderer.ResetRenderer(); // 상태 초기화 추가
+        //questionRenderer.ResetRenderer(); // 상태 초기화 추가
                                           // 데이터 로드 및 질문 렌더링
         questionRenderer.setCsvReader(); // 데이터 로드 시작
 
