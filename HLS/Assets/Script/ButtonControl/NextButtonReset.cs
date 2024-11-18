@@ -69,7 +69,6 @@ public class NextButtonReset : MonoBehaviour
             }
         }
 
-        nextButton.interactable = allQuestionsAnswered;
 
         //restartButtonText.text = "처음부터";
 
@@ -88,6 +87,8 @@ public class NextButtonReset : MonoBehaviour
                 //restartButtonText.text = "처음부터";
             }
         }
+
+        nextButton.interactable = allQuestionsAnswered; //text설정 후 활성화
     }
 
     public void OnNextButtonClicked()
