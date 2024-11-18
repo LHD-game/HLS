@@ -72,9 +72,7 @@ public class graph : MonoBehaviour
     public void recommendSetting()
         {
             testReportTxt.text = PlayerPrefs.GetString("UserName")+ "님의 지난 결과를 확인 해보세요";
-            resultName.text = PlayerPrefs.GetString("UserName")+"님의 점수는";
-            resultDate.text = "";
-            resultScore.text = "";
+            resultName.text = $"날짜 포인트를 눌러\n{PlayerPrefs.GetString("UserName")}님의 점수를 확인해보세요!";
         }
 
     public void inputSchedule()
@@ -94,8 +92,10 @@ public class graph : MonoBehaviour
     {
         testDate.text = args.XString;
         testResult.text = args.YString;
-        resultDate.text = args.XString;
-        resultScore.text = args.YString;
+        string resultDate = args.XString.Substring(0,args.XString.Length - 9);
+        string resultScore = args.YString;
+        resultName.text = $"{PlayerPrefs.GetString("UserName")}님의 점수를 확인하세요!\n 날짜 - {resultDate}\n {resultScore}점";
+        
         index = args.Index; //리스트에서 특정 날짜 값 뺴는 용도
         //Debug.Log("ind = "+index);
     }
