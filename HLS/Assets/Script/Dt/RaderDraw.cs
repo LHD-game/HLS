@@ -77,7 +77,7 @@ public class RaderDraw : MonoBehaviour
     public void PrintDetail(int index)
     {
         buttonC(index);
-        WinCtl.Instance.GotoDatailWin();
+        //WinCtl.Instance.GotoDatailWin();
     }
 
     public void buttonC(int index)

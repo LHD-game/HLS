@@ -42,7 +42,7 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
         else
         {
             // 정상
-            level.text = "정상음주군";
+            level.text = "정상";
             Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
             if (newSprite != null) targetImage.sprite = newSprite; // 스프라이트 적용
         }
