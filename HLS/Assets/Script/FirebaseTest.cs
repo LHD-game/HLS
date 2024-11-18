@@ -98,6 +98,7 @@ public class FirebaseTest : MonoBehaviour
         else
         {
             Debug.Log("로그인 실패");
+            LoginError.gameObject.SetActive(true);
         }
     }
 

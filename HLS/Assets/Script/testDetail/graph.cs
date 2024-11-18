@@ -43,7 +43,7 @@ public class graph : MonoBehaviour
     public void printTestResoult()
     {
         inputData();
-        WinCtl.Instance.GotoHistWin();
+        //WinCtl.Instance.GotoHistoryWin();
     }
     public void inputData()  //데이터 가져와 넣기
     {

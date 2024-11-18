@@ -42,8 +42,10 @@ public class soluWinctl : MonoBehaviour
     /*----------------------처방 출력 화면-------------------------------------------------*/
     public void FindTitleIndex()
     {
-        ResetWin();
+        WinCtl.Instance.Loading.SetActive(true);
         string ButtonName = EventSystem.current.currentSelectedGameObject.name;
+
+        ResetWin();
         Debug.Log(ButtonName);
         for (int i = 0; i <= csvRenderer.SolutionData.Count; i++)
         {
@@ -57,32 +59,24 @@ public class soluWinctl : MonoBehaviour
                 continue;
             }
         }
+
         StartCoroutine(setSoluPrintWin());
     }
-    /*public void setexWin()
-    {
-        ResetWin();
-        setTitle();
-        inputExplain();
-        //inputButton();
-    }*/
 
     public void SoluBackBtn(GameObject soluWin)
     {
         ResetWin();
         soluWin.SetActive(false);
     }
-    IEnumerator setSoluPrintWin()
+    private IEnumerator setSoluPrintWin()
     {
-        Loading.SetActive(true);
-        WinCtl.Instance.OpenSolutionWin();
-        yield return new WaitForFixedUpdate();
+        WinCtl.Instance.PrintSolutionWin.SetActive(true);
         setTopImg();
         setTitle();
         setSimbol();
         inputobjs();
-        yield return new WaitForSeconds(0.5f);
-        Loading.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        WinCtl.Instance.GotoPrintSolutionWin();
 
     }
 
@@ -91,23 +85,27 @@ public class soluWinctl : MonoBehaviour
         string Title = csvRenderer.SolutionData[index]["title"].ToString();
         string TitleText = csvRenderer.SolutionData[index]["titletxt"].ToString().Replace("! ","!\n");
         TitleTxt.text = $"<size=20px><color=#32438B>{Title}</color></size>\n\n\"{TitleText}\"";
+        Debug.Log("settitle");
     }
     void inputobjs()
     {
         PrintExText("explain", exParent, exPrefab);
         PrintSoluText("solution", SoluParent, SoluPrefab);
         Inputicon("icon", IconParent, Icon);
+        Debug.Log("setobj");
     }
 
     void setSimbol()
     {
         string simbolName = csvRenderer.SolutionData[index]["simbol"].ToString();
         Simbol.sprite = Resources.Load($"sprite/SoluImg/SimbolImg/{simbolName}", typeof(Sprite)) as Sprite;
+        Debug.Log("setsim");
     }
     void setTopImg()
     {
         string upimgName = csvRenderer.SolutionData[index]["upimg"].ToString();
         UpImg.sprite = Resources.Load($"sprite/SoluImg/UpImg/{upimgName}", typeof(Sprite)) as Sprite;
+        Debug.Log("settop");
     }
 
     /// <summary>
@@ -137,6 +135,7 @@ public class soluWinctl : MonoBehaviour
                 TextIns.SetActive(true);
             }
         }
+        Debug.Log("setEx");
     }
 
     public void PrintSoluText(string inputobj, Transform Parent, GameObject Prefab)
@@ -163,6 +162,7 @@ public class soluWinctl : MonoBehaviour
                 TextIns.SetActive(true);
             }
         }
+        Debug.Log("setsolu");
     }
 
     public void Inputicon(string inputobj, Transform Parent, GameObject Prefab)
@@ -187,6 +187,7 @@ public class soluWinctl : MonoBehaviour
                 IconPrefab.SetActive(true);
             }
         }
+        Debug.Log("seticon");
     }
 
     public void ResetWin()

@@ -16,8 +16,8 @@ public class QuestionRenderer : MonoBehaviour
     public GameObject buttonPrefab;
     public Transform buttonPanel;
     public Text questionText;
-    public Text buttonText;
-    public Text title;
+    //public Text buttonText;
+    //public Text title;
     public List<GameObject> hlsButtonPrefabs; // 인스펙터에 HLS 버튼 프리팹 추가
 
     public Button nextButton; // 다음 버튼을 참조할 변수
@@ -137,6 +137,7 @@ public class QuestionRenderer : MonoBehaviour
     {
         while (csvReader.csvData.Count == 0)
         {
+            Debug.Log("WaitForCSVData");
             yield return null;
         }
         RenderQuestion();
@@ -218,7 +219,7 @@ public class QuestionRenderer : MonoBehaviour
     private void CreateButton(string choiceText)
     {
         GameObject newAnswerPrefab = Instantiate(buttonPrefab, buttonPanel);
-        buttonText = newAnswerPrefab.transform.Find("Text").GetComponent<Text>();
+        Text buttonText = newAnswerPrefab.transform.Find("Text").GetComponent<Text>();
         buttonText.text = choiceText;
 
         Button answerButton = newAnswerPrefab.transform.Find("AnswerButtonPrefab").GetComponent<Button>();

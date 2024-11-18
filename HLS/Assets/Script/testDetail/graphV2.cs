@@ -55,7 +55,6 @@ public class graphV2 : MonoBehaviour
         // }
         Debug.Log("데이터갯수=" + chart.DataSource.GetPointCount("History"));
         chart.DataSource.EndBatch();
-        WinCtl.Instance.GotoHistWin();
     }
 
     public void OnPointClick(GraphEventArgs args)
