@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Firestore;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
 
 public class FireBase : MonoBehaviour
@@ -44,18 +45,29 @@ public class FireBase : MonoBehaviour
     {                                   //데이터 저장하기
 
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+        DocumentReference docRef = db.Collection("user").Document(UserID);
+        DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
         CollectionReference userRef = db.Collection("user");
-        if (await DataCheck(UserID))
+        if (snapshot.Exists) //로그인
         {
-            await userRef.Document(UserID).UpdateAsync(new Dictionary<string, object>(){
+            if (await DataCheck(UserID))
+            {
+                await userRef.Document(UserID).UpdateAsync(new Dictionary<string, object>(){
                 { Key, Data },     //키값과 데이터값
             });
+            }
+            else
+            {
+                await userRef.Document(UserID).SetAsync(new Dictionary<string, object>(){
+                { Key, Data },     //키값과 데이터값
+            });
+            }
+
         }
         else
         {
-            await userRef.Document(UserID).SetAsync(new Dictionary<string, object>(){
-                { Key, Data },     //키값과 데이터값
-            });
+            Debug.Log("유저 불러오기 실패");
+            SceneManager.LoadSceneAsync("LoginScene"); //main화면으로
         }
     }
 
