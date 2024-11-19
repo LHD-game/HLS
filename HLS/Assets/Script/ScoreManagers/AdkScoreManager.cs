@@ -19,6 +19,7 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
     public Image targetImage;
 
     public Dictionary<string, string> ScoreData { get; private set; }
+    private List<int> selectedAnswers = new List<int>(); // 사용자 선택 저장
 
     // 점수 추가 (선택지 인덱스를 그대로 점수로 사용)
     public void AddScore(int questionIndex, int answerIndex)
@@ -30,7 +31,7 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
         name = questionRenderer.Uname;
         level = questionRenderer.levelText;
         notice = questionRenderer.noticeText;
-        
+        selectedAnswers.Add(answerIndex); // 선택한 답변 기록
         // 총 점수 갱신
         CalculateTotalScore();
 
@@ -121,12 +122,20 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
         questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
         rd.addotherData(ScoreData, "AUDIT");
+
+        Debug.Log("Selected Answers:");
+        for (int i = 0; i < selectedAnswers.Count; i++)
+        {
+            Debug.Log($"Question {i + 1}: Answer {selectedAnswers[i]}");
+        }
+
     }
 
     // 점수 초기화
     public void ResetScores()
     {
         questionScores.Clear();
+        selectedAnswers.Clear(); // 선택한 답변 초기화
         totalScore = 0;
         Debug.Log("Scores Reset");
     }

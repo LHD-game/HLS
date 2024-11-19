@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class CbsScoreManager : MonoBehaviour, IScoreManager
 {
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
+    private List<int> selectedAnswers = new List<int>(); // 사용자 선택 저장
+
     public int totalScore { get; set; } // 총점
 
     public Dictionary<string, string> ScoreData { get; private set; }
@@ -23,6 +25,8 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
         name = questionRenderer.Uname;
         level = questionRenderer.levelText;
         notice = questionRenderer.noticeText;
+        selectedAnswers.Add(answerIndex); // 선택한 답변 기록
+
 
         // Cut-off 점수 계산
         CalculateCutOffScore(questionIndex, answerIndex);
@@ -102,10 +106,19 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
         questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
         rd.addotherData(ScoreData, "CBS");
+        Debug.Log("Selected Answers:");
+
+        for (int i = 0; i < selectedAnswers.Count; i++)
+        {
+            Debug.Log($"Question {i + 1}: Answer {selectedAnswers[i]}");
+        }
+
     }
     public void ResetScores()
     {
         questionScores.Clear();
+        selectedAnswers.Clear(); // 선택한 답변 초기화
+
         totalScore = 0;
         cutOffScore = -9.69f; // Cut-off 점수 초기화*/
         Debug.Log("Scores Reset");

@@ -8,6 +8,7 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
     public int totalCategories = 0; // 음식 중독 범주에 해당하는 개수
     public int totalScore { get; set; } // 총점
     public Dictionary<string, string> ScoreData { get; private set; }
+    private List<int> selectedAnswers = new List<int>(); // 사용자 선택 저장
 
     public QuestionRenderer questionRenderer;
     public Text level;
@@ -42,6 +43,7 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
 
         int score = CalculateScore(questionIndex, answerIndex);
         questionScores[questionIndex] = score; // 점수 저장
+        selectedAnswers.Add(answerIndex); // 선택한 답변 기록
 
         CalculateTotalScore();  // 총점 계산
         CalculateCategoryScores(); // 범주별 점수 업데이트
@@ -130,10 +132,18 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
         questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
         rd.addotherData(ScoreData, "YFAS");
+        Debug.Log("Selected Answers:");
+        for (int i = 0; i < selectedAnswers.Count; i++)
+        {
+            Debug.Log($"Question {i + 1}: Answer {selectedAnswers[i]}");
+        }
+
     }
     public void ResetScores()
     {
         questionScores.Clear();
+        selectedAnswers.Clear(); // 선택한 답변 초기화
+
         totalCategories = 0;
         totalScore = 0;
         Debug.Log("Scores Reset");
