@@ -248,5 +248,13 @@ public class WinCtl : MonoBehaviour
 
     }
 
+    public void setonoff(GameObject window)
+    {
+        if (window.activeSelf)
+            window.SetActive(false);
+        else
+            window.SetActive(true);
+    }
+
 
 }
