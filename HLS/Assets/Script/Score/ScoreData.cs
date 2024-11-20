@@ -11,20 +11,8 @@ public class ScoreData : MonoBehaviour
     public static ScoreData Instance;
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-
-        var obj = GameObject.FindGameObjectsWithTag("ScoreData");
-        if (obj.Length == 1)
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        
+        WinCtl.Instance.Loading.SetActive(true);
         Set();
     }
 
