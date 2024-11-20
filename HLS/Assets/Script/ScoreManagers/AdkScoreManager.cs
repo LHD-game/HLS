@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class AdkScoreManager : MonoBehaviour, IScoreManager
 {
-    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // °¢ Áú¹®¿¡ ´ëÇÑ Á¡¼ö ÀúÀå
-    public int totalScore { get; set; } // ÃÑÁ¡
+    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // ê° ì§ˆë¬¸ì— ëŒ€í•œ ì ìˆ˜ ì €ì¥
+    public int totalScore { get; set; } // ì´ì 
 
     public QuestionRenderer questionRenderer;
     public string gender;
@@ -19,43 +19,44 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
     public Image targetImage;
 
     public Dictionary<string, string> ScoreData { get; private set; }
-    private List<int> selectedAnswers = new List<int>(); // »ç¿ëÀÚ ¼±ÅÃ ÀúÀå
+    private List<int> selectedAnswers = new List<int>(); // ì‚¬ìš©ì ì„ íƒ ì €ì¥
 
-    // Á¡¼ö Ãß°¡ (¼±ÅÃÁö ÀÎµ¦½º¸¦ ±×´ë·Î Á¡¼ö·Î »ç¿ë)
+
+    // ì ìˆ˜ ì¶”ê°€ (ì„ íƒì§€ ì¸ë±ìŠ¤ë¥¼ ê·¸ëŒ€ë¡œ ì ìˆ˜ë¡œ ì‚¬ìš©)
     public void AddScore(int questionIndex, int answerIndex)
     {
-        // ¼±ÅÃÁö ÀÎµ¦½º¸¦ Á¡¼ö·Î Ã³¸® (0Á¡ºÎÅÍ ½ÃÀÛ)
-        int score = answerIndex; // ¼±ÅÃÁö ÀÎµ¦½º¸¦ ±×´ë·Î Á¡¼ö·Î »ç¿ë
-        questionScores[questionIndex] = score; // ÇØ´ç Áú¹®ÀÇ Á¡¼ö¸¦ ÀúÀå
-        gender = questionRenderer.Ugen; // ¼ºº° Á¤º¸ ºÒ·¯¿À±â
+        // ì„ íƒì§€ ì¸ë±ìŠ¤ë¥¼ ì ìˆ˜ë¡œ ì²˜ë¦¬ (0ì ë¶€í„° ì‹œì‘)
+        int score = answerIndex; // ì„ íƒì§€ ì¸ë±ìŠ¤ë¥¼ ê·¸ëŒ€ë¡œ ì ìˆ˜ë¡œ ì‚¬ìš©
+        questionScores[questionIndex] = score; // í•´ë‹¹ ì§ˆë¬¸ì˜ ì ìˆ˜ë¥¼ ì €ì¥
+        gender = questionRenderer.Ugen; // ì„±ë³„ ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°
         name = questionRenderer.Uname;
         level = questionRenderer.levelText;
         notice = questionRenderer.noticeText;
-        selectedAnswers.Add(answerIndex); // ¼±ÅÃÇÑ ´äº¯ ±â·Ï
-        // ÃÑ Á¡¼ö °»½Å
+        selectedAnswers.Add(answerIndex); // ì„ íƒí•œ ë‹µë³€ ê¸°ë¡
+        // ì´ ì ìˆ˜ ê°±ì‹ 
         CalculateTotalScore();
 
         if (gender == "M")
         {
             if (totalScore <= 9)
             {
-                level.text = "Á¤»óÀ½ÁÖ±º";
+                level.text = "ì •ìƒìŒì£¼êµ°";
                 Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
-                if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+                if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
             }
 
             else if (totalScore <= 19)
             {
-                level.text = "À§ÇèÀ½ÁÖ±º";
+                level.text = "ìœ„í—˜ìŒì£¼êµ°";
                 Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/dangerorange");
-                if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+                if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
             }
 
             else
             {
-                level.text = "¾ËÄÚ¿Ã »ç¿ëÀå¾Ö";
+                level.text = "ì•Œì½”ì˜¬ ì‚¬ìš©ì¥ì• ";
                 Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/danger");
-                if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+                if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
             }
         }
 
@@ -63,31 +64,31 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
         {
             if (totalScore <= 5)
             {
-                level.text = "Á¤»óÀ½ÁÖ±º";
+                level.text = "ì •ìƒìŒì£¼êµ°";
                 Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
-                if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+                if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
             }
 
             else if (totalScore <= 9)
             {
-                level.text = "À§ÇèÀ½ÁÖ±º";
+                level.text = "ìœ„í—˜ìŒì£¼êµ°";
                 Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/dangerorange");
-                if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+                if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
             }
 
             else
             {
-                level.text = "¾ËÄÚ¿Ã »ç¿ëÀå¾Ö";
+                level.text = "ì•Œì½”ì˜¬ ì‚¬ìš©ì¥ì• ";
                 Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/danger");
-                if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+                if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
 
             }
         }
 
-        notice.text = $"{name}´ÔÀÇ Á¡¼ö´Â {totalScore}Á¡ ÀÔ´Ï´Ù.";
+        notice.text = $"{name}ë‹˜ì˜ ì ìˆ˜ëŠ” {totalScore}ì  ì…ë‹ˆë‹¤.";
     }
 
-    // ÃÑÁ¡ °è»ê
+    // ì´ì  ê³„ì‚°
     private void CalculateTotalScore()
     {
         totalScore = 0;
@@ -96,16 +97,16 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
             totalScore += score;
         }
 
-        // ÃÑÁ¡ µğ¹ö±× ¸Ş½ÃÁö Ãâ·Â
+        // ì´ì  ë””ë²„ê·¸ ë©”ì‹œì§€ ì¶œë ¥
         Debug.Log("Total Score: " + totalScore);
-        // UI¿¡ Á¡¼ö Ç¥½Ã
+        // UIì— ì ìˆ˜ í‘œì‹œ
         if (questionRenderer != null && questionRenderer.scoreText != null)
         {
             questionRenderer.scoreText.text = totalScore.ToString();
         }
         else
         {
-            Debug.LogError("questionRenderer ¶Ç´Â scoreText°¡ nullÀÔ´Ï´Ù.");
+            Debug.LogError("questionRenderer ë˜ëŠ” scoreTextê°€ nullì…ë‹ˆë‹¤.");
         }
 
     }
@@ -117,11 +118,11 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
     public RaderDraw rd;
     public void SetData()
     {
-        ScoreData = new Dictionary<string, string>();
+        ScoreData = new Dictionary<string, object>();
 
-        questionRenderer.OtherTestComplete();
+        //questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
-        rd.addotherData(ScoreData, "AUDIT");
+
 
         Debug.Log("Selected Answers:");
         for (int i = 0; i < selectedAnswers.Count; i++)
@@ -129,13 +130,14 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
             Debug.Log($"Question {i + 1}: Answer {selectedAnswers[i]}");
         }
 
+        rd.addData(ScoreData, "AUDIT");
     }
 
-    // Á¡¼ö ÃÊ±âÈ­
+    // ì ìˆ˜ ì´ˆê¸°í™”
     public void ResetScores()
     {
         questionScores.Clear();
-        selectedAnswers.Clear(); // ¼±ÅÃÇÑ ´äº¯ ÃÊ±âÈ­
+        selectedAnswers.Clear(); // ì„ íƒí•œ ë‹µë³€ ì´ˆê¸°í™”
         totalScore = 0;
         Debug.Log("Scores Reset");
     }

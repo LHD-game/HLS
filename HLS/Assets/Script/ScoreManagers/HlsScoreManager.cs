@@ -16,7 +16,7 @@ public class HlsScoreManager : MonoBehaviour, IScoreManager
     public ScoreData sd;
     public RaderDraw rd;
 
-    public Dictionary<string, string> ScoreData { get; private set; }
+    public Dictionary<string, object> ScoreData { get; private set; }
 
     // 점수 추가 (선택지 인덱스를 그대로 점수로 사용)
     public void AddScore(int questionIndex, int answerIndex)
@@ -53,7 +53,7 @@ public class HlsScoreManager : MonoBehaviour, IScoreManager
 
     public void SetData()
     {
-        ScoreData = new Dictionary<string, string>();
+        ScoreData = new Dictionary<string, object>();
         int count = 0;
         int groupScore = 0;
         foreach (int score in questionScores.Values)
@@ -74,6 +74,7 @@ public class HlsScoreManager : MonoBehaviour, IScoreManager
         }
 
         ScoreData.Add("total", totalScore.ToString());
+
         rd.addData(ScoreData, "HLS");
         Debug.Log("Selected Answers:");
         for (int i = 0; i < selectedAnswers.Count; i++)
