@@ -18,7 +18,7 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
     public string name;
     public Image targetImage;
 
-    public Dictionary<string, string> ScoreData { get; private set; }
+    public Dictionary<string, object> ScoreData { get; private set; }
 
     // 점수 추가 (선택지 인덱스를 그대로 점수로 사용)
     public void AddScore(int questionIndex, int answerIndex)
@@ -116,11 +116,11 @@ public class AdkScoreManager : MonoBehaviour, IScoreManager
     public RaderDraw rd;
     public void SetData()
     {
-        ScoreData = new Dictionary<string, string>();
+        ScoreData = new Dictionary<string, object>();
 
-        questionRenderer.OtherTestComplete();
+        //questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
-        rd.addotherData(ScoreData, "AUDIT");
+        rd.addData(ScoreData, "AUDIT");
     }
 
     // 점수 초기화
