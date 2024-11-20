@@ -3,8 +3,10 @@ using System.Collections.Generic;
 
 public class RcbScoreManager : MonoBehaviour, IScoreManager
 {
-    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // °¢ Áú¹®¿¡ ´ëÇÑ Á¡¼ö ÀúÀå
-    public int totalScore { get; set; } // ÃÑÁ¡
+    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // ê° ì§ˆë¬¸ì— ëŒ€í•œ ì ìˆ˜ ì €ì¥
+    private List<int> selectedAnswers = new List<int>(); // ì‚¬ìš©ì ì„ íƒ ì €ì¥
+
+    public int totalScore { get; set; } // ì´ì 
 
     public Dictionary<string, object> ScoreData { get; private set; }
 
@@ -13,12 +15,14 @@ public class RcbScoreManager : MonoBehaviour, IScoreManager
 
     public void AddScore(int questionIndex, int answerIndex)
     {
-        // CSV ÆÄÀÏ¿¡¼­ Á¡¼ö¸¦ Ã³¸®ÇÏ´Â ¹æ½ÄÀ¸·Î º¯°æ
-        int score = answerIndex + 1; // ÀÎµ¦½º ±â¹İÀ¸·Î Á¡¼ö °è»ê (0~6 -> 1~7Á¡)
-        questionScores[questionIndex] = score; // Á¡¼ö ÀúÀå
+        // CSV íŒŒì¼ì—ì„œ ì ìˆ˜ë¥¼ ì²˜ë¦¬í•˜ëŠ” ë°©ì‹ìœ¼ë¡œ ë³€ê²½
+        int score = answerIndex + 1; // ì¸ë±ìŠ¤ ê¸°ë°˜ìœ¼ë¡œ ì ìˆ˜ ê³„ì‚° (0~6 -> 1~7ì )
+        questionScores[questionIndex] = score; // ì ìˆ˜ ì €ì¥
+        selectedAnswers.Add(answerIndex); // ì„ íƒí•œ ë‹µë³€ ê¸°ë¡
 
-        // ÃÑ Á¡¼ö °»½Å
+        // ì´ ì ìˆ˜ ê°±ì‹ 
         CalculateTotalScore();
+
 
     }
 
@@ -43,11 +47,20 @@ public class RcbScoreManager : MonoBehaviour, IScoreManager
 
         //questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
+
+        Debug.Log("Selected Answers:");
+        for (int i = 0; i < selectedAnswers.Count; i++)
+        {
+            Debug.Log($"Question {i + 1}: Answer {selectedAnswers[i]}");
+        }
+
         rd.addData(ScoreData, "RCBS");
     }
     public void ResetScores()
     {
         questionScores.Clear();
+        selectedAnswers.Clear(); // ì„ íƒí•œ ë‹µë³€ ì´ˆê¸°í™”
+
         totalScore = 0;
         Debug.Log("Scores Reset");
     }
