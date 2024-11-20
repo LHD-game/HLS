@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using System.Text.RegularExpressions;
+using Firebase.Firestore;
 
 public class RaderDraw : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class RaderDraw : MonoBehaviour
     public Text adviceTxt;
     [Space(5f)]
     public int Score;
+    [Space(5f)]
+    public GameObject ConnetWarningWin;
 
 
     private void Start()
@@ -103,34 +106,59 @@ public class RaderDraw : MonoBehaviour
 
     }
 
-    public void addData(Dictionary<string, string> Data, string surveyType)
+    //설문 후 실행
+    async public void addData(Dictionary<string, object> Data, string surveyType)
     {
-        //for문 수정
-        //배열 -> list 수정
-        /* string[] data = new string[] { System.DateTime.Now.ToString("yy MM dd"), scoreManager.scores[0].ToString(), scoreManager.scores[1].ToString(), 
-             scoreManager.scores[2].ToString(), scoreManager.scores[3].ToString(), scoreManager.scores[4].ToString(), scoreManager.scores[5].ToString(), 
-             scoreManager.scores[6].ToString(), scoreManager.scores[7].ToString(), scoreManager.scores[8].ToString(),scoreManager.totalScore.ToString()};
- */
-        Data.Add("date", System.DateTime.Now.ToString("yy MM dd"));
-        //Data.Add("date", System.DateTime.Now.ToString("yy MM dd"));
-        //Data.Add("totalscore",scoreManager.totalScore.ToString());
+        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
 
-        scuns.SetData(Data, Data["date"], surveyType);
+        DocumentReference docRef = db.Collection("user").Document(scuns.id);
+        int cnnetCount = 0;
+        while (true)
+        {
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+            if (snapshot.Exists) //서버 연결 성공
+            {
+                //HLS설문 구분
+                bool isHLS = false;
+                if (surveyType.Equals("HLS"))
+                    isHLS = true;
 
-        //Debug.Log("데이터 갯수=" + scuns.ScoreData_.Count);
+                //리스트에 날짜 정보 삽입
+                Data.Add("date", System.DateTime.Now.ToString("yy MM dd"));
 
-        buttonC(scuns.ScoreData_.Count - 1);
+                //리스트 헤더 설정
+                string[] header;
+                if (isHLS)
+                    header = scuns.header;
+                else
+                    header = scuns.otherheader;
 
-        ResolutWinCtrl.setResolutWin(mysigncolor);
+                await scuns.addData(surveyType, Data, header);
 
-    }
-    public void addotherData(Dictionary<string, string> Data, string surveyType)
-    {
-        var entry = new Dictionary<string, object>();
-        Data.Add("date", System.DateTime.Now.ToString("yy MM dd"));
-        entry["total"] = Data["total"];
-        entry["date"] = Data["date"];
-        scuns.DataUpload(surveyType, entry);
+                if (isHLS)
+                {
+                    Debug.Log("HLS결과창");
+                    buttonC(scuns.ScoreData_.Count - 1);
+                    ResolutWinCtrl.setResolutWin(mysigncolor);
+                }
+                else
+                {
+                    WinCtl.Instance.GotoOtherTestResoult(); Debug.Log("other결과창");
+                }
+                return;
+            }
+            else //서버연결 실패
+            {
+                Debug.Log("연결 실패");
+                if (cnnetCount > 10)
+                {
+                    StartCoroutine(WinCtl.Instance.warningWinCtl(ConnetWarningWin));
+                    break;
+                }
+                else
+                    cnnetCount++;
+            }
+        }
     }
 
     void CreateBars(int index)
@@ -150,11 +178,11 @@ public class RaderDraw : MonoBehaviour
             //막대 사이즈 조절
             RectTransform thisRect = bar.GetComponent<RectTransform>();
 
-            if (WheelPrent.rect.width > WheelPrent.parent.GetComponent<RectTransform>().rect.width)
-                thisRect.sizeDelta = new Vector2((WheelPrent.rect.height / 3), thisRect.rect.height);
-            else
+            //if (WheelPrent.rect.width > WheelPrent.parent.GetComponent<RectTransform>().rect.width)
+                thisRect.sizeDelta = new Vector2(chart.Radius+2, chart.Radius+2);
+            /*else
                 thisRect.sizeDelta = new Vector2((WheelPrent.parent.GetComponent<RectTransform>().rect.width / 3), thisRect.rect.height);
-
+*/
             // 막대의 회전 조절
             bar.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
@@ -170,7 +198,7 @@ public class RaderDraw : MonoBehaviour
     void UpdateGraph()
     {
         for (int i = 0; i < data.Length; i++)
-            if (Score < 92)
+            if (Score < 72)
             { Mysign.GetComponent<Image>().sprite = MysignImgs[0];
                 mysigncolor = "빨간불";
             }

@@ -12,7 +12,7 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
     public string name;
     public Image targetImage;
 
-    public Dictionary<string, string> ScoreData { get; private set; }
+    public Dictionary<string, object> ScoreData { get; private set; }
 
     private int factor1Score = 0; // 1요인 (일상생활장애) 점수
     private int factor3Score = 0; // 3요인 (금단) 점수
@@ -116,11 +116,11 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
     public RaderDraw rd;
     public void SetData()
     {
-        ScoreData = new Dictionary<string, string>();
+        ScoreData = new Dictionary<string, object>();
 
-        questionRenderer.OtherTestComplete();
+        //questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
-        rd.addotherData(ScoreData, "SAPS");
+        rd.addData(ScoreData, "SAPS");
     }
     public void ResetScores()
     {

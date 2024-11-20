@@ -149,4 +149,43 @@ public class FireBase : MonoBehaviour
         }
         return data;
     }
+
+    //|-----------------------서버에서 데이터를 저장하는 과정----------------------|
+    async public static Task DataUpload(string UserID,string[] Header ,string surveyType, Dictionary<string, object> Data)
+    {
+        int dataLenth = Data.Count;
+        //파이어베이스 연동
+        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+        //CollectionReference userRef = db.Collection("surveyData");
+        //파이어베이스에서 데이터 로드
+        for (int i = 0; i < dataLenth; i++)
+        {
+                await FireBase.ScoreDataSave(surveyType, UserID, Header[i],
+                                           Data[Header[i]].ToString(),
+                                           Data["date"].ToString());
+        }
+    }
+    //|-------------------------------------------------------------------------|
+    //|-----------------------서버에서 데이터를 로드하는 과정----------------------|
+    async public static Task<List<Dictionary<string, object>>> Dataload(string surtype, string UserID)
+    {
+        //파이어베이스 연동
+        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+        Query allData = db.Collection("user").Document(UserID)
+                                    .Collection(surtype);
+        QuerySnapshot allDataSnapshot = await allData.GetSnapshotAsync();
+
+        var dataList = new List<Dictionary<string, object>>();
+
+        foreach (DocumentSnapshot documentSnapshot in allDataSnapshot.Documents)
+        {
+            //파이어베이스에서 데이터 로드
+            dataList.Add(await ScoreDataLoad(documentSnapshot, surtype, UserID));
+        }
+
+        return dataList;
+
+        //Debug.Log("FireBaseLoad" + ScoreData_.Count);
+    }
+    //|-------------------------------------------------------------------------|
 }

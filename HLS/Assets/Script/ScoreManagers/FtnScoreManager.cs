@@ -13,7 +13,7 @@ public class FtnScoreManager : MonoBehaviour, IScoreManager
     public string name;
     public Image targetImage;
 
-    public Dictionary<string, string> ScoreData { get; private set; }
+    public Dictionary<string, object> ScoreData { get; private set; }
 
 
     private void Start()
@@ -72,11 +72,11 @@ public class FtnScoreManager : MonoBehaviour, IScoreManager
     public RaderDraw rd;
     public void SetData()
     {
-        ScoreData = new Dictionary<string, string>();
+        ScoreData = new Dictionary<string, object>();
 
-        questionRenderer.OtherTestComplete();
+        //questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
-        rd.addotherData(ScoreData, "FTND");
+        rd.addData(ScoreData, "FTND");
     }
     public void ResetScores()
     {

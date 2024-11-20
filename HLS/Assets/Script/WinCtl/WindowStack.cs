@@ -10,7 +10,7 @@ public class WindowStack : MonoBehaviour
     private string[] stack = new string[MAX_SIZE];
     private int top = -1;
 
-
+    //뒤로가기 기능
     private bool isEmpty()
     {
         return top == -1 ? true : false;
@@ -41,4 +41,9 @@ public class WindowStack : MonoBehaviour
         top = -1;
     }
 
+    //서버연결 max처리
+    public bool checkconnet()
+    {
+        return false;
+    }
 }

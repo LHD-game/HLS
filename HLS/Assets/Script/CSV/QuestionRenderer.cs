@@ -256,8 +256,9 @@ public class QuestionRenderer : MonoBehaviour
         }
         else
         {
+            //scoreManager.SetData();
+            //surveySwitcher.surveyPanel.SetActive(false);
             scoreManager.SetData();
-            surveySwitcher.surveyPanel.SetActive(false);
             Debug.Log("결과보기");
 
             //Debug.Log(scoreText);
@@ -265,11 +266,10 @@ public class QuestionRenderer : MonoBehaviour
         //}
     }
 
-    public void OtherTestComplete()
+    /*public void OtherTestComplete()
     {
-        
         otherRwin.SetActive(true);
-    }
+    }*/
 
     public void PreviousQuestion()
     {
