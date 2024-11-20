@@ -10,6 +10,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using Firebase.Firestore;
 
 //https://console.firebase.google.com/u/1/project/hlsapp-2d873/firestore/data/~2Fuser~2F01062341524?hl=ko 에 로그인 해서 DB확인하며 진행하기.
 
@@ -88,36 +89,45 @@ public class FirebaseTest : MonoBehaviour
         string Pw = PwText.text;
         string DecryptPw;     //복호화된PW값
 
-        //await는 비동기 값을 동기화할때까지 기다려 달라는 뜻.
-        //복호화 과정
-        DecryptPw = await DecryptAsync(await FireBase.DataLoad(Id, "Password"));
-
-        Debug.Log(DecryptPw);
-
-        //Data값 = FireBase.DataLoad([유저 ID], [Key값]) | Dictionary형 자료임으로 Key(string)를 통해 Data(string)를 찾음
-        if (DecryptPw == Pw)
+        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+        DocumentReference docRef = db.Collection("user").Document(Id);
+        //찾은 정보를 불러와서 진행
+        DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+        if (snapshot.Exists) //로그인
         {
-            Debug.Log("로그인 성공");
-            await setDefaultData(Id);
+            //await는 비동기 값을 동기화할때까지 기다려 달라는 뜻.
+            //복호화 과정
+            DecryptPw = await DecryptAsync(await FireBase.DataLoad(Id, "Password"));
 
-            if (ALCheckbool)   //자동로그인 확정
+            Debug.Log(DecryptPw);
+
+            //Data값 = FireBase.DataLoad([유저 ID], [Key값]) | Dictionary형 자료임으로 Key(string)를 통해 Data(string)를 찾음
+            if (DecryptPw == Pw)
             {
-                PlayerPrefs.SetInt("autoLogin", 1);
+                Debug.Log("로그인 성공");
+                await setDefaultData(Id);
+
+                if (ALCheckbool)   //자동로그인 확정
+                {
+                    PlayerPrefs.SetInt("autoLogin", 1);
+                }
+
+                SceneManager.LoadSceneAsync("Main"); //main화면으로
+
             }
-
-            SceneManager.LoadSceneAsync("Main"); //main화면으로
-
-        }
-        else if (DecryptPw == null) //로그인 실패시 아이디 비번 오류 발생
-        {
-            Debug.Log("로그인 오류");
-            LoginError.gameObject.SetActive(true);
+            else if (DecryptPw == null) //로그인 실패시 아이디 비번 오류 발생
+            {
+                Debug.Log("로그인 오류");
+                LoginError.gameObject.SetActive(true);
+            }
+            else
+            {
+                Debug.Log("로그인 실패");
+                LoginError.gameObject.SetActive(true);
+            }
         }
         else
-        {
-            Debug.Log("로그인 실패");
-            LoginError.gameObject.SetActive(true);
-        }
+            Debug.Log("인터넷 연결x");
     }
 
     //|-----------------------서버에서 데이터를 저장하는 과정----------------------|

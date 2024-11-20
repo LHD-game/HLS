@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class FtnScoreManager : MonoBehaviour, IScoreManager
 {
-    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // °¢ Áú¹®¿¡ ´ëÇÑ Á¡¼ö ÀúÀå
-    public int totalScore { get; set; } // ÃÑÁ¡
+    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // ê° ì§ˆë¬¸ì— ëŒ€í•œ ì ìˆ˜ ì €ì¥
+    public int totalScore { get; set; } // ì´ì 
 
     public QuestionRenderer questionRenderer;
     public Text level;
@@ -14,46 +14,47 @@ public class FtnScoreManager : MonoBehaviour, IScoreManager
     public Image targetImage;
 
     public Dictionary<string, string> ScoreData { get; private set; }
-    private List<int> selectedAnswers = new List<int>(); // »ç¿ëÀÚ ¼±ÅÃ ÀúÀå
+    private List<int> selectedAnswers = new List<int>(); // ì‚¬ìš©ì ì„ íƒ ì €ì¥
+
 
 
     private void Start()
     {
         if (questionRenderer != null && questionRenderer.scoreText != null)
         {
-            questionRenderer.scoreText.text = totalScore.ToString(); // ÃÊ±â°ª ¼³Á¤
+            questionRenderer.scoreText.text = totalScore.ToString(); // ì´ˆê¸°ê°’ ì„¤ì •
         }
     }
 
     public void AddScore(int questionIndex, int answerIndex)
     {
-        // 0Á¡, 1Á¡, 2Á¡, 3Á¡
-        int score = answerIndex; // ÀÎµ¦½º¿¡ µû¸¥ Á¡¼ö °è»ê
-        questionScores[questionIndex] = score; // Á¡¼ö ÀúÀå
+        // 0ì , 1ì , 2ì , 3ì 
+        int score = answerIndex; // ì¸ë±ìŠ¤ì— ë”°ë¥¸ ì ìˆ˜ ê³„ì‚°
+        questionScores[questionIndex] = score; // ì ìˆ˜ ì €ì¥
 
         name = questionRenderer.Uname;
         level = questionRenderer.levelText;
         notice = questionRenderer.noticeText;
-        selectedAnswers.Add(answerIndex); // ¼±ÅÃÇÑ ´äº¯ ±â·Ï
+        selectedAnswers.Add(answerIndex); // ì„ íƒí•œ ë‹µë³€ ê¸°ë¡
 
-        // ÃÑ Á¡¼ö °»½Å
+        // ì´ ì ìˆ˜ ê°±ì‹ 
         CalculateTotalScore();
 
         if (totalScore >= 7 )
         {
-            level.text = "À§Çè±º";
+            level.text = "ìœ„í—˜êµ°";
             Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/danger");
-            if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+            if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
         }
 
         else
         {
-            level.text = "Á¤»ó";
+            level.text = "ì •ìƒ";
             Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
-            if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+            if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
         }
 
-        notice.text = $"{name}´ÔÀÇ Á¡¼ö´Â {totalScore}Á¡ ÀÔ´Ï´Ù.";
+        notice.text = $"{name}ë‹˜ì˜ ì ìˆ˜ëŠ” {totalScore}ì  ì…ë‹ˆë‹¤.";
     }
  
 
@@ -67,7 +68,7 @@ public class FtnScoreManager : MonoBehaviour, IScoreManager
 
         Debug.Log("Total Score: " + totalScore);
         Debug.Log(totalScore.ToString());
-        questionRenderer.scoreText.text = totalScore.ToString(); // ÃÖÁ¾ Á¡¼ö ¹İ¿µ
+        questionRenderer.scoreText.text = totalScore.ToString(); // ìµœì¢… ì ìˆ˜ ë°˜ì˜
     }
 
     [Header("script")]
@@ -75,22 +76,23 @@ public class FtnScoreManager : MonoBehaviour, IScoreManager
     public RaderDraw rd;
     public void SetData()
     {
-        ScoreData = new Dictionary<string, string>();
+        ScoreData = new Dictionary<string, object>();
 
-        questionRenderer.OtherTestComplete();
+        //questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
-        rd.addotherData(ScoreData, "FTND");
+
         Debug.Log("Selected Answers:");
         for (int i = 0; i < selectedAnswers.Count; i++)
         {
             Debug.Log($"Question {i + 1}: Answer {selectedAnswers[i]}");
         }
 
+        rd.addData(ScoreData, "FTND");
     }
     public void ResetScores()
     {
         questionScores.Clear();
-        selectedAnswers.Clear(); // ¼±ÅÃÇÑ ´äº¯ ÃÊ±âÈ­
+        selectedAnswers.Clear(); // ì„ íƒí•œ ë‹µë³€ ì´ˆê¸°í™”
 
         totalScore = 0;
         Debug.Log("Scores Reset");

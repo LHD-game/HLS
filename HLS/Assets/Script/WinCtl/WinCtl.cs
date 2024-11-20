@@ -14,7 +14,7 @@ public class WinCtl : MonoBehaviour
     public ChooseSurvey choose;
     public WindowStack windowStack;
     public soluWinctl soluWinctl_;
-    public SurveySwitcher surveySwitcher;
+    //public SurveySwitcher surveySwitcher;
     void Awake()
     {
         if (Instance == null)
@@ -28,27 +28,30 @@ public class WinCtl : MonoBehaviour
     [Header("Windows")]
     //public GameObject WellcomeWin;
     public GameObject MainWin;
-    public GameObject HistoryWin;
-    public GameObject ResolutWin;
-    public GameObject SurveyWin;
-    public GameObject PrintsurveyWin;
-    public GameObject DatailWin;
-    public GameObject SolutionWin;
-    public GameObject TestCompeletWin;
-    public GameObject TCBtn;
-    public GameObject PrintSolutionWin;
     public GameObject HelpWin;
     public GameObject Menu;
     public GameObject Loading;
+    [Space(5f)]
+    public GameObject ResolutWin;
+    public GameObject HistoryWin;
+    public GameObject DatailWin;
+    public GameObject TestCompeletWin;
+    public GameObject TCBtn;
+    [Space(5f)]
+    public GameObject SurveyWin;
+    public GameObject PrintsurveyWin;
+    public GameObject OtherTestResoult;
+    [Space(5f)]
+    public GameObject SolutionWin;
+    public GameObject PrintSolutionWin;
 
+    [Space(5f)]
     private GameObject WinCtl_;
 
     private bool coRisRunning = false;
     // Start is called before the first frame update
     void Start()
     {
-        Loading.SetActive(true);
-        StartCoroutine(appStart());
     }
 
     void Update()
@@ -66,7 +69,7 @@ public class WinCtl : MonoBehaviour
     private IEnumerator WinSetting(GameObject nowWin, GameObject Withopen)
     {
         coRisRunning = true;
-        Debug.Log("Loadingopen");
+        Debug.Log($"Loadingopen {nowWin}");
 
         Loading.SetActive(true);
 
@@ -83,7 +86,7 @@ public class WinCtl : MonoBehaviour
             Withopen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
 
-        Debug.Log("Loadingclose");
+        Debug.Log($"Loadingclose {nowWin}");
         Loading.SetActive(false);
     }
 
@@ -145,6 +148,10 @@ public class WinCtl : MonoBehaviour
         StartCoroutine(WinSetting(PrintsurveyWin, SurveyWin));
         StartCoroutine(Waitco(PrintsurveyWin));
     }
+    public void GotoOtherTestResoult()
+    {
+        StartCoroutine(WinSetting(OtherTestResoult, SurveyWin));
+    }
     public void GotoDatailWin()  //검사 결과 상세보기 창
     {
         graph.DetailP();
@@ -171,7 +178,7 @@ public class WinCtl : MonoBehaviour
         StartCoroutine(WinSetting(HelpWin, null));
     }
 
-    private IEnumerator appStart()  //화면 초기화
+    public IEnumerator appStart()  //화면 초기화
     {
         //yield return new WaitForSeconds(0.5f);
         //WellcomeWin.SetActive(false);
@@ -248,6 +255,7 @@ public class WinCtl : MonoBehaviour
 
     }
 
+
     public void setonoff(GameObject window)
     {
         if (window.activeSelf)
@@ -256,5 +264,12 @@ public class WinCtl : MonoBehaviour
             window.SetActive(true);
     }
 
+    public IEnumerator warningWinCtl(GameObject Window)
+    {
+        Window.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
 
+        Window.SetActive(false);
+
+    }
 }

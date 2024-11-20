@@ -4,58 +4,58 @@ using UnityEngine.UI;
 
 public class CbsScoreManager : MonoBehaviour, IScoreManager
 {
-    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // °¢ Áú¹®¿¡ ´ëÇÑ Á¡¼ö ÀúÀå
-    private List<int> selectedAnswers = new List<int>(); // »ç¿ëÀÚ ¼±ÅÃ ÀúÀå
+    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // ê° ì§ˆë¬¸ì— ëŒ€í•œ ì ìˆ˜ ì €ì¥
+    private List<int> selectedAnswers = new List<int>(); // ì‚¬ìš©ì ì„ íƒ ì €ì¥
 
-    public int totalScore { get; set; } // ÃÑÁ¡
+    public int totalScore { get; set; } // ì´ì 
 
-    public Dictionary<string, string> ScoreData { get; private set; }
+    public Dictionary<string, object> ScoreData { get; private set; }
     public QuestionRenderer questionRenderer;
     public Text level;
     public Text notice;
     public string name;
     public Image targetImage;
-    private float cutOffScore = -9.69f; // Cut-off Á¡¼ö ÃÊ±â°ª
+    private float cutOffScore = -9.69f; // Cut-off ì ìˆ˜ ì´ˆê¸°ê°’
 
     public void AddScore(int questionIndex, int answerIndex)
     {
-        // ¼±ÅÃÁö ÀÎµ¦½º¸¦ Á¡¼ö·Î »ç¿ëÇÕ´Ï´Ù.
-        int score = answerIndex + 1; // ÀÎµ¦½º¿¡ µû¸¥ Á¡¼ö °è»ê
-        questionScores[questionIndex] = score; // Á¡¼ö ÀúÀå
+        // ì„ íƒì§€ ì¸ë±ìŠ¤ë¥¼ ì ìˆ˜ë¡œ ì‚¬ìš©í•©ë‹ˆë‹¤.
+        int score = answerIndex + 1; // ì¸ë±ìŠ¤ì— ë”°ë¥¸ ì ìˆ˜ ê³„ì‚°
+        questionScores[questionIndex] = score; // ì ìˆ˜ ì €ì¥
         name = questionRenderer.Uname;
         level = questionRenderer.levelText;
         notice = questionRenderer.noticeText;
-        selectedAnswers.Add(answerIndex); // ¼±ÅÃÇÑ ´äº¯ ±â·Ï
+        selectedAnswers.Add(answerIndex); // ì„ íƒí•œ ë‹µë³€ ê¸°ë¡
 
 
-        // Cut-off Á¡¼ö °è»ê
+        // Cut-off ì ìˆ˜ ê³„ì‚°
         CalculateCutOffScore(questionIndex, answerIndex);
 
-        // ÃÑ Á¡¼ö °»½Å
+        // ì´ ì ìˆ˜ ê°±ì‹ 
         CalculateTotalScore();
 
-        // Cut-off Á¡¼ö¸¦ ±âÁØÀ¸·Î »óÅÂ ºĞ±â
+        // Cut-off ì ìˆ˜ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ìƒíƒœ ë¶„ê¸°
         if (cutOffScore > -1.34f)
         {
-            // À§Çè±º
-            level.text = "¼îÇÎ Áßµ¶ À§Çè±º";
+            // ìœ„í—˜êµ°
+            level.text = "ì‡¼í•‘ ì¤‘ë… ìœ„í—˜êµ°";
             Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/danger");
-            if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+            if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
 
         }
         else
         {
-            // Á¤»ó
-            level.text = "Á¤»ó";
+            // ì •ìƒ
+            level.text = "ì •ìƒ";
             Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
-            if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+            if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
         }
-        notice.text = $"{name}´ÔÀÇ Á¡¼ö´Â {totalScore}Á¡ ÀÔ´Ï´Ù.";
+        notice.text = $"{name}ë‹˜ì˜ ì ìˆ˜ëŠ” {totalScore}ì  ì…ë‹ˆë‹¤.";
     }
 
     private void CalculateCutOffScore(int questionIndex, int answerIndex)
     {
-        // Cut-off ¹æÁ¤½Ä °è»ê
+        // Cut-off ë°©ì •ì‹ ê³„ì‚°
         switch (questionIndex)
         {
             case 0: // Q1a
@@ -101,11 +101,11 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
     public RaderDraw rd;
     public void SetData()
     {
-        ScoreData = new Dictionary<string, string>();
+        ScoreData = new Dictionary<string, object>();
 
-        questionRenderer.OtherTestComplete();
+        //questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
-        rd.addotherData(ScoreData, "CBS");
+
         Debug.Log("Selected Answers:");
 
         for (int i = 0; i < selectedAnswers.Count; i++)
@@ -113,14 +113,15 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
             Debug.Log($"Question {i + 1}: Answer {selectedAnswers[i]}");
         }
 
+        rd.addData(ScoreData, "CBS");
     }
     public void ResetScores()
     {
         questionScores.Clear();
-        selectedAnswers.Clear(); // ¼±ÅÃÇÑ ´äº¯ ÃÊ±âÈ­
+        selectedAnswers.Clear(); // ì„ íƒí•œ ë‹µë³€ ì´ˆê¸°í™”
 
         totalScore = 0;
-        cutOffScore = -9.69f; // Cut-off Á¡¼ö ÃÊ±âÈ­*/
+        cutOffScore = -9.69f; // Cut-off ì ìˆ˜ ì´ˆê¸°í™”*/
         Debug.Log("Scores Reset");
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class SapsScoreManager : MonoBehaviour, IScoreManager
 {
-    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // °¢ Áú¹®¿¡ ´ëÇÑ Á¡¼ö ÀúÀå
-    public int totalScore { get; set; } // ÃÑÁ¡
+    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // ê° ì§ˆë¬¸ì— ëŒ€í•œ ì ìˆ˜ ì €ì¥
+    public int totalScore { get; set; } // ì´ì 
     public QuestionRenderer questionRenderer;
     public Text level;
     public Text notice;
@@ -13,11 +13,12 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
     public Image targetImage;
 
     public Dictionary<string, string> ScoreData { get; private set; }
-    private List<int> selectedAnswers = new List<int>(); // »ç¿ëÀÚ ¼±ÅÃ ÀúÀå
+    private List<int> selectedAnswers = new List<int>(); // ì‚¬ìš©ì ì„ íƒ ì €ì¥
 
-    private int factor1Score = 0; // 1¿äÀÎ (ÀÏ»ó»ıÈ°Àå¾Ö) Á¡¼ö
-    private int factor3Score = 0; // 3¿äÀÎ (±İ´Ü) Á¡¼ö
-    private int factor4Score = 0; // 4¿äÀÎ (³»¼º) Á¡¼ö
+
+    private int factor1Score = 0; // 1ìš”ì¸ (ì¼ìƒìƒí™œì¥ì• ) ì ìˆ˜
+    private int factor3Score = 0; // 3ìš”ì¸ (ê¸ˆë‹¨) ì ìˆ˜
+    private int factor4Score = 0; // 4ìš”ì¸ (ë‚´ì„±) ì ìˆ˜
 
     private int[] factor1Questions = { 1, 5, 9, 12, 15 };
     private int[] factor3Questions = { 4, 8, 11, 14 };
@@ -25,25 +26,25 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
 
     public void AddScore(int questionIndex, int answerIndex)
     {
-        // SAPS¿¡¼­´Â ¼±ÅÃÁö ÀÎµ¦½º¸¦ Á¡¼ö·Î »ç¿ëÇÕ´Ï´Ù. (1~4Á¡)
-        int score = answerIndex + 1; // ÀÎµ¦½º¿¡ µû¸¥ Á¡¼ö °è»ê (1ºÎÅÍ 4±îÁö)
-        questionScores[questionIndex] = score; // Á¡¼ö ÀúÀå
+        // SAPSì—ì„œëŠ” ì„ íƒì§€ ì¸ë±ìŠ¤ë¥¼ ì ìˆ˜ë¡œ ì‚¬ìš©í•©ë‹ˆë‹¤. (1~4ì )
+        int score = answerIndex + 1; // ì¸ë±ìŠ¤ì— ë”°ë¥¸ ì ìˆ˜ ê³„ì‚° (1ë¶€í„° 4ê¹Œì§€)
+        questionScores[questionIndex] = score; // ì ìˆ˜ ì €ì¥
         name = questionRenderer.Uname;
         level = questionRenderer.levelText;
         notice = questionRenderer.noticeText;
 
-        selectedAnswers.Add(answerIndex); // ¼±ÅÃÇÑ ´äº¯ ±â·Ï
+        selectedAnswers.Add(answerIndex); // ì„ íƒí•œ ë‹µë³€ ê¸°ë¡
 
 
 
-        // ÃÑ Á¡¼ö °»½Å
+        // ì´ ì ìˆ˜ ê°±ì‹ 
         CalculateTotalScore();
         questionRenderer.scoreText.text = totalScore.ToString();
 
-        // ¿äÀÎº° Á¡¼ö °»½Å
+        // ìš”ì¸ë³„ ì ìˆ˜ ê°±ì‹ 
         CalculateFactorScores();
 
-        // »ç¿ëÀÚ »óÅÂ ºĞ·ù
+        // ì‚¬ìš©ì ìƒíƒœ ë¶„ë¥˜
         DetermineUserGroup();
 
     }
@@ -56,7 +57,7 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
             totalScore += score;
         }
 
-        // ÃÑÁ¡À» µğ¹ö±× ·Î±×·Î Ãâ·Â
+        // ì´ì ì„ ë””ë²„ê·¸ ë¡œê·¸ë¡œ ì¶œë ¥
         Debug.Log("Total Score: " + totalScore);
     }
 
@@ -86,34 +87,34 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
     {
         if (totalScore >= 44 && factor1Score >= 15 && factor3Score >= 13 && factor4Score >= 13)
         {
-            // °íÀ§Çè »ç¿ëÀÚ±º
-            level.text = "°íÀ§Çè »ç¿ëÀÚ±º";
+            // ê³ ìœ„í—˜ ì‚¬ìš©ìêµ°
+            level.text = "ê³ ìœ„í—˜ ì‚¬ìš©ìêµ°";
             Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/danger");
-            if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+            if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
         }
         else if ( (totalScore >= 40 && totalScore <= 43 ) || factor1Score >= 14)
         {
-            // ÀáÀçÀû À§Çè »ç¿ëÀÚ±º
-            level.text = "ÀáÀçÀû À§Çè »ç¿ëÀÚ±º";
+            // ì ì¬ì  ìœ„í—˜ ì‚¬ìš©ìêµ°
+            level.text = "ì ì¬ì  ìœ„í—˜ ì‚¬ìš©ìêµ°";
             Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/dangerorange");
-            if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+            if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
 
         }
         else if (totalScore <= 39 && factor1Score <= 13 && factor3Score <= 12 && factor4Score <= 12)
         {
-            // ÀÏ¹İ »ç¿ëÀÚ±º
-            level.text = "ÀÏ¹İ »ç¿ëÀÚ±º";
+            // ì¼ë°˜ ì‚¬ìš©ìêµ°
+            level.text = "ì¼ë°˜ ì‚¬ìš©ìêµ°";
             Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
-            if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+            if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
         }
         else
         {
-            // ¿¹¿ÜÀûÀÎ °æ¿ì (Á¶°Ç¿¡ ¸ğµÎ ÇØ´çÇÏÁö ¾Ê´Â °æ¿ì Ã³¸®)
+            // ì˜ˆì™¸ì ì¸ ê²½ìš° (ì¡°ê±´ì— ëª¨ë‘ í•´ë‹¹í•˜ì§€ ì•ŠëŠ” ê²½ìš° ì²˜ë¦¬)
           
-            Debug.Log("User Group: ºĞ·ù ºÒ°¡");
+            Debug.Log("User Group: ë¶„ë¥˜ ë¶ˆê°€");
         }
 
-        notice.text = $"{name}´ÔÀÇ Á¡¼ö´Â {totalScore}Á¡ ÀÔ´Ï´Ù.";
+        notice.text = $"{name}ë‹˜ì˜ ì ìˆ˜ëŠ” {totalScore}ì  ì…ë‹ˆë‹¤.";
     }
 
     [Header("script")]
@@ -121,11 +122,10 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
     public RaderDraw rd;
     public void SetData()
     {
-        ScoreData = new Dictionary<string, string>();
+        ScoreData = new Dictionary<string, object>();
 
-        questionRenderer.OtherTestComplete();
+        //questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
-        rd.addotherData(ScoreData, "SAPS");
 
         Debug.Log("Selected Answers:");
         for (int i = 0; i < selectedAnswers.Count; i++)
@@ -133,11 +133,13 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
             Debug.Log($"Question {i + 1}: Answer {selectedAnswers[i]}");
         }
 
+        rd.addData(ScoreData, "SAPS");
+
     }
     public void ResetScores()
     {
         questionScores.Clear();
-        selectedAnswers.Clear(); // ¼±ÅÃÇÑ ´äº¯ ÃÊ±âÈ­
+        selectedAnswers.Clear(); // ì„ íƒí•œ ë‹µë³€ ì´ˆê¸°í™”
 
         totalScore = 0;
         factor1Score = 0;
