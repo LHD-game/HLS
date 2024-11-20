@@ -67,7 +67,7 @@ public class FireBase : MonoBehaviour
         else
         {
             Debug.Log("유저 불러오기 실패");
-            SceneManager.LoadSceneAsync("LoginScene"); //main화면으로
+            //SceneManager.LoadSceneAsync("LoginScene"); //main화면으로
         }
     }
 
