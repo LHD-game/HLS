@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public class HlsScoreManager : MonoBehaviour, IScoreManager
 {
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
+    private List<int> selectedAnswers = new List<int>(); // 사용자 선택 저장
+
     public int totalScore { get; set; } // 총점
 
     public QuestionRenderer questionRenderer;
@@ -22,6 +24,7 @@ public class HlsScoreManager : MonoBehaviour, IScoreManager
         // 선택지 인덱스를 점수로 처리 (1~4점)
         int score = answerIndex + 1;
         questionScores[questionIndex] = score; // 해당 질문의 점수를 저장
+        selectedAnswers.Add(answerIndex); // 선택한 답변 기록
 
         // 총 점수 갱신
         CalculateTotalScore();
@@ -66,18 +69,26 @@ public class HlsScoreManager : MonoBehaviour, IScoreManager
                     ScoreData.Add(sd.header[(count / 4)-1], groupScore.ToString());
                 groupScore = 0;
             }
+            
 
         }
 
         ScoreData.Add("total", totalScore.ToString());
 
         rd.addData(ScoreData, "HLS");
+        Debug.Log("Selected Answers:");
+        for (int i = 0; i < selectedAnswers.Count; i++)
+        {
+            Debug.Log($"Question {i + 1}: Answer {selectedAnswers[i]}");
+        }
     }
 
     // 점수 초기화
     public void ResetScores()
     {
         questionScores.Clear();
+        selectedAnswers.Clear(); // 선택한 답변 초기화
+
         totalScore = 0;
         //Debug.Log("Scores Reset");
     }

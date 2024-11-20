@@ -4,10 +4,13 @@ using UnityEngine.UI;
 
 public class YFASScoreManager : MonoBehaviour, IScoreManager
 {
-    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // °¢ Áú¹®¿¡ ´ëÇÑ Á¡¼ö ÀúÀå
-    public int totalCategories = 0; // À½½Ä Áßµ¶ ¹üÁÖ¿¡ ÇØ´çÇÏ´Â °³¼ö
-    public int totalScore { get; set; } // ÃÑÁ¡
-    public Dictionary<string, object> ScoreData { get; private set; }
+    private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // ê° ì§ˆë¬¸ì— ëŒ€í•œ ì ìˆ˜ ì €ì¥
+    public int totalCategories = 0; // ìŒì‹ ì¤‘ë… ë²”ì£¼ì— í•´ë‹¹í•˜ëŠ” ê°œìˆ˜
+    public int totalScore { get; set; } // ì´ì 
+
+    public Dictionary<string, string> ScoreData { get; private set; }
+    private List<int> selectedAnswers = new List<int>(); // ì‚¬ìš©ì ì„ íƒ ì €ì¥
+
 
     public QuestionRenderer questionRenderer;
     public Text level;
@@ -18,20 +21,20 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
 
     private readonly Dictionary<int, (int min, int max)> scoringRules = new Dictionary<int, (int, int)>
     {
-        { 3, (0, 1) }, { 5, (0, 2) }, { 7, (0, 3) },  // ¿¹½Ã: ¹®Ç× 3, 5, 7¿¡ ´ëÇÑ Á¡¼ö ±ÔÄ¢
-        { 1, (0, 4) }, { 2, (0, 4) }, { 24, (1, 0) }  // Ãß°¡ÀûÀÎ ¹®Ç× ±ÔÄ¢
+        { 3, (0, 1) }, { 5, (0, 2) }, { 7, (0, 3) },  // ì˜ˆì‹œ: ë¬¸í•­ 3, 5, 7ì— ëŒ€í•œ ì ìˆ˜ ê·œì¹™
+        { 1, (0, 4) }, { 2, (0, 4) }, { 24, (1, 0) }  // ì¶”ê°€ì ì¸ ë¬¸í•­ ê·œì¹™
     };
 
-    private readonly int[][] categoryQuestions = new int[][] // °¢ ¹üÁÖ¿¡ ¼ÓÇÏ´Â Áú¹® ±×·ìÀ» ¹è¿­·Î °ü¸®
+    private readonly int[][] categoryQuestions = new int[][] // ê° ë²”ì£¼ì— ì†í•˜ëŠ” ì§ˆë¬¸ ê·¸ë£¹ì„ ë°°ì—´ë¡œ ê´€ë¦¬
     {
-        new int[] { 1, 2, 3 },        // ¹üÁÖ 1
-        new int[] { 4, 22, 24 },      // ¹üÁÖ 2
-        new int[] { 5, 6, 7 },        // ¹üÁÖ 3
-        new int[] { 8, 9, 10, 11 },   // ¹üÁÖ 4
-        new int[] { 19 },             // ¹üÁÖ 5
-        new int[] { 20, 21 },         // ¹üÁÖ 6
-        new int[] { 12, 13, 14 },     // ¹üÁÖ 7
-        new int[] { 15, 16 }          // ¹üÁÖ 8
+        new int[] { 1, 2, 3 },        // ë²”ì£¼ 1
+        new int[] { 4, 22, 24 },      // ë²”ì£¼ 2
+        new int[] { 5, 6, 7 },        // ë²”ì£¼ 3
+        new int[] { 8, 9, 10, 11 },   // ë²”ì£¼ 4
+        new int[] { 19 },             // ë²”ì£¼ 5
+        new int[] { 20, 21 },         // ë²”ì£¼ 6
+        new int[] { 12, 13, 14 },     // ë²”ì£¼ 7
+        new int[] { 15, 16 }          // ë²”ì£¼ 8
     };
 
     public void AddScore(int questionIndex, int answerIndex)
@@ -41,34 +44,35 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
         notice = questionRenderer.noticeText;
 
         int score = CalculateScore(questionIndex, answerIndex);
-        questionScores[questionIndex] = score; // Á¡¼ö ÀúÀå
+        questionScores[questionIndex] = score; // ì ìˆ˜ ì €ì¥
+        selectedAnswers.Add(answerIndex); // ì„ íƒí•œ ë‹µë³€ ê¸°ë¡
 
-        CalculateTotalScore();  // ÃÑÁ¡ °è»ê
-        CalculateCategoryScores(); // ¹üÁÖº° Á¡¼ö ¾÷µ¥ÀÌÆ®
+        CalculateTotalScore();  // ì´ì  ê³„ì‚°
+        CalculateCategoryScores(); // ë²”ì£¼ë³„ ì ìˆ˜ ì—…ë°ì´íŠ¸
 
         Debug.Log($"Question {questionIndex} score: {score}");
         Debug.Log($"Total categories met: {totalCategories}");
-        Debug.Log($"Total Score: {totalScore}"); // ÃÑÁ¡ Ãâ·Â
+        Debug.Log($"Total Score: {totalScore}"); // ì´ì  ì¶œë ¥
         //questionRenderer.scoreText.text = totalScore.ToString();
 
-        // ¿¹½Ã ºĞ±â¹® ÄÚµå
+        // ì˜ˆì‹œ ë¶„ê¸°ë¬¸ ì½”ë“œ
  
         if (totalCategories >= 3)
         {
-            // 3°³ Ç×¸ñ ÀÌ»ó - À½½Ä Áßµ¶ À§Çè±º
-            level.text = "À½½Ä Áßµ¶ À§Çè±º";
+            // 3ê°œ í•­ëª© ì´ìƒ - ìŒì‹ ì¤‘ë… ìœ„í—˜êµ°
+            level.text = "ìŒì‹ ì¤‘ë… ìœ„í—˜êµ°";
             Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/danger");
-            if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+            if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
         }
         else
         {
-            // Á¤»ó
-            level.text = "Á¤»ó";
+            // ì •ìƒ
+            level.text = "ì •ìƒ";
             Sprite newSprite = Resources.Load<Sprite>("sprite/TestUI/good");
-            if (newSprite != null) targetImage.sprite = newSprite; // ½ºÇÁ¶óÀÌÆ® Àû¿ë
+            if (newSprite != null) targetImage.sprite = newSprite; // ìŠ¤í”„ë¼ì´íŠ¸ ì ìš©
         }
 
-        notice.text = $"{name}´ÔÀÇ Á¡¼ö´Â {totalScore}Á¡ ÀÔ´Ï´Ù.";
+        notice.text = $"{name}ë‹˜ì˜ ì ìˆ˜ëŠ” {totalScore}ì  ì…ë‹ˆë‹¤.";
 
     }
 
@@ -80,7 +84,7 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
             return reverse == 1 ? (answerIndex == threshold ? 0 : 1) : (answerIndex >= threshold ? 1 : 0);
         }
 
-        return answerIndex >= 3 ? 1 : 0; // ±âº» ±ÔÄ¢: 3Á¡ ÀÌ»óÀÌ¸é 1Á¡
+        return answerIndex >= 3 ? 1 : 0; // ê¸°ë³¸ ê·œì¹™: 3ì  ì´ìƒì´ë©´ 1ì 
     }
 
     public void CalculateCategoryScores()
@@ -129,11 +133,20 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
         ScoreData = new Dictionary<string, object>();
         //questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
+        Debug.Log("Selected Answers:");
+        for (int i = 0; i < selectedAnswers.Count; i++)
+        {
+            Debug.Log($"Question {i + 1}: Answer {selectedAnswers[i]}");
+        }
+
         rd.addData(ScoreData, "YFAS");
+
     }
     public void ResetScores()
     {
         questionScores.Clear();
+        selectedAnswers.Clear(); // ì„ íƒí•œ ë‹µë³€ ì´ˆê¸°í™”
+
         totalCategories = 0;
         totalScore = 0;
         Debug.Log("Scores Reset");
