@@ -7,7 +7,7 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
     private Dictionary<int, int> questionScores = new Dictionary<int, int>(); // 각 질문에 대한 점수 저장
     public int totalScore { get; set; } // 총점
 
-    public Dictionary<string, string> ScoreData { get; private set; }
+    public Dictionary<string, object> ScoreData { get; private set; }
     public QuestionRenderer questionRenderer;
     public Text level;
     public Text notice;
@@ -97,11 +97,11 @@ public class CbsScoreManager : MonoBehaviour, IScoreManager
     public RaderDraw rd;
     public void SetData()
     {
-        ScoreData = new Dictionary<string, string>();
+        ScoreData = new Dictionary<string, object>();
 
-        questionRenderer.OtherTestComplete();
+        //questionRenderer.OtherTestComplete();
         ScoreData.Add("total", totalScore.ToString());
-        rd.addotherData(ScoreData, "CBS");
+        rd.addData(ScoreData, "CBS");
     }
     public void ResetScores()
     {

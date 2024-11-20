@@ -7,5 +7,5 @@ public interface IScoreManager
     void SetData();
 
     int totalScore { get; }
-    Dictionary<string, string> ScoreData { get; }
+    Dictionary<string, object> ScoreData { get; }
 }

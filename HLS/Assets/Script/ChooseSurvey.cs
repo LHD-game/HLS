@@ -66,7 +66,7 @@ public class ChooseSurvey : MonoBehaviour
 
     private void ItsDone()
     {
-        StartCoroutine(warningWinCtl());
+        StartCoroutine(WinCtl.Instance.warningWinCtl(WarningWin));
     }
 
     public void ButtonEvent()
@@ -137,14 +137,14 @@ public class ChooseSurvey : MonoBehaviour
         titleText.text = clickBtn.name;
     }
 
-    IEnumerator warningWinCtl()
+    /*IEnumerator warningWinCtl(GameObject Window)
     {
-        WarningWin.SetActive(true);
+        Window.SetActive(true);
         yield return new WaitForSeconds(1.5f);
 
-        WarningWin.SetActive(false);
+        Window.SetActive(false);
 
-    }
+    }*/
 
     async private Task<bool> CheckTodayTest(string nowSurv)
     {
