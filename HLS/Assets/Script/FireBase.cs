@@ -48,8 +48,8 @@ public class FireBase : MonoBehaviour
         DocumentReference docRef = db.Collection("user").Document(UserID);
         DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
         CollectionReference userRef = db.Collection("user");
-        if (snapshot.Exists) //로그인
-        {
+        //if (snapshot.Exists) //로그인
+       // {
             if (await DataCheck(UserID))
             {
                 await userRef.Document(UserID).UpdateAsync(new Dictionary<string, object>(){
@@ -63,12 +63,12 @@ public class FireBase : MonoBehaviour
             });
             }
 
-        }
-        else
-        {
-            Debug.Log("유저 불러오기 실패");
+        //}
+        //else
+        //{
+          //  Debug.Log("유저 불러오기 실패");
             //SceneManager.LoadSceneAsync("LoginScene"); //main화면으로
-        }
+        //}
     }
 
     async public static Task<Dictionary<string, object>> ScoreDataLoad(DocumentSnapshot documentSnapshot, string surType, string UserID)
