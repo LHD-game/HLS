@@ -49,6 +49,8 @@ public class ScoreData : MonoBehaviour
         id = PlayerPrefs.GetString("UserID");
 
         await SetData();
+
+        StartCoroutine(WinCtl.Instance.appStart());
     }
 
     public void GetData(int index,int[] data_) //그래프에 헤더삽입
@@ -71,7 +73,6 @@ public class ScoreData : MonoBehaviour
         ScoreData_ = await FireBase.Dataload("HLS", id);
 
         WinCtl.Instance.Loading.SetActive(true);
-        StartCoroutine(WinCtl.Instance.appStart());
     }
 
     //데이터 서버 업로드
