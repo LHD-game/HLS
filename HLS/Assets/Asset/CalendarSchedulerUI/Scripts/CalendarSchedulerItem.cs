@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace Maything.UI.CalendarSchedulerUI
 {
 
-    public class CalendarSchedulerItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    public class CalendarSchedulerItem : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler*/
     {
         CalendarSchedulerData data;
         public CalendarSchedulerDays days;
@@ -54,26 +54,27 @@ namespace Maything.UI.CalendarSchedulerUI
             textTime.color = days.UI.theme.itemNormalTextColor;
         }
 
-        void IPointerEnterHandler.OnPointerEnter(UnityEngine.EventSystems.PointerEventData eventData)
-        {
-            background.color = days.UI.theme.itemSelectedBackground;
-            textTitle.color = days.UI.theme.itemSelectedTextColor;
-            textTime.color = days.UI.theme.itemSelectedTextColor;
-        }
-
-        void IPointerExitHandler.OnPointerExit(UnityEngine.EventSystems.PointerEventData eventData)
-        {
-            if (isSelected == false)
-            {
-                background.color = normalColor;
-                textTitle.color = days.UI.theme.itemNormalTextColor;
-                textTime.color = days.UI.theme.itemNormalTextColor;
-            }
-        }
-
-        void IPointerClickHandler.OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData)
-        {
-            days.ChangeItem(this);
-        }
+        // void IPointerEnterHandler.OnPointerEnter(UnityEngine.EventSystems.PointerEventData eventData)
+        // {
+        //     // background.color = days.UI.theme.itemSelectedBackground;
+        //     background.color = normalColor;
+        //     textTitle.color = days.UI.theme.itemSelectedTextColor;
+        //     textTime.color = days.UI.theme.itemSelectedTextColor;
+        // }
+        //
+        // void IPointerExitHandler.OnPointerExit(UnityEngine.EventSystems.PointerEventData eventData)
+        // {
+        //     if (isSelected == false)
+        //     {
+        //         background.color = normalColor;
+        //         textTitle.color = days.UI.theme.itemNormalTextColor;
+        //         textTime.color = days.UI.theme.itemNormalTextColor;
+        //     }
+        // }
+        //
+        // void IPointerClickHandler.OnPointerClick(UnityEngine.EventSystems.PointerEventData eventData)
+        // {
+        //     days.ChangeItem(this);
+        // }
     }
 }

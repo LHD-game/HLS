@@ -408,7 +408,7 @@ MonoBehaviour:
   horizontalPanning: 0
   verticalPanning: 0
   heightRatio: 162.5
-  widthRatio: 239.79272
+  widthRatio: 239.79276
   PointClicked:
     m_PersistentCalls:
       m_Calls: []
@@ -2543,7 +2543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8695918942230250325, guid: 05d216af4fb4d2541a4c5a56fe5e5db1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 8695918942230250325, guid: 05d216af4fb4d2541a4c5a56fe5e5db1, type: 3}
       propertyPath: m_LocalScale.z
