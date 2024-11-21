@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Maything.UI.CalendarSchedulerUI
 {
@@ -39,6 +40,8 @@ namespace Maything.UI.CalendarSchedulerUI
 
         [Header("Day")]
         public int dayTextSize = 14;
+
+        public Font dayTextFont;
         public TextAnchor dayTextAnchor = TextAnchor.UpperLeft;
         public Color dayNormalTextColor = Color.black;
         public Color dayNormalBackground = Color.white;
@@ -57,6 +60,7 @@ namespace Maything.UI.CalendarSchedulerUI
 
         [Header("Item")]
         public float itemTopOffset = 25f;
+        public Font itemTextFont;
         public Color itemNormalTextColor = Color.black;
         public Color itemSelectedBackground = Color.grey;
         public Color itemSelectedTextColor = Color.black;
