@@ -12,7 +12,7 @@ public class SapsScoreManager : MonoBehaviour, IScoreManager
     public string name;
     public Image targetImage;
 
-    public Dictionary<string, string> ScoreData { get; private set; }
+    public Dictionary<string, object> ScoreData { get; private set; }
     private List<int> selectedAnswers = new List<int>(); // 사용자 선택 저장
 
 
