@@ -29,6 +29,7 @@ MonoBehaviour:
   weekBackground: {r: 1, g: 1, b: 1, a: 1}
   weekTextColor: {r: 0, g: 0, b: 0, a: 1}
   dayTextSize: -10
+  dayTextFont: {fileID: 12800000, guid: 80c6d6e3efcbeca43846e89c601a2453, type: 3}
   dayTextAnchor: 0
   dayNormalTextColor: {r: 0, g: 0, b: 0, a: 1}
   dayNormalBackground: {r: 1, g: 1, b: 1, a: 1}
@@ -41,6 +42,7 @@ MonoBehaviour:
   isDayBorder: 1
   dayBorderColor: {r: 0.854902, g: 0.8705883, b: 0.87843144, a: 1}
   itemTopOffset: 20
+  itemTextFont: {fileID: 12800000, guid: 80c6d6e3efcbeca43846e89c601a2453, type: 3}
   itemNormalTextColor: {r: 0, g: 0, b: 0, a: 1}
   itemSelectedBackground: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
   itemSelectedTextColor: {r: 0, g: 0, b: 0, a: 1}

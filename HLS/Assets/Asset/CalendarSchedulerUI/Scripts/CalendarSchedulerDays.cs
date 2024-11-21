@@ -136,7 +136,9 @@ namespace Maything.UI.CalendarSchedulerUI
                     if (day != null)
                     {
                         day.cellBackground.color = UI.theme.dayNormalBackground;
+                        
                         day.cellText.text = idx.ToString();
+                        day.cellText.font = UI.theme.dayTextFont;
                         day.cellText.color = UI.theme.dayNormalTextColor;
                         day.cellText.alignment = UI.theme.dayTextAnchor;
                         day.days = this;
