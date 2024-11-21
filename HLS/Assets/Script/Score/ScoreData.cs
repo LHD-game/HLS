@@ -68,6 +68,12 @@ public class ScoreData : MonoBehaviour
     {
         var entry = new Dictionary<string, object>();
 
+        var Header = new List<string>();
+        /*for (var j = 0; j < header.Length; j++)
+        {
+            Header.Add = Data[j,0];
+        }*/
+
         //Debug.Log("헤더길이=" + header.Length);
         for (var j = 0; j < header.Length; j++)
         {

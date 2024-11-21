@@ -8,7 +8,7 @@ public class YFASScoreManager : MonoBehaviour, IScoreManager
     public int totalCategories = 0; // 음식 중독 범주에 해당하는 개수
     public int totalScore { get; set; } // 총점
 
-    public Dictionary<string, string> ScoreData { get; private set; }
+    public Dictionary<string, object> ScoreData { get; private set; }
     private List<int> selectedAnswers = new List<int>(); // 사용자 선택 저장
 
 
