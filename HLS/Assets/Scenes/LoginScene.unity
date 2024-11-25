@@ -1154,8 +1154,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9028520038665776851}
-        m_TargetAssemblyTypeName: FirebaseTest, Assembly-CSharp
+      - m_Target: {fileID: 9028520038665776852}
+        m_TargetAssemblyTypeName: FirebaseAuthManager, Assembly-CSharp
         m_MethodName: TermCheck2
         m_Mode: 1
         m_Arguments:
@@ -1287,8 +1287,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9028520038665776851}
-        m_TargetAssemblyTypeName: FirebaseTest, Assembly-CSharp
+      - m_Target: {fileID: 9028520038665776852}
+        m_TargetAssemblyTypeName: FirebaseAuthManager, Assembly-CSharp
         m_MethodName: MColorChange
         m_Mode: 1
         m_Arguments:
@@ -2693,8 +2693,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9028520038665776851}
-        m_TargetAssemblyTypeName: FirebaseTest, Assembly-CSharp
+      - m_Target: {fileID: 9028520038665776852}
+        m_TargetAssemblyTypeName: FirebaseAuthManager, Assembly-CSharp
         m_MethodName: FColorChange
         m_Mode: 1
         m_Arguments:
@@ -3141,8 +3141,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9028520038665776851}
-        m_TargetAssemblyTypeName: FirebaseTest, Assembly-CSharp
+      - m_Target: {fileID: 9028520038665776852}
+        m_TargetAssemblyTypeName: FirebaseAuthManager, Assembly-CSharp
         m_MethodName: TermCheckAll
         m_Mode: 1
         m_Arguments:
@@ -3284,8 +3284,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9028520038665776851}
-        m_TargetAssemblyTypeName: FirebaseTest, Assembly-CSharp
+      - m_Target: {fileID: 9028520038665776852}
+        m_TargetAssemblyTypeName: FirebaseAuthManager, Assembly-CSharp
         m_MethodName: AutoLoginCheck
         m_Mode: 1
         m_Arguments:
@@ -3488,8 +3488,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9028520038665776851}
-        m_TargetAssemblyTypeName: FirebaseTest, Assembly-CSharp
+      - m_Target: {fileID: 9028520038665776852}
+        m_TargetAssemblyTypeName: FirebaseAuthManager, Assembly-CSharp
         m_MethodName: TermCheck1
         m_Mode: 1
         m_Arguments:
@@ -6946,9 +6946,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9028520038665776851}
-        m_TargetAssemblyTypeName: FirebaseTest, Assembly-CSharp
-        m_MethodName: Login
+      - m_Target: {fileID: 9028520038665776852}
+        m_TargetAssemblyTypeName: FirebaseAuthManager, Assembly-CSharp
+        m_MethodName: OnLogInButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7821,8 +7821,8 @@ GameObject:
   - component: {fileID: 4758051388166789915}
   - component: {fileID: 4921176496786909932}
   - component: {fileID: 2843277270475375893}
-  - component: {fileID: 9028520038665776851}
   - component: {fileID: 5194967306421250297}
+  - component: {fileID: 9028520038665776852}
   m_Layer: 0
   m_Name: LoginSystem
   m_TagString: Untagged
@@ -7984,7 +7984,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9028520038665776851}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FirebaseTest, Assembly-CSharp
         m_MethodName: ResetStatus
         m_Mode: 1
@@ -8846,9 +8846,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9028520038665776851}
-        m_TargetAssemblyTypeName: FirebaseTest, Assembly-CSharp
-        m_MethodName: Signin
+      - m_Target: {fileID: 9028520038665776852}
+        m_TargetAssemblyTypeName: FirebaseAuthManager, Assembly-CSharp
+        m_MethodName: OnSignUpButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9088,7 +9088,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &9028520038665776851
+--- !u!114 &9028520038665776852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9097,17 +9097,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5171287355375425721}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c33fd05d2318ee4c9ad91a95982d854, type: 3}
+  m_Script: {fileID: 11500000, guid: 884b5a4e841af0f438063e253772b392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SignInUI: {fileID: 6310837653719388524}
-  IdText: {fileID: 5242634325461535236}
-  PwText: {fileID: 7271773666719049725}
-  IdTextSignIn: {fileID: 5038078493440981889}
-  PwTextSignIn: {fileID: 2073840598510596612}
-  PwTextSignIn2: {fileID: 1636710631}
-  NameText: {fileID: 1326536444}
-  BirthText: {fileID: 959479979}
+  signupEmail: {fileID: 5038078493440981889}
+  signupPass: {fileID: 2073840598510596612}
+  signupPass2: {fileID: 1636710631}
+  loginEmail: {fileID: 5242634325461535236}
+  loginPass: {fileID: 7271773666719049725}
+  nameText: {fileID: 1326536444}
+  birthText: {fileID: 959479979}
   Male: {fileID: 601429494}
   Female: {fileID: 992364867}
   CheckAll: {fileID: 1130295305}
@@ -9122,7 +9121,8 @@ MonoBehaviour:
   birthError: {fileID: 915304809}
   mfError: {fileID: 1853080617}
   termError: {fileID: 678978694}
-  SignInComplete: {fileID: 724499638}
+  SignInUI: {fileID: 6310837653719388524}
+  SignInComplete: {fileID: 5171287355375425721}
 --- !u!224 &9060689562281395036
 RectTransform:
   m_ObjectHideFlags: 0
