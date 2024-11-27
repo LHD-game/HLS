@@ -30,7 +30,6 @@ public class FireBase : MonoBehaviour
             Debug.Log("유저 불러오기 성공");
             Dictionary<string, object> ddata = snapshot.ToDictionary();
             //복호화 해서 데이터에 넣기
-            Debug.Log(Key);
             data = ddata[Key].ToString();
 
         }
@@ -41,34 +40,25 @@ public class FireBase : MonoBehaviour
         }
         return data;
     }
-    async public static Task DataSave(string UserID, string Key, string Data)
+    async public static Task DataSave(string UID, string Key, string Data)
     {                                   //데이터 저장하기
 
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-        DocumentReference docRef = db.Collection("user").Document(UserID);
+        DocumentReference docRef = db.Collection("user").Document(UID);
         DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
         CollectionReference userRef = db.Collection("user");
-        //if (snapshot.Exists) //로그인
-       // {
-            if (await DataCheck(UserID))
-            {
-                await userRef.Document(UserID).UpdateAsync(new Dictionary<string, object>(){
-                { Key, Data },     //키값과 데이터값
-            });
-            }
-            else
-            {
-                await userRef.Document(UserID).SetAsync(new Dictionary<string, object>(){
-                { Key, Data },     //키값과 데이터값
-            });
-            }
-
-        //}
-        //else
-        //{
-          //  Debug.Log("유저 불러오기 실패");
-            //SceneManager.LoadSceneAsync("LoginScene"); //main화면으로
-        //}
+        if (await DataCheck(UID))
+        {
+            await userRef.Document(UID).UpdateAsync(new Dictionary<string, object>(){
+            { Key, Data },     //키값과 데이터값
+        });
+        }
+        else
+        {
+            await userRef.Document(UID).SetAsync(new Dictionary<string, object>(){
+            { Key, Data },     //키값과 데이터값
+        });
+        }
     }
 
     async public static Task<Dictionary<string, object>> ScoreDataLoad(DocumentSnapshot documentSnapshot, string surType, string UserID)
