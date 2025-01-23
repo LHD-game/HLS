@@ -78,7 +78,7 @@ public class FirebaseAuthManager : MonoBehaviour
         }
     }
 
-    // |-------------------------회원가입 함수----------------------------|
+    // |-------------------------회원가입 함수---------------------------|
     async public void SignUp(string email, string password)
     {
         bool emailBool = false;
@@ -200,9 +200,9 @@ public class FirebaseAuthManager : MonoBehaviour
     }
 
     // |-------------------------로그인 함수----------------------------|
-    public void LogIn(string email, string password)
+    async public void LogIn(string email, string password)
     {
-        auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
+        await auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled || task.IsFaulted)
             {
@@ -221,11 +221,13 @@ public class FirebaseAuthManager : MonoBehaviour
                 PlayerPrefs.SetInt("autoLogin", 1);
             }
 
+            FireBase.SurveyDataLoad("AUDIT", "A1-1");
+
             SceneManager.LoadSceneAsync("Main"); //main화면으로
         });
     }
 
-    //|-------------------------성별선택----------------------------|
+    // |---------------------------성별선택-----------------------------|
     public void MColorChange()
     {
         Male.color = new Color(50 / 255f, 66 / 255f, 139 / 255f, 1f);
@@ -247,7 +249,7 @@ public class FirebaseAuthManager : MonoBehaviour
         mf = "Female";
     }
 
-    //|-------------------------초기화----------------------------|
+    // |----------------------------초기화------------------------------|
     public void ResetStatus()
     {
 
@@ -275,7 +277,7 @@ public class FirebaseAuthManager : MonoBehaviour
             TermCheckAll();
     }
 
-    //|-------------------------버튼 동작----------------------------|
+    // |---------------------------버튼 동작----------------------------|
     public void OnSignUpButtonClicked()
     {
         string email = signupEmail.text;        // InputField에서 이메일 가져오기
@@ -292,7 +294,7 @@ public class FirebaseAuthManager : MonoBehaviour
         LogIn(email, password);
     }
 
-    //|-------------------------자동로그인 옵션----------------------------|
+    // |------------------------자동로그인 옵션-------------------------|
     public void AutoLoginCheck()       //자동로그인
     {
         if (!ALCheckbool)
@@ -308,7 +310,7 @@ public class FirebaseAuthManager : MonoBehaviour
         Debug.Log("자동로그인 활성화");
     }
 
-    //|-------------------------약관----------------------------|
+    // |----------------------------약관-------------------------------|
     public void TermCheckAll()
     {
         if (checkAll)
@@ -387,7 +389,7 @@ public class FirebaseAuthManager : MonoBehaviour
         }
         Debug.Log("a" + checkAll + "1" + check1 + "2" + check2 + "3");
     }
-    //|-----------------------계정삭제--------------------------|
+    // |--------------------------계정삭제-----------------------------|
     public async void DeleteAccount()
     {
         // 현재 사용자 가져오기
