@@ -6,6 +6,7 @@ using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Firestore;
+using Firebase.Extensions;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
@@ -13,33 +14,65 @@ using System.Security.Cryptography;
 public class FireBase : MonoBehaviour
 {
     //서버 구현 부분
-    async public static Task<string> DataLoad(string UserID, string Key)
-    {                                   //데이터 불러오기
+    //------------------------------설문 문항 불러오기 ex)SurveyDataLoad("AUDIT", "A1-1")
+    async public static Task<string> SurveyDataLoad(string surveyId, string key)
+    {                                   //설문 문항 불러오기 surveyId = 설문조사 이름 | key = 문항
         string data = "EMPTY";
+        Dictionary<string, object> survey;
 
-        //파이어베이스 연동
+        //파이어베이스 초기화
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
 
-        //파이어베이스에서 데이터 로드(user 컬렉션중 UserID를 찾음)
-        DocumentReference docRef = db.Collection("user").Document(UserID);
-        //찾은 정보를 불러와서 진행
-
-        DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-        if (snapshot.Exists) //로그인
+        //파이어베이스에 설문 문항을 불러온다.
+        DocumentReference docRef = db.Collection("SurveyList").Document(surveyId);
+        await docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
-            Debug.Log("유저 불러오기 성공");
-            Dictionary<string, object> ddata = snapshot.ToDictionary();
-            //복호화 해서 데이터에 넣기
-            data = ddata[Key].ToString();
-
-        }
-        else
-        {
-            Debug.Log("유저 불러오기 실패");
-            data = "ERROR";
-        }
+            DocumentSnapshot snapshot = task.Result;
+            //해당 문서 존재 여부 판단
+            if (snapshot.Exists)
+            {
+                //문서에서 문항 추출
+                survey = snapshot.ToDictionary();
+                data = survey[key].ToString();
+                Debug.Log(data);
+            }
+            else
+            {
+                Debug.Log(String.Format("설문조사 문항 {0}이 존재하지 않음", snapshot.Id));
+            }
+        });
         return data;
     }
+    //------------------------------데이터 불러오기         ex)SurveyDataLoad("tzav...", "Name")
+    async public static Task<string> DataLoad(string userId, string key)
+    {                                   //데이터 불러오기 userId = 유저Id(암호화된) | key = 항목
+        string data = "EMPTY";
+        Dictionary<string, object> user;
+
+        //파이어베이스 초기화
+        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+
+        //파이어베이스에 유저 문서를 불러온다.
+        DocumentReference docRef = db.Collection("user").Document(userId);
+        await docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            DocumentSnapshot snapshot = task.Result;
+            //해당 문서 존재 여부 판단
+            if (snapshot.Exists)
+            {
+                //문서에서 항목 추출
+                user = snapshot.ToDictionary();
+                data = user[key].ToString();
+                Debug.Log(data);
+            }
+            else
+            {
+                Debug.Log(String.Format("항목 {0}이 존재하지 않음", snapshot.Id));
+            }
+        });
+        return data;
+    }
+    //------------------------------데이터 저장하기         ex)DataSave(uid, "Name", name);
     async public static Task DataSave(string UID, string Key, string Data)
     {                                   //데이터 저장하기
 
@@ -60,6 +93,8 @@ public class FireBase : MonoBehaviour
         });
         }
     }
+
+
 
     async public static Task<Dictionary<string, object>> ScoreDataLoad(DocumentSnapshot documentSnapshot, string surType, string UserID)
     {
@@ -161,8 +196,7 @@ public class FireBase : MonoBehaviour
     {
         //파이어베이스 연동
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-        Query allData = db.Collection("user").Document(UserID)
-                                    .Collection(surtype);
+        Query allData = db.Collection("user").Document(UserID).Collection(surtype);
         QuerySnapshot allDataSnapshot = await allData.GetSnapshotAsync();
 
         var dataList = new List<Dictionary<string, object>>();
