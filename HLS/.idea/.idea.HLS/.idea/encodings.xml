@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with BOM under Windows, with no BOM otherwise">
+    <file url="file://$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerDays.cs" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Assets/Script/Dt/RaderDraw.cs" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Assets/Script/FireBase.cs" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Assets/Script/FirebaseTest.cs" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Assets/Script/Graoh/CircularBarGraph.cs" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Assets/Script/Score/ScoreData.cs" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Assets/Script/Score/ScoreManager.cs" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Assets/Script/WinCtl/MAinWinCtrl.cs" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/Assets/Script/testDetail/Calendar/CalendarSchedulerDaysCustom.cs" charset="x-windows-949" />
+  </component>
+</project>

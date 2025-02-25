@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "770770776312",
+    "project_id": "hlsapp-2d873",
+    "storage_bucket": "hlsapp-2d873.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770770776312:android:b4f1db0ad011189db3cb0d",
+        "android_client_info": {
+          "package_name": "sahmyook.HLS.company"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpoOQNY2Yd-RJpBsCjhQbqrJTDl6i8g-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
