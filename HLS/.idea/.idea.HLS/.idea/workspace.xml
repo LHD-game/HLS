@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HLS/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerDays.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerDays.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerTheme.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerTheme.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Screen/HistoryWin.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/SurveyPanel/SurveyPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/SurveyPanel/SurveyPanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/testDetail.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/testDetail/Calendar/CalendarSchedulerItemCustom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/testDetail/Calendar/CalendarSchedulerItemCustom.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/testDetail/Calendar/ThemeSchedulerCustom.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/testDetail/Calendar/ThemeSchedulerCustom.asset" afterDir="false" />
+    </list>
+    <list id="b4da0c6d-37b3-4385-96eb-c4d3101528b1" name="잘못된 디코딩" comment="">
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="data-schema/todo-request" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0652bf0e14024522b5c92574ad0ef550175c00/a3/786c0b31/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/4d/db2e5316/Action`2.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/hyoji/OneDrive/바탕 화면/Unity/HLS/HLS/Assets/Asset/CalendarSchedulerUI/Scripts/CalendarSchedulerDay.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/testDetail/graphV2.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2iraM1YRC4yzT5Jc1geuVXNcWZE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Unity 에디터에 연결.Unity 에디터에 연결">
+    <configuration name="유닛 테스트(배치 모드)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.30f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\hyoji\OneDrive\바탕 화면\Unity\HLS\HLS&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\hyoji\OneDrive\바탕 화면\Unity\HLS\HLS" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unity 시작" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.30f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;C:\Users\hyoji\OneDrive\바탕 화면\Unity\HLS\HLS&quot; -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\hyoji\OneDrive\바탕 화면\Unity\HLS\HLS" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unity 에디터에 연결" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Unreal 에디터에 연결 후 재생" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="43a6f687-d96b-4b9a-8cd8-6bdd837b45a6" name="변경" comment="" />
+      <changelist id="b4da0c6d-37b3-4385-96eb-c4d3101528b1" name="잘못된 디코딩" comment="" />
+      <created>1720251098945</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1720251098945</updated>
+      <workItem from="1720251101519" duration="110000" />
+      <workItem from="1720362448366" duration="1133000" />
+      <workItem from="1720578456784" duration="2969000" />
+      <workItem from="1720596204309" duration="1424000" />
+      <workItem from="1720617561553" duration="1230000" />
+      <workItem from="1721047287729" duration="3058000" />
+      <workItem from="1721100715897" duration="240000" />
+      <workItem from="1721100967973" duration="12584000" />
+      <workItem from="1723082647917" duration="1569000" />
+      <workItem from="1725601778556" duration="6638000" />
+      <workItem from="1726186576227" duration="155000" />
+      <workItem from="1726190817321" duration="2626000" />
+      <workItem from="1727149051419" duration="11478000" />
+      <workItem from="1727176059226" duration="160000" />
+      <workItem from="1727176377882" duration="8000" />
+      <workItem from="1727177242243" duration="902000" />
+      <workItem from="1727178623616" duration="4257000" />
+      <workItem from="1727417728417" duration="4353000" />
+      <workItem from="1727683209826" duration="4568000" />
+      <workItem from="1729138050671" duration="150000" />
+      <workItem from="1729142870942" duration="1769000" />
+      <workItem from="1729350650016" duration="73000" />
+      <workItem from="1729491956712" duration="348000" />
+      <workItem from="1729510226362" duration="3226000" />
+      <workItem from="1729752599504" duration="2002000" />
+      <workItem from="1730001715801" duration="127000" />
+      <workItem from="1730002014338" duration="281000" />
+      <workItem from="1730002310751" duration="1619000" />
+      <workItem from="1730167647795" duration="925000" />
+      <workItem from="1730211542281" duration="2406000" />
+      <workItem from="1730214126418" duration="5902000" />
+      <workItem from="1730363110432" duration="315000" />
+      <workItem from="1731984161934" duration="773000" />
+      <workItem from="1731985188684" duration="50000" />
+      <workItem from="1731988017524" duration="1807000" />
+      <workItem from="1731991614279" duration="1001000" />
+      <workItem from="1732169540704" duration="1030000" />
+    </task>
+    <task id="LOCAL-00001" summary="데이터 스키마 공유 및 변수명 컨벤션 개선 제안">
+      <option name="closed" value="true" />
+      <created>1721111089675</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1721111089677</updated>
+    </task>
+    <task id="LOCAL-00002" summary="캘린더에 점수 표시 기능 추가">
+      <option name="closed" value="true" />
+      <created>1727422099888</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727422099888</updated>
+    </task>
+    <task id="LOCAL-00003" summary="스케쥴 오류 수정">
+      <option name="closed" value="true" />
+      <created>1727687797614</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727687797614</updated>
+    </task>
+    <task id="LOCAL-00004" summary="디자인 적용">
+      <option name="closed" value="true" />
+      <created>1729138149259</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729138149259</updated>
+    </task>
+    <task id="LOCAL-00005" summary="1020">
+      <option name="closed" value="true" />
+      <created>1729350699897</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729350699897</updated>
+    </task>
+    <task id="LOCAL-00006" summary="1021">
+      <option name="closed" value="true" />
+      <created>1729492032256</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729492032256</updated>
+    </task>
+    <task id="LOCAL-00007" summary="그래프 오류 수정">
+      <option name="closed" value="true" />
+      <created>1729752347802</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729752347802</updated>
+    </task>
+    <task id="LOCAL-00008" summary="결과창 10.27">
+      <option name="closed" value="true" />
+      <created>1730003830446</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730003830446</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+    <option name="unityProject" value="true" />
+    <option name="unityProjectFolder" value="true" />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="데이터 스키마 공유 및 변수명 컨벤션 개선 제안" />
+    <MESSAGE value="캘린더에 점수 표시 기능 추가" />
+    <MESSAGE value="스케쥴 오류 수정" />
+    <MESSAGE value="디자인 적용 중" />
+    <MESSAGE value="디자인 적용 중" />
+    <MESSAGE value="1020" />
+    <MESSAGE value="1021" />
+    <MESSAGE value="그래프 오류 수정" />
+    <MESSAGE value="결과창 10.27" />
+    <MESSAGE value="달력 점수 표기 디자인 수정&#10;폰트 사이즈 줄이고 푸른색으로 설정" />
+    <option name="LAST_COMMIT_MESSAGE" value="달력 점수 표기 디자인 수정&#10;폰트 사이즈 줄이고 푸른색으로 설정" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
